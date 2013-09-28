@@ -1,6 +1,6 @@
 ###################################
 How to PUSH file up to git hub
-I've listed the command below
+I've listed the commands below
 ###################################
 
 shell$ git pull 		# you may have to reconcile conflicts in code after pulling
