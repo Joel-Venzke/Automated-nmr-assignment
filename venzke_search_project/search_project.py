@@ -51,7 +51,7 @@ def breadth_first(file_name):
 		#creates child_nodes to search 
 		#adds child_nodes to frontier
 		child_nodes = current_node.expand()
-		new_nodes(child_nodes)
+		nodes_generated = len(child_nodes) + nodes_generated
 		for c_n in child_nodes:
 			frontier.append(c_n)
 
@@ -85,7 +85,7 @@ def depth_first(file_name):
 		#creates child_nodes to search 
 		#adds child_nodes to frontier
 		child_nodes = current_node.expand()
-		new_nodes(child_nodes)
+		nodes_generated = len(child_nodes) + nodes_generated
 		for c_n in child_nodes:
 			frontier.append(c_n)
 
@@ -95,10 +95,7 @@ def depth_first(file_name):
 	print ""
 	best_solution.print_state()
 	print "Nodes Generated: " + str(nodes_generated)
-
-def new_nodes(added_nodes):
-	nodes_generated = len(added_nodes) + nodes_generated
-
+	
 
 #User inputs file name
 file_name = raw_input("What file do you want to use? ")
