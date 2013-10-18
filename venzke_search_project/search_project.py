@@ -6,53 +6,117 @@ Description: takes in a list of tiles and finds the order with the lowest 'cost'
 from Tile import Tile
 from State import State
 from Node import Node
+import time
 
-#takes in file 
+#takes in a file 
 #returns list of tiles from the file
-def read_file(fileName):
-	tileSetList = []
-	with open(fileName) as f:
-		for line in f:
-			t1, t2, t3, t4 = (s for s in line.split(' '))
-			tileSetList.append(Tile(t1, t2, t3, t4))
-	return tileSetList
+def read_file(file_name):
+	tile_set_list = []
 
-#takes in file
+	#runs while file is open
+	with open(file_name) as f:
+
+		#reads in all lines in the file
+		for line in f:
+
+			#reads each line, splits data at spaces, and adds a new Tile to tile_set_list
+			#file format "a b c d"
+			a, b, c, d = (s for s in line.split(' '))
+			tile_set_list.append(Tile(a, b, c, d))
+	return tile_set_list
+
+#takes in a file
 #runs a breath_first search
 #prints best solution to console
-def breadth_first(fileName):
-	tileSet = read_file(fileName) #list of tiles
-	startState = State([],tileSet) #State with no placed tiles
-	root = Node(startState, 0.0, None) #First Node, no cost, no parent
+def breadth_first(file_name):
+	tile_set = read_file(file_name) #list of tiles
+	start_state = State([],tile_set) #State with no placed tiles
+	root = Node(start_state, 0.0, None) #First Node, no cost, no parent
 	frontier = [root] #list of nodes
-	bestSolution = State([],[]) #stores best solution
-	bestCost = float("inf") #set to infinity
+	best_solution = State([],[]) #stores best solution
+	best_cost = float("inf") #set to infinity
+	nodes_generated = len(frontier)
 
 	#runs while frontier is not empty
 	while frontier:
-		currentNode = frontier.pop(0) #removes first node in frontier, stores in currentNode
+		current_node = frontier.pop(0) #removes first node in frontier, stores in current_node
 		
-		#checks if currentNode is a solution 
-		#compares currentNode to bestSolution
+		#checks if current_node is a solution 
+		#compares current_node to best_solution
 		#stores new best solution
-		if currentNode.getState().isGoal() and currentNode.getCost() < bestCost:
-			bestCost = currentNode.getCost()
-			bestSolution = currentNode.getState()
+		if current_node.get_state().is_goal() and current_node.get_cost() < best_cost:
+			best_cost = current_node.get_cost()
+			best_solution = current_node.get_state()
 
-		#creates childNodes to search 
-		#adds childNodes to frontier
-		childNodes = currentNode.expand()
-		for cN in childNodes:
-			frontier.append(cN)
+		#creates child_nodes to search 
+		#adds child_nodes to frontier
+		child_nodes = current_node.expand()
+		new_nodes(child_nodes)
+		for c_n in child_nodes:
+			frontier.append(c_n)
 
 	#prints best solution to console
 	print "HERE IS THE BEST"
-	print bestCost
+	print best_cost
 	print ""
-	bestSolution.printState()
+	best_solution.print_state()
+	print "Nodes Generated: " + str(nodes_generated)
+
+def depth_first(file_name):
+	tile_set = read_file(file_name) #list of tiles
+	start_state = State([],tile_set) #State with no placed tiles
+	root = Node(start_state, 0.0, None) #First Node, no cost, no parent
+	frontier = [root] #list of nodes
+	best_solution = State([],[]) #stores best solution
+	best_cost = float("inf") #set to infinity
+	nodes_generated = len(frontier)
+
+	#runs while frontier is not empty
+	while frontier:
+		current_node = frontier.pop() #removes first node in frontier, stores in current_node
+		
+		#checks if current_node is a solution 
+		#compares current_node to best_solution
+		#stores new best solution
+		if current_node.get_state().is_goal() and current_node.get_cost() < best_cost:
+			best_cost = current_node.get_cost()
+			best_solution = current_node.get_state()
+
+		#creates child_nodes to search 
+		#adds child_nodes to frontier
+		child_nodes = current_node.expand()
+		new_nodes(child_nodes)
+		for c_n in child_nodes:
+			frontier.append(c_n)
+
+	#prints best solution to console
+	print "HERE IS THE BEST"
+	print best_cost
+	print ""
+	best_solution.print_state()
+	print "Nodes Generated: " + str(nodes_generated)
+
+def new_nodes(added_nodes):
+	nodes_generated = len(added_nodes) + nodes_generated
+
 
 #User inputs file name
-fileName = raw_input("What file do you want to use? ")
+file_name = raw_input("What file do you want to use? ")
+
+#starts depth first search
+start_time = time.time()
+depth_first(file_name)
+end_time = time.time()
+
+print "Time: " + str(end_time - start_time)
+print " "
 
 #starts breath first search
-breadth_first(fileName)
+start_time = time.time()
+breadth_first(file_name)
+end_time = time.time()
+
+print "Time: " + str(end_time - start_time)
+print " "
+
+
