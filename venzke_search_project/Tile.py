@@ -19,50 +19,50 @@ class Tile(object):
         self.d = float(d)
 
     #sets all values in a tile
-    def setTile(self,a,b,c,d):
+    def set_tile(self,a,b,c,d):
         self.a = float(a)
         self.b = float(b)
         self.c = float(c)
         self.d = float(d)
 
     #sets a as i
-    def setA(self,i):
+    def set_a(self,i):
         self.a = i
 
     #sets b as i
-    def setB(self,i):
+    def set_b(self,i):
         self.b = i
 
     #sets c as i
-    def setC(self, i):
+    def set_c(self, i):
         self.c = i
 
     #sets d as i
-    def setD(self, i):
+    def set_d(self, i):
         self.d = i
 
     #returns a list of tile values
-    def getTile(self):
+    def get_tile(self):
         return [self.a, self.b, self.c, self.d]
 
     #returns a
-    def getA(self):
+    def get_a(self):
         return self.a
 
     #returns b
-    def getB(self):
+    def get_b(self):
         return self.b
 
     #returns c
-    def getC(self):
+    def get_c(self):
         return self.c
 
     #returns d
-    def getD(self):
+    def get_d(self):
         return self.d
 
     #takes in next the tile below 
     #returns cost of adding the tile below 
     def compare_below(self, t):
-        self.compare = math.fabs((self.c-t.getA()))+math.fabs((self.d-t.getB()))
+        self.compare = math.fabs((self.c-t.get_a()))+math.fabs((self.d-t.get_b()))
         return self.compare
