@@ -11,6 +11,10 @@ class Tile(object):
         self.c = float(c)
         self.d = float(d)
 
+    #returns a list of tile values
+    def get_tile(self):
+        return [self.a, self.b, self.c, self.d]
+
     #returns a
     def get_a(self):
         return self.a
