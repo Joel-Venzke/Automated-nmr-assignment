@@ -7,39 +7,39 @@ from Tile import Tile
 
 class State(object):
 	
-	#sets placedTiles as pT and unplacedTiles as uT
-	def __init__(self, pT, uT):
-		self.placedTiles = pT
-		self.unplacedTiles = uT
+	#sets placed_tiles as p_t and unplaced_tiles as u_t
+	def __init__(self, p_t, u_t):
+		self.placed_tiles = p_t
+		self.unplaced_tiles = u_t
 		self.children = []
-		self.unT = []
-		self.pT = []
-		self.lengthUT = range(len(self.unplacedTiles))
-		self.lengthPT = range(len(self.placedTiles))
+		self.un_t = []
+		self.p_t = []
+		self.length_u_t = range(len(self.unplaced_tiles))
+		self.length_p_t = range(len(self.placed_tiles))
 	
-	#sets placedTiles as pT
-	def setPlacedTiles(self, pT):
-		self.placedTiles = pT
+	#sets placed_tiles as p_t
+	def set_placed_tiles(self, p_t):
+		self.placed_tiles = p_t
 
-	#sets unplacedTiles as uT
-	def setUnplacedTiles(self, uT):
-		self.unplacedTiles = uT
+	#sets unplaced_tiles as u_t
+	def set_unplaced_tiles(self, u_t):
+		self.unplaced_tiles = u_t
 
-	#returns placedTiles
-	def getPlacedTiles(self):
-		return self.placedTiles
+	#returns placed_tiles
+	def get_placed_tiles(self):
+		return self.placed_tiles
 
-	#returns unplacedTiles
-	def getUnplacedTiles(self):
-		return self.unplacedTiles
+	#returns unplaced_tiles
+	def get_unplaced_tiles(self):
+		return self.unplaced_tiles
 
 	#check to see if the State is a goal State 
 	#returns boolean
-	def isGoal(self):
+	def is_goal(self):
 
 		#if all tiles are place 
 		#returns true
-		if not self.unplacedTiles:
+		if not self.unplaced_tiles:
 			return True
 
 		#if not all tiles placed 
@@ -48,12 +48,12 @@ class State(object):
 			return False
 
 	#calculates step cost
-	def stepCost(self):
+	def step_cost(self):
 
 		#if 2 or more tiles are placed 
 		#returns step cost
-		if len(self.placedTiles) > 1:
-			return self.placedTiles[-2].compare_below(self.placedTiles[-1])
+		if len(self.placed_tiles) > 1:
+			return self.placed_tiles[-2].compare_below(self.placed_tiles[-1])
 		
 		#if 0 or 1 tiles are placed 
 		#returns no cost
@@ -61,41 +61,41 @@ class State(object):
 			return 0.0
 
 	#returns a list of child states
-	def generateSuccessor(self):
+	def generate_successor(self):
 
 		#loops through all unplaced tiles
-		for self.i in self.lengthUT:
+		for self.i in self.length_u_t:
 
-			#clears unT and pT
-			self.unT = []
-			self.pT = []
+			#clears un_t and p_t
+			self.un_t = []
+			self.p_t = []
 
-			#fills unT with unplacedTiles
-			if self.unplacedTiles:
-				for self.j in self.lengthUT:
-					self.unT.append(self.unplacedTiles[self.j])
+			#fills un_t with unplaced_tiles
+			if self.unplaced_tiles:
+				for self.j in self.length_u_t:
+					self.un_t.append(self.unplaced_tiles[self.j])
 			else:
-				self.unT = []
+				self.un_t = []
 
-			#fills pT with placedTiles
-			if self.placedTiles:
-				for self.j in self.lengthPT:
-					self.pT.append(self.placedTiles[self.j])
+			#fills p_t with placed_tiles
+			if self.placed_tiles:
+				for self.j in self.length_p_t:
+					self.p_t.append(self.placed_tiles[self.j])
 			else:
-				self.pT = []
+				self.p_t = []
 
-			#removes ith unT tile and adds it to the end of pT
-			self.pT.append(self.unT.pop(self.i))
+			#removes ith un_t tile and adds it to the end of p_t
+			self.p_t.append(self.un_t.pop(self.i))
 
 			#adds new state to children
-			self.children.append(State(self.pT, self.unT))
+			self.children.append(State(self.p_t, self.un_t))
 		return self.children
 
 	#prints out State
-	def printState(self):
+	def print_state(self):
 		print "placed"
-		for pT in self.placedTiles:
-			print pT.getTile()
+		for p_t in self.placed_tiles:
+			print p_t.get_tile()
 		print "unplaced"
-		for uT in self.unplacedTiles:
-			print uT.getTile()
+		for u_t in self.unplaced_tiles:
+			print u_t.get_tile()
