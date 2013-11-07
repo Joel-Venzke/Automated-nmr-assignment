@@ -11,6 +11,11 @@ class Node(object):
 	def is_goal(self):
 		return not bool(self.unplaced_tiles)
 
+#
+#
+#
+#
+
 	#prints out Node 
 	def __str__(self):
 		for tile in self.placed_tiles:
@@ -20,6 +25,13 @@ class Node(object):
 	# returns cost
 	def get_cost(self):
 		return self.cost
+
+# 
+#
+#
+#
+#
+
 
 	# returns a list of child nodes
 	def expand(self):
