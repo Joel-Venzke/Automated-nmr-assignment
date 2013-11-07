@@ -1,5 +1,4 @@
 from Tile import Tile
-from State import State
 from Node import Node
 
 #takes in a file 
