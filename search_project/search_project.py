@@ -4,10 +4,6 @@ Date created: October 12th, 2013
 Description: takes in a list of tiles and finds the order with the lowest 'cost'
 """
 
-#
-# hi world
-# Hi HI HI
-#it doesn't matter
 
 import search_strategies
 import time
