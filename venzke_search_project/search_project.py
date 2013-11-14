@@ -72,7 +72,7 @@ def depth_first(file_name):
 
 	#runs while frontier is not empty
 	while frontier:
-		current_node = frontier.pop() #removes first node in frontier, stores in current_node
+		current_node = frontier.pop() #removes last node in frontier, stores in current_node
 		
 		#checks if current_node is a solution 
 		#compares current_node to best_solution
