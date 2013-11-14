@@ -36,9 +36,9 @@ class Node(object):
 
 			if(self.placed_tiles):
 				c = self.placed_tiles[-1].compare_below(placed_tile) + \
-				math.fabs(self.placed_tile.get_sum() - self.characteristic[len(placed_tiles) + 1].get_sum())
+				math.fabs(self.placed_tile.get_sum() - self.characteristic[len(placed_tiles) + 1])
 			else:
-				c = math.fabs(self.placed_tile.get_sum() - self.characteristic[0].get_sum())
+				c = math.fabs(self.placed_tile.get_sum() - self.characteristic[0])
 
 			new_nodes.append(Node(temp_ut, temp_pt, self.cost + c))
 			#this is where the things would change, cost of tile making sense. 
