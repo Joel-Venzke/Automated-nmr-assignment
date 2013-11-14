@@ -38,5 +38,6 @@ class Node(object):
 				c = 0.0
 
 			new_nodes.append(Node(temp_ut, temp_pt, self.cost + c))
+			#this is where the things would change, cost of tile making sense. 
 		
 		return new_nodes
