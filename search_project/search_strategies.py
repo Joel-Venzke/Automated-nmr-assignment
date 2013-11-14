@@ -5,11 +5,14 @@ from Node import Node
 #returns list of tiles from the file
 def read_file(file_name):
 	tile_set_list = []
+	characteristic = []
 
 	#runs while file is open
 	with open(file_name) as f:
 
-		# READ THE LINE OF FILE HERE
+		# READ THE LINE OF CHARACTERISTICS IN HERE
+		tile_characteristic = f.readline()
+		characteristic = (tile_characteristic.split(' '))
 
 		#reads in all lines in the file
 		for line in f:
@@ -18,6 +21,7 @@ def read_file(file_name):
 			#file format "a b c d"
 			a, b, c, d = (s for s in line.split(' '))
 			tile_set_list.append(Tile(a, b, c, d))
+			tile_set_list.append(characteristic)
 	return tile_set_list
 
 #takes in a file
