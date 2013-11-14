@@ -1,12 +1,14 @@
 #!/usr/bin/python
+import math
 
 class Node(object):
 
 	# Makes a Nodes with State s, Cost c, and parent node p
-	def __init__(self, ut, pt, cost):
+	def __init__(self, ut, pt, cost, characteristic):
 		self.unplaced_tiles = ut
 		self.placed_tiles = pt
 		self.cost = cost
+		self.characteristic = characteristic
 
 	def is_goal(self):
 		return not bool(self.unplaced_tiles)
@@ -33,9 +35,9 @@ class Node(object):
 			temp_pt.append(placed_tile)
 
 			if(self.placed_tiles):
-				c = self.placed_tiles[-1].compare_below(placed_tile) + 
+				c = self.placed_tiles[-1].compare_below(placed_tile) + math.fabs(self.placed_tile.get_sum() - self.characteristic[len(placed_tiles) + 1].get_sum())
 			else:
-				c = 0.0
+				c = math.fabs(self.placed_tile.get_sum() - self.characteristic[0].get_sum())
 
 			new_nodes.append(Node(temp_ut, temp_pt, self.cost + c))
 		
