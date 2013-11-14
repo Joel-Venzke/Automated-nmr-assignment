@@ -33,7 +33,7 @@ class Node(object):
 			temp_pt.append(placed_tile)
 
 			if(self.placed_tiles):
-				c = self.placed_tiles[-1].compare_below(placed_tile)
+				c = self.placed_tiles[-1].compare_below(placed_tile) + 
 			else:
 				c = 0.0
 

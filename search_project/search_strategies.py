@@ -9,6 +9,8 @@ def read_file(file_name):
 	#runs while file is open
 	with open(file_name) as f:
 
+		# READ THE LINE OF FILE HERE
+
 		#reads in all lines in the file
 		for line in f:
 
