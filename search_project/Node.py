@@ -35,7 +35,8 @@ class Node(object):
 			temp_pt.append(placed_tile)
 
 			if(self.placed_tiles):
-				c = self.placed_tiles[-1].compare_below(placed_tile) + math.fabs(self.placed_tile.get_sum() - self.characteristic[len(placed_tiles) + 1].get_sum())
+				c = self.placed_tiles[-1].compare_below(placed_tile) + \
+				math.fabs(self.placed_tile.get_sum() - self.characteristic[len(placed_tiles) + 1].get_sum())
 			else:
 				c = math.fabs(self.placed_tile.get_sum() - self.characteristic[0].get_sum())
 
