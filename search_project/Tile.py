@@ -22,6 +22,10 @@ class Tile(object):
     #returns b
     def get_b(self):
         return self.b
+        
+    #returns the sum
+    def get_sum(self):
+        return (self.a+self.b+self.c+self.d)
 
     #takes in next the tile below 
     #returns cost of adding the tile below 
