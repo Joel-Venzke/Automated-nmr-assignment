@@ -40,5 +40,6 @@ class Node(object):
 				c = math.fabs(self.placed_tile.get_sum() - self.characteristic[0].get_sum())
 
 			new_nodes.append(Node(temp_ut, temp_pt, self.cost + c))
+			#this is where the things would change, cost of tile making sense. 
 		
 		return new_nodes
