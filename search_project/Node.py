@@ -30,17 +30,17 @@ class Node(object):
 
 			temp_ut = list(self.unplaced_tiles)
 			placed_tile = temp_ut.pop(i)
-			
+
 			temp_pt = list(self.placed_tiles)
 			temp_pt.append(placed_tile)
 
-			if(placed_tile):
-
-				c = placed_tile[-1].compare_below(placed_tile) + \
-				math.fabs(placed_tile.get_sum() - self.characteristic[len(placed_tiles) + 1])
+			if(self.placed_tiles):
+				
+				c = self.placed_tiles[-1].compare_below(placed_tile) + \
+				math.fabs(placed_tile.get_sum() - float(self.characteristic[len(self.placed_tiles)]))
 
 			else:
-				c = math.fabs(placed_tile.get_sum() - self.characteristic[0])
+				c = math.fabs(placed_tile.get_sum() - float(self.characteristic[0]))
 
 			new_nodes.append(Node(temp_ut, temp_pt, self.cost + c, self.characteristic))
 			
