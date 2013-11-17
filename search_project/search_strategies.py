@@ -99,7 +99,7 @@ def depth_first(file_name):
 #prints best solution to console
 def uniform_cost(file_name):
 	tile_set = read_file(file_name) #list of tiles
-
+	
 	root = Node(tile_set, [], 0.0)
 
 	frontier = [root] #list of nodes
