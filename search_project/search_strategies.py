@@ -21,7 +21,7 @@ def read_file(file_name):
 			#file format "a b c d"
 			a, b, c, d = (s for s in line.split(' '))
 			tile_set_list.append(Tile(a, b, c, d))
-			tile_set_list.append(characteristic)
+			tile_set_list.insert(0, characteristic)
 	return tile_set_list
 
 #takes in a file
@@ -30,8 +30,8 @@ def read_file(file_name):
 def breadth_first(file_name):
 	tile_set = read_file(file_name) #list of tiles
 
-	root = Node(tile_set, [], 0.0)
-
+	characteristic = tile_set.pop(0) #takes the characteristic array off of the tile_set 
+	root = Node(tile_set, [], 0.0, characteristic)
 	frontier = [root] #list of nodes
 
 	best_solution = None
