@@ -17,14 +17,14 @@ if(strategy == "a"):
         start = time.clock()
 	search_strategies.breadth_first(file_name)
 	end = time.clock()
-	print (end-start)
+	print ("Run Time:  ", end-start)
 elif(strategy == "b"):
         start = time.clock()
 	search_strategies.depth_first(file_name)
 	end = time.clock()
-	print (end-start)
+	print ("Run Time:  ", end-start)
 else:
         start = time.clock()
 	search_strategies.uniform_cost(file_name)
 	end = time.clock()
-	print (end-start)
+	print ("Run Time:  ", end-start)
