@@ -3,6 +3,8 @@ How to PUSH file up to git hub
 I've listed the commands below
 ###################################
 
+asdf
+
 shell$ git pull 		# you may have to reconcile conflicts in code after pulling
 
 shell$ git add .
