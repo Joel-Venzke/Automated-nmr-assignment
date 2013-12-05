@@ -44,7 +44,7 @@ def letters_to_numbers(characteristic):
 		elif ch == "phe":
 			temp = [60.8, 38.8]
 		elif ch == "gly":
-			temp = [46.9, float("inf")]
+			temp = [46.9, "gly"]
 		elif ch == "his":
 			temp = [59.0, 29.5]
 		elif ch == "ile":

@@ -25,7 +25,17 @@ class Tile(object):
         
     #returns the sum
     def get_error(self, char):
-        return (.05*math.fabs(char[0]-self.a)/self.a+.05*math.fabs(char[0]-self.b)/self.b)
+
+        #if its not a gly then error will be inf
+        if char[1] == "gly" and self.a > 48:
+            return float("inf")
+        #if its a gly return error of 0
+        elif char[1] == "gly" and self.a < 48:
+            return (.05*math.fabs(char[0]-self.a)/self.a)
+
+        #all non gly
+        else:
+            return (.05*math.fabs(char[0]-self.a)/self.a+.05*math.fabs(char[0]-self.b)/self.b)
 
     #takes in next the tile below 
     #returns cost of adding the tile below 
