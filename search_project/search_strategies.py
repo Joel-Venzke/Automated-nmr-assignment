@@ -125,6 +125,6 @@ def uniform_cost(file_name):
 		
 	#prints best solution to console
 	print "HERE IS THE BEST"
-	print best_cost
+	print "Cost: " + str(best_cost)
 	print ""
 	print best_solution
