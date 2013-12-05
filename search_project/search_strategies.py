@@ -86,7 +86,6 @@ def uniform_cost(file_name):
 	tile_set = read_file(file_name) #list of tiles
 	
 	characteristic = letters_to_numbers(tile_set.pop(0)) #takes the characteristic array off of the tile_set 
-	print characteristic
 	root = Node(tile_set, [], 0.0, characteristic)
 
 	frontier = [root] #list of nodes
