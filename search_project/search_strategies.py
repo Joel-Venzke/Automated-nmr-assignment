@@ -71,9 +71,10 @@ def letters_to_numbers(characteristic):
 			temp = [60.0, 29.3]
 		elif ch == "Tyr":
 			temp = [61.0, 38.3]
+		else:
+			print "error"
 		new_characteristic.append(temp)
-	return temp
-
+	return new_characteristic
 
 
 #runs a breath_first search
