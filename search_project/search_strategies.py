@@ -28,52 +28,54 @@ def letters_to_numbers(characteristic):
 	temp = []
 	new_characteristic = []
 	for ch in characteristic:
+		ch = ch.lower()
 		temp = []
-		if ch == "Ala":
+		if ch == "ala":
 			temp = [54.8, 18.3]
-		elif ch == "Cyso":
+		elif ch == "cyso":
 			temp = [58.0, 39.4]
-		elif ch == "Cysr":
+		elif ch == "cysr":
 			temp = [61.3, 27.8]
-		elif ch == "Asp":
+		elif ch == "asp":
 			temp = [56.7, 40.5]
-		elif ch == "Glu":
+		elif ch == "glu":
 			temp = [59.1, 29.4]
-		elif ch == "Phe":
+		elif ch == "phe":
 			temp = [60.8, 38.8]
-		elif ch == "Gly":
-			temp = [46.9, 0]
-		elif ch == "His":
+		elif ch == "gly":
+			temp = [46.9, float("inf")]
+		elif ch == "his":
 			temp = [59.0, 29.5]
-		elif ch == "Ile":
+		elif ch == "ile":
 			temp = [64.6, 37.6]
-		elif ch == "Lys":
+		elif ch == "lys":
 			temp = [58.9, 32.3]
-		elif ch == "Leu":
+		elif ch == "leu":
 			temp = [57.5, 41.6]
-		elif ch == "Met":
+		elif ch == "met":
 			temp = [58.1, 32.3]
-		elif ch == "Asn":
+		elif ch == "asn":
 			temp = [55.5, 38.6]
-		elif ch == "Pro":
+		elif ch == "pro":
 			temp = [65.5, 31.5]
-		elif ch == "Gln":
+		elif ch == "gln":
 			temp = [58.5, 28.5]
-		elif ch == "Arg":
+		elif ch == "arg":
 			temp = [58.9, 30.1]
-		elif ch == "Ser":
+		elif ch == "ser":
 			temp = [60.9, 63.1]
-		elif ch == "Thr":
+		elif ch == "thr":
 			temp = [65.6, 68.9]
-		elif ch == "Val":
+		elif ch == "val":
 			temp = [66.2, 31.5]
-		elif ch == "Trp":
+		elif ch == "trp":
 			temp = [60.0, 29.3]
-		elif ch == "Tyr":
+		elif ch == "tyr":
 			temp = [61.0, 38.3]
+		else:
+			sys.exit("Amino acid not in database")
 		new_characteristic.append(temp)
-	return temp
-
+	return new_characteristic
 
 
 #runs a breath_first search
