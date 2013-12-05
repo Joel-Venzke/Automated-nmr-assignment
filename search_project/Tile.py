@@ -16,12 +16,12 @@ class Tile(object):
         return [self.a, self.b, self.c, self.d]
 
     #returns a
-    def get_a(self):
-        return self.a
+    def get_c(self):
+        return self.c
 
     #returns b
-    def get_b(self):
-        return self.b
+    def get_d(self):
+        return self.d
         
     #returns the sum
     def get_error(self, char):
@@ -30,4 +30,4 @@ class Tile(object):
     #takes in next the tile below 
     #returns cost of adding the tile below 
     def compare_below(self, t):
-        return  math.fabs((self.c-t.get_a()))+math.fabs((self.d-t.get_b()))
+        return  math.fabs((self.a-t.get_c()))+math.fabs((self.b-t.get_d()))
