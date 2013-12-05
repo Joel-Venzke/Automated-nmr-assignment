@@ -70,7 +70,7 @@ def letters_to_numbers(characteristic):
 		elif ch == "Trp":
 			temp = [60.0, 29.3]
 		elif ch == "Tyr":
-			temp = [60.1, 38.3]
+			temp = [61.0, 38.3]
 		new_characteristic.append(temp)
 	return temp
 
