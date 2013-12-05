@@ -1,5 +1,6 @@
 from Tile import Tile
 from Node import Node
+import sys
 
 #takes in a file 
 #returns list of tiles from the file
@@ -28,7 +29,7 @@ def letters_to_numbers(characteristic):
 	temp = []
 	new_characteristic = []
 	for ch in characteristic:
-		ch = ch.lower()
+		ch = ch.lower().strip()
 		temp = []
 		if ch == "ala":
 			temp = [54.8, 18.3]
@@ -73,6 +74,7 @@ def letters_to_numbers(characteristic):
 		elif ch == "tyr":
 			temp = [61.0, 38.3]
 		else:
+			print ch
 			sys.exit("Amino acid not in database")
 		new_characteristic.append(temp)
 	return new_characteristic
@@ -114,7 +116,7 @@ def uniform_cost(file_name):
 		#adds child_nodes to frontier
 		child_nodes = current_node.expand()
 		for c_n in child_nodes:
-			frontier.append(c_n)
+			frontier.insert(0, c_n)
 		
 		keep_running = False
 		for i in range(len(frontier)):
