@@ -24,8 +24,8 @@ class Tile(object):
         return self.b
         
     #returns the sum
-    def get_sum(self):
-        return (self.a+self.b+self.c+self.d)
+    def get_error(self, char):
+        return (.05*math.fabs(char[0]-self.a)/self.a+.05*math.fabs(char[0]-self.b)/self.b)
 
     #takes in next the tile below 
     #returns cost of adding the tile below 
