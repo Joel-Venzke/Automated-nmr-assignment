@@ -21,6 +21,14 @@ def read_file(file_name):
 			#reads each line, splits data at spaces, and adds a new Tile to tile_set_list
 			#file format "a b c d"
 			a, b, c, d = (s for s in line.split(' '))
+			if (a == ""):
+				a = -1
+			if (b == ""):
+				b = -1
+			if (c == ""):
+				c = -1
+			if (d == ""):
+				d = -1
 			tile_set_list.append(Tile(a, b, c, d, False))
 		tile_set_list.insert(0, characteristic)
 	return tile_set_list
@@ -44,7 +52,7 @@ def letters_to_numbers(characteristic):
 		elif ch == "phe":
 			temp = [60.8, 38.8]
 		elif ch == "gly":
-			temp = [46.9, "gly"]
+			temp = [46.9, -1]
 		elif ch == "his":
 			temp = [59.0, 29.5]
 		elif ch == "ile":
