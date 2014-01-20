@@ -41,5 +41,5 @@ class Tile(object):
 
     #takes in next the tile below 
     #returns cost of adding the tile below 
-    def compare_below(self, t):
+    def compare_above(self, t):
         return  math.fabs((self.a-t.get_c()))+math.fabs((self.b-t.get_d()))
