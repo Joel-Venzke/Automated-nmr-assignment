@@ -42,6 +42,6 @@ class Tile(object):
     #returns cost of adding the tile below 
     def compare_above(self, t):
         if(self.place_holder == True or t.get_place_holder() == True ):
-            return 0 
+            return 1
         else:
             return  math.fabs((self.a-t.get_c()))+math.fabs((self.b-t.get_d()))
