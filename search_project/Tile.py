@@ -30,7 +30,6 @@ class Tile(object):
         
     #returns the sum
     def get_error(self, char):
-        print char
         #Missing Data Check:  checks to see if the tile is hard data or a place holder, returns 0 if flexible
         if(self.place_holder == True):
             return 0
