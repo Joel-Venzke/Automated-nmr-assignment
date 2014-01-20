@@ -32,16 +32,16 @@ class Tile(object):
     def get_error(self, char):
         #Missing Data Check:  checks to see if the tile is hard data or a place holder, returns 0 if flexible
         if(self.place_holder == True):
-            return 0
+            return .5
             
         #all non gly
         else:
-            return (.05*math.fabs(char[0]-self.a)/self.a+.05*math.fabs(char[0]-self.b)/self.b)
+            return (.5*math.fabs(char[0]-self.a)/self.a+.5*math.fabs(char[0]-self.b)/self.b)
 
     #takes in next the tile below 
     #returns cost of adding the tile below 
     def compare_above(self, t):
         if(self.place_holder == True or t.get_place_holder() == True ):
-            return 1
+            return .9
         else:
             return  math.fabs((self.a-t.get_c()))+math.fabs((self.b-t.get_d()))
