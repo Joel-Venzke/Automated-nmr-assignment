@@ -21,7 +21,15 @@ def read_file(file_name):
 			#reads each line, splits data at spaces, and adds a new Tile to tile_set_list
 			#file format "a b c d"
 			a, b, c, d = (s for s in line.split(' '))
-			tile_set_list.append(Tile(a, b, c, d))
+			if (a == ""):
+				a = -1
+			if (b == ""):
+				b = -1
+			if (c == ""):
+				c = -1
+			if (d == ""):
+				d = -1
+			tile_set_list.append(Tile(a, b, c, d, False))
 		tile_set_list.insert(0, characteristic)
 	return tile_set_list
 
@@ -44,7 +52,7 @@ def letters_to_numbers(characteristic):
 		elif ch == "phe":
 			temp = [60.8, 38.8]
 		elif ch == "gly":
-			temp = [46.9, "gly"]
+			temp = [46.9, -1]
 		elif ch == "his":
 			temp = [59.0, 29.5]
 		elif ch == "ile":
@@ -79,6 +87,15 @@ def letters_to_numbers(characteristic):
 		new_characteristic.append(temp)
 	return new_characteristic
 
+#finds how many gaps are in the data
+#generates placeholder tiles for missing data
+#saves new tiles in tile_set
+def generate_placeholders(tile_set, characteristic):
+	gap = len(characteristic) - len(tile_set)
+	if gap > 0:
+		for n in range(gap):
+			tile_set.append(Tile(-1, -1, -1, -1, True))
+	return tile_set
 
 #runs a breath_first search
 #prints best solution to console
@@ -86,6 +103,9 @@ def uniform_cost(file_name):
 	tile_set = read_file(file_name) #list of tiles
 	
 	characteristic = letters_to_numbers(tile_set.pop(0)) #takes the characteristic array off of the tile_set 
+	
+	tile_set = generate_placeholders(tile_set, characteristic)
+
 	root = Node(tile_set, [], 0.0, characteristic)
 
 	frontier = [root] #list of nodes
@@ -122,7 +142,7 @@ def uniform_cost(file_name):
 		    if (keep_running==False and frontier[i].get_cost() < best_cost):
 		        keep_running = True
 		
-		
+	
 	#prints best solution to console
 	print "HERE IS THE BEST"
 	print "Cost: " + str(best_cost)
