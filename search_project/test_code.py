@@ -6,7 +6,7 @@ class TestSequenceFunctions(unittest.TestCase):
     def test_testdata_txt(self):
         expected_output = \
 ("""HERE IS THE BEST
-Cost: 5.67396330086
+Cost: 1.75179633009
 
 [54.796, 41.361, 51.848, 19.414]
 [55.396, 30.413, 54.749, 41.328]
