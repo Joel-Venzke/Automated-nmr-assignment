@@ -4,4 +4,4 @@ edit cost
 	weight 
 	cost for missing data
 	cost for missing tiles
-	
+fix command line input
