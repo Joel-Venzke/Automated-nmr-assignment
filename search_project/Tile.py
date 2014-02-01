@@ -31,7 +31,7 @@ class Tile(object):
     #returns the sum
     def get_error(self, char):
         #Missing Data Check:  checks to see if the tile is hard data or a place holder, returns 0 if flexible
-        if(self.place_holder == True self.a and self.b == -1):
+        if(self.place_holder == True or self.a and self.b == -1):
             return .5
         elif(self.a == -1):
             return (math.fabs(char[0]-self.a)/self.a)
