@@ -11,7 +11,7 @@ class Tile(object):
         self.c = float(c)
         self.d = float(d)
         self.place_holder = place_holder
-        self.char_weight = .1
+        self.char_weight = .01
         self.order_weight = .4
 
     #returns a list of tile values
@@ -30,9 +30,7 @@ class Tile(object):
     def get_d(self):
         return self.d
         
-    #returns the sum
     def get_error(self, char):
-        #Missing Data Check:  checks to see if the tile is hard data or a place holder, returns 0 if flexible
         if(self.place_holder == True or self.a == -1 and self.b == -1):
             return self.char_weight * .5
         elif(self.a == -1):
@@ -46,7 +44,7 @@ class Tile(object):
     #returns cost of adding the tile below 
     def compare_above(self, t):
         if(self.place_holder == True or t.get_place_holder() == True or self.a == -1 and self.b == -1 or t.c == -1 and t.d ==-1 ):
-            return self.order_weight *.3
+            return self.order_weight * .3
         elif(self.a == -1 or t.get_c == -1):
             return math.fabs((self.b-t.get_d()))*2*self.order_weight
         elif(self.b == -1 or t.get_d == -1):
