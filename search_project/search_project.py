@@ -10,10 +10,15 @@ import time
 import sys
 
 #User inputs file name
+if len(sys.argv):
+	exit("NO INPUT DATA FILE\n\nPlease type: \nshell$ python search_project.py Path/To/Data/File.txt\n")
+
 file_name = sys.argv[1]
+
 
 start = time.clock()
 search_strategies.uniform_cost(file_name)
 end = time.clock()
 
-print "Run Time:  " + str(end-start)
+# print "Run Time:  " + str(end-start)
+
