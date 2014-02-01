@@ -40,8 +40,8 @@ class Tile(object):
         else:
             return (self.char_weight*math.fabs(char[0]-self.a)+self.char_weight*math.fabs(char[1]-self.b))
 
-    #takes in next the tile below 
-    #returns cost of adding the tile below 
+    #takes in next the tile above 
+    #returns cost of adding the tile above 
     def compare_above(self, t):
         if(self.place_holder == True or t.get_place_holder() == True or self.a == -1 and self.b == -1 or t.c == -1 and t.d ==-1 ):
             return self.order_weight * .3
