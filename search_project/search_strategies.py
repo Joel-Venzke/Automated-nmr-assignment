@@ -106,7 +106,7 @@ def uniform_cost(file_name):
 	
 	tile_set = generate_placeholders(tile_set, characteristic)
 
-	root = Node(tile_set, [], 0.0, characteristic)
+	root = Node(tile_set, [], 0.0, characteristic,0,0)
 
 	frontier = [root] #list of nodes
 
@@ -148,3 +148,5 @@ def uniform_cost(file_name):
 	print "Cost: " + str(best_cost)
 	print ""
 	print best_solution
+	print "Char cost:  " + str(best_solution.get_char_cost())
+	print "Order Cost:  " + str(best_solution.get_order_cost())

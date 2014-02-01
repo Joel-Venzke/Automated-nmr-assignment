@@ -11,8 +11,8 @@ class Tile(object):
         self.c = float(c)
         self.d = float(d)
         self.place_holder = place_holder
-        self.char_weight = .5
-        self.order_weight = 1
+        self.char_weight = .025
+        self.order_weight = .4
 
     #returns a list of tile values
     def get_tile(self):
