@@ -1,7 +1,9 @@
 Paper
 	abstract
 edit cost
-	weight 
-	cost for missing data
-	cost for missing tiles
+	optimize weight
+	optimize error calulation
+make input files less "touchy"
+	care less about trailing spaces
+	Value for missing data? such as "na"?
 fix command line input
