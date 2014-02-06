@@ -21,7 +21,7 @@ class TestSequenceFunctions(unittest.TestCase):
         out = p.communicate()
 
         outputList = out[0].split("\n")
-        output = "\n".join(outputList[3:len(outputList) - 3])
+        output = "\n".join(outputList[3 : len(outputList) - 3])
         
         self.assertTrue(output == expected_output)
 
@@ -62,7 +62,7 @@ class TestSequenceFunctions(unittest.TestCase):
         out = p.communicate()
 
         outputList = out[0].split("\n")
-        output = "\n".join(outputList[3:len(outputList) - 3])
+        output = "\n".join(outputList[3 : len(outputList) - 3])
 
         self.assertTrue(output == expected_output)
 
@@ -83,8 +83,30 @@ class TestSequenceFunctions(unittest.TestCase):
         out = p.communicate()
 
         outputList = out[0].split("\n")
-        output = "\n".join(outputList[3:len(outputList) - 3])
+        output = "\n".join(outputList[3 : len(outputList) - 3])
         
+        self.assertTrue(output == expected_output)
+
+    def test_tiny_text_2_txt(self):
+        expected_output = \
+"""[54.796, 41.361 51.848 19.414]
+[55.396, 30.413, 54.749, 41.328]
+[54.501, 43.445, 55.437, 30.396]
+[-1.0, -1.0, -1.0, -1.0]
+[60.125, 29.214, 60.125, 71.214]
+[60.111, 29.007, 60.111, 29.007]
+[58.758, 29.074, 60.087, 28.961]
+[-1.0, -1.0, -1.0, -1.0]
+"""
+
+        p = subprocess.Popen(["python", "search_project.py", "./Data/tiny_test_2.txt"], stdout=subprocess.PIPE)
+        out = p.communicate()
+
+        outputList = out[0].split("\n")
+        output = "\n".join(outputList[3 : len(outputList) - 3])
+
+        print "\n" + expected_output + "\n" + output
+
         self.assertTrue(output == expected_output)
 
 
