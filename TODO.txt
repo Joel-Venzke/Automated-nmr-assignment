@@ -1,5 +1,5 @@
 Paper
-	abstract
+	abstract <== do this this weekend
 edit cost
 	optimize weight
 	optimize error calulation
