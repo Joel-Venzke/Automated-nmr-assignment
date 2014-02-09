@@ -21,13 +21,13 @@ def read_file(file_name):
 			#reads each line, splits data at spaces, and adds a new Tile to tile_set_list
 			#file format "a b c d"
 			a, b, c, d = (s for s in line.split(' '))
-			if (a == ""):
+			if (a == "na"):
 				a = -1
-			if (b == ""):
+			if (b == "na"):
 				b = -1
-			if (c == ""):
+			if (c == "na"):
 				c = -1
-			if (d == ""):
+			if (d == "na"):
 				d = -1
 			tile_set_list.append(Tile(a, b, c, d, False))
 		tile_set_list.insert(0, characteristic)

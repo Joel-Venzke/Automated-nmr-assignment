@@ -32,7 +32,7 @@ class Tile(object):
         
     def get_error(self, char):
         if(self.place_holder == True or self.a == -1 and self.b == -1):
-            return self.char_weight * .5
+            return self.char_weight * .5 #This one too
         elif(self.a == -1):
             return (math.fabs(char[0]-self.a)*self.char_weight*2)
         elif(self.b == -1):
@@ -44,9 +44,12 @@ class Tile(object):
     #returns cost of adding the tile above 
     def compare_above(self, t):
         if(self.place_holder == True or t.get_place_holder() == True or self.a == -1 and self.b == -1 or t.c == -1 and t.d ==-1 ):
-            return self.order_weight * .3
+            return self.order_weight * .3 #what is this for again?
         elif(self.a == -1 or t.get_c == -1):
-            return math.fabs((self.b-t.get_d()))*2*self.order_weight
+            if (self.b ==-1 or t.get_d == -1):
+                return self.order_weight * .3
+            else:
+                return math.fabs((self.b-t.get_d()))*2*self.order_weight
         elif(self.b == -1 or t.get_d == -1):
             return math.fabs((self.a-t.get_c()))*2*self.order_weight
         else:
