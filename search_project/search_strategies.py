@@ -21,6 +21,7 @@ def read_file(file_name):
 			#reads each line, splits data at spaces, and adds a new Tile to tile_set_list
 			#file format "a b c d"
 			a, b, c, d = (s for s in line.split(' '))
+			d = d.rstrip()
 			if (a == "na"):
 				a = -1
 			if (b == "na"):
