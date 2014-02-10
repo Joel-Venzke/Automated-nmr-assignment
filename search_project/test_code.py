@@ -168,7 +168,7 @@ class TestSequenceFunctions(unittest.TestCase):
         output = "\n".join(outputList[3 : len(outputList) - 3])
 
         print output + "\n" + expected_output
-
+        
         self.assertTrue(output == expected_output)
 
 
