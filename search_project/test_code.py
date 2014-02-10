@@ -166,12 +166,7 @@ class TestSequenceFunctions(unittest.TestCase):
 
         outputList = out[0].split("\n")
         output = "\n".join(outputList[3 : len(outputList) - 3])
-
-<<<<<<< HEAD
-=======
-        print output + "\n" + expected_output
         
->>>>>>> 897f8061b6c846d9869ee4c7be1dcb96773e257f
         self.assertTrue(output == expected_output)
 
 
