@@ -21,13 +21,14 @@ def read_file(file_name):
 			#reads each line, splits data at spaces, and adds a new Tile to tile_set_list
 			#file format "a b c d"
 			a, b, c, d = (s for s in line.split(' '))
-			if (a == ""):
+			d = d.rstrip()
+			if (a == "na"):
 				a = -1
-			if (b == ""):
+			if (b == "na"):
 				b = -1
-			if (c == ""):
+			if (c == "na"):
 				c = -1
-			if (d == ""):
+			if (d == "na"):
 				d = -1
 			tile_set_list.append(Tile(a, b, c, d, False))
 		tile_set_list.insert(0, characteristic)
@@ -106,7 +107,7 @@ def uniform_cost(file_name):
 	
 	tile_set = generate_placeholders(tile_set, characteristic)
 
-	root = Node(tile_set, [], 0.0, characteristic)
+	root = Node(tile_set, [], 0.0, characteristic,0,0)
 
 	frontier = [root] #list of nodes
 
@@ -148,3 +149,5 @@ def uniform_cost(file_name):
 	print "Cost: " + str(best_cost)
 	print ""
 	print best_solution
+	print "Char cost:  " + str(best_solution.get_char_cost())
+	print "Order Cost:  " + str(best_solution.get_order_cost())

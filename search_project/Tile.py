@@ -11,6 +11,8 @@ class Tile(object):
         self.c = float(c)
         self.d = float(d)
         self.place_holder = place_holder
+        self.char_weight = .01
+        self.order_weight = .4
 
     #returns a list of tile values
     def get_tile(self):
@@ -28,20 +30,27 @@ class Tile(object):
     def get_d(self):
         return self.d
         
-    #returns the sum
     def get_error(self, char):
-        #Missing Data Check:  checks to see if the tile is hard data or a place holder, returns 0 if flexible
-        if(self.place_holder == True):
-            return .5
-            
-        #all non gly
+        if(self.place_holder == True or self.a == -1 and self.b == -1):
+            return self.char_weight * .5 #This one too
+        elif(self.a == -1):
+            return (math.fabs(char[0]-self.a)*self.char_weight*2)
+        elif(self.b == -1):
+            return (math.fabs(char[1]-self.b)*self.char_weight*2)
         else:
-            return (.5*math.fabs(char[0]-self.a)/self.a+.5*math.fabs(char[0]-self.b)/self.b)
+            return (self.char_weight*math.fabs(char[0]-self.a)+self.char_weight*math.fabs(char[1]-self.b))
 
-    #takes in next the tile below 
-    #returns cost of adding the tile below 
+    #takes in next the tile above 
+    #returns cost of adding the tile above 
     def compare_above(self, t):
-        if(self.place_holder == True or t.get_place_holder() == True ):
-            return .9
+        if(self.place_holder == True or t.get_place_holder() == True or self.a == -1 and self.b == -1 or t.c == -1 and t.d ==-1 ):
+            return self.order_weight * .3 #what is this for again?
+        elif(self.a == -1 or t.get_c == -1):
+            if (self.b ==-1 or t.get_d == -1):
+                return self.order_weight * .3
+            else:
+                return math.fabs((self.b-t.get_d()))*2*self.order_weight
+        elif(self.b == -1 or t.get_d == -1):
+            return math.fabs((self.a-t.get_c()))*2*self.order_weight
         else:
-            return  math.fabs((self.a-t.get_c()))+math.fabs((self.b-t.get_d()))
+            return  (math.fabs((self.a-t.get_c()))+math.fabs((self.b-t.get_d())))*self.order_weight
