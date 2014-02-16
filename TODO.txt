@@ -1,16 +1,30 @@
+<<<<<<< HEAD
 TO DO:
+=======
+Paper
+	start full paper
+>>>>>>> 2075aaf97d4079a9fb6ed8d8c3694a19e7e87f80
 edit cost
 	optimize weight
 	optimize error calculation
 	maybe print out more solutions
+<<<<<<< HEAD
 fix command line input
 make input files less "touchy"
 	care less about trailing spaces
+=======
+	check if a and d are missing
+make input files less "touchy"
+	care less about trailing spaces
+	Value for missing data? such as "na"?
+fix command line input
+>>>>>>> 2075aaf97d4079a9fb6ed8d8c3694a19e7e87f80
 create data sets
 	8 long
 
 Completed
 	error calc for any type of missing data
+<<<<<<< HEAD
 	added weighting variable
 	printing out weights
 	fixed error typo
@@ -20,6 +34,12 @@ Paper
 	abstract <== do this this weekend
 
 
+=======
+	added weighting variables
+	printing out weights
+	fixed error typo
+	abstract
+>>>>>>> 2075aaf97d4079a9fb6ed8d8c3694a19e7e87f80
 
 Problems
 	not starting with correct tile
