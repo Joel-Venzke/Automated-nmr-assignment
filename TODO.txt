@@ -1,22 +1,23 @@
 Paper
-	abstract <== do this this weekend
+	start full paper
 edit cost
 	optimize weight
-	optimize error calulation
-	maybe print out more solusions
+	optimize error calculation
+	maybe print out more solutions
 	check if a and d are missing
 make input files less "touchy"
 	care less about trailing spaces
 	Value for missing data? such as "na"?
 fix command line input
-creat data sets
+create data sets
 	8 long
 
 Completed
 	error calc for any type of missing data
-	added weighting varriables
-	printing out wieghts
+	added weighting variables
+	printing out weights
 	fixed error typo
+	abstract
 
 Problems
 	not starting with correct tile
