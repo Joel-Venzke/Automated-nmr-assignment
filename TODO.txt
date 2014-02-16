@@ -12,7 +12,6 @@ create data sets
 
 Completed
 	error calc for any type of missing data
-<<<<<<< HEAD
 	added weighting variable
 	printing out weights
 	fixed error typo
