@@ -4,20 +4,26 @@ edit cost
 	optimize weight
 	optimize error calculation
 	maybe print out more solutions
+fix command line input
 make input files less "touchy"
 	care less about trailing spaces
-fix command line input
 create data sets
 	8 long
 
 Completed
 	error calc for any type of missing data
-	added weighting variables
+<<<<<<< HEAD
+	added weighting variable
 	printing out weights
 	fixed error typo
-	abstract
 	check if a and d are missing
 	Value for missing data? such as "na"?
-
+	abstract <== do this this weekend
+	check if a and d are missing
+	Value for missing data? such as "na"?
 Problems
 	not starting with correct tile
+This:
+only for d
+    self.d = float(d)
+ValueError: could not convert string to float: na
