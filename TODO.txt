@@ -5,8 +5,6 @@ edit cost
 	optimize error calculation
 	maybe print out more solutions
 fix command line input
-make input files less "touchy"
-	care less about trailing spaces
 create data sets
 	8 long
 
@@ -20,9 +18,7 @@ Completed
 	abstract <== do this this weekend
 	check if a and d are missing
 	Value for missing data? such as "na"?
+	updated input file
+	grouped amino acids
 Problems
 	not starting with correct tile
-This:
-only for d
-    self.d = float(d)
-ValueError: could not convert string to float: na
