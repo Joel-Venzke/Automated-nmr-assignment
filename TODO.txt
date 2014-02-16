@@ -1,22 +1,29 @@
-Paper
-	abstract <== do this this weekend
+TO DO:
 edit cost
 	optimize weight
-	optimize error calulation
-	maybe print out more solusions
-	check if a and d are missing
+	optimize error calculation
+	maybe print out more solutions
+fix command line input
 make input files less "touchy"
 	care less about trailing spaces
-	Value for missing data? such as "na"?
-fix command line input
-creat data sets
+create data sets
 	8 long
 
 Completed
 	error calc for any type of missing data
-	added weighting varriables
-	printing out wieghts
+	added weighting variable
+	printing out weights
 	fixed error typo
+	check if a and d are missing
+	Value for missing data? such as "na"?
+Paper
+	abstract <== do this this weekend
+
+
 
 Problems
 	not starting with correct tile
+This:
+only for d
+    self.d = float(d)
+ValueError: could not convert string to float: na
