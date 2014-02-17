@@ -20,7 +20,7 @@ def read_file(file_name):
 		for line in f:
 			#reads each line, grabs numbers and na data, and adds a new Tile to tile_set_list
 			#file format "a b c d"
-			a, b, c, d = re.findall(r'\b\d+\.\d*.*?\b|\bna\b', line)
+			a, b, c, d = re.findall(r'\b\d+\.\d*\b|\bna\b', line)
 
 			if (a == "na"):
 				a = -1
