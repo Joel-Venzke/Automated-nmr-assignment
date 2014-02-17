@@ -14,7 +14,7 @@ def read_file(file_name):
 
 		# READ THE LINE OF CHARACTERISTICS IN HERE
 		tile_characteristic = f.readline()
-		characteristic = (tile_characteristic.split(' '))
+		characteristic = re.findall(r'\b[A-Za-z]{3}\b', tile_characteristic)
 
 		#reads in all lines in the file
 		for line in f:
