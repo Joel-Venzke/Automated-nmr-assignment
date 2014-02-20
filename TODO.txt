@@ -1,24 +1,17 @@
 Paper
 	start full paper
 edit cost
+	clean up if statements 
 	optimize weight
 	optimize error calculation
-	maybe print out more solutions
 fix command line input
-create data sets
-	8 long
+comment/clean up code
+create more data sets
 
 Completed
-	error calc for any type of missing data
-	added weighting variable
-	printing out weights
-	fixed error typo
-	check if a and d are missing
-	Value for missing data? such as "na"?
-	abstract <== do this this weekend
-	check if a and d are missing
-	Value for missing data? such as "na"?
 	updated input file
-	grouped amino acids
+	grouped amino acids (Speeds up code alot)
+	not starting with correct tile (Fixed!!!!)
+
 Problems
-	not starting with correct tile
+	NONE!!!
