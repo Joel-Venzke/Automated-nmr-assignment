@@ -5,6 +5,9 @@ __pycache__/
 # C extensions
 *.so
 
+# Banish the .DS_Store
+.DS_Store
+
 # Distribution / packaging
 bin/
 build/
@@ -46,5 +49,4 @@ coverage.xml
 # Sphinx documentation
 docs/_build/
 
-*.DS_Store
 
