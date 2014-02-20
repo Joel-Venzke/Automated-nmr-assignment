@@ -11,7 +11,7 @@ class Tile(object):
         self.c = float(c)
         self.d = float(d)
         self.place_holder = place_holder
-        self.char_weight = .01
+        self.char_weight = .4
         self.order_weight = .4
         if(self.b == -1.0 and 0<self.a and self.a<50.0):
             self.amino_type = 1 #gly
