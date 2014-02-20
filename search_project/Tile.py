@@ -60,13 +60,15 @@ class Tile(object):
     #takes in next the tile above 
     #returns cost of adding the tile above 
     def compare_above(self, t): #clean up
-        if(self.place_holder == True or t.get_place_holder() == True or self.a == -1 and self.b == -1 or t.get_c() == -1 and t.get_d() ==-1 ):
+        if(self.place_holder == True or \
+            t.get_place_holder() == True or \
+            self.a == -1 and self.b == -1 or \
+             t.get_c() == -1 and t.get_d() ==-1 or \
+              t.get_d() == -1 and self.a == -1 or \
+               t.get_c() == -1 and self.b == -1):
             return self.order_weight * .3 
         elif(self.a == -1 or t.get_c() == -1):
-            if (self.b ==-1 or t.get_d() == -1): # Cleaner way to do this?
-                return self.order_weight * .3
-            else:
-                return math.fabs((self.b-t.get_d()))*self.order_weight
+            return math.fabs((self.b-t.get_d()))*self.order_weight
         elif(self.b == -1 or t.get_d() == -1):
             return math.fabs((self.a-t.get_c()))*self.order_weight
         else:
