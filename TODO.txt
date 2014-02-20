@@ -1,22 +1,17 @@
 Paper
-	abstract <== do this this weekend
+	start full paper
 edit cost
+	clean up if statements 
 	optimize weight
-	optimize error calulation
-	maybe print out more solusions
-	check if a and d are missing
-make input files less "touchy"
-	care less about trailing spaces
-	Value for missing data? such as "na"?
+	optimize error calculation
 fix command line input
-creat data sets
-	8 long
+comment/clean up code
+create more data sets
 
 Completed
-	error calc for any type of missing data
-	added weighting varriables
-	printing out wieghts
-	fixed error typo
+	updated input file
+	grouped amino acids (Speeds up code alot)
+	not starting with correct tile (Fixed!!!!)
 
 Problems
-	not starting with correct tile
+	NONE!!!
