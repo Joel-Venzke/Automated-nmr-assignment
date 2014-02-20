@@ -45,7 +45,7 @@ class TestSequenceFunctions(unittest.TestCase):
         outputList = out[0].split("\n")
         output = "\n".join(outputList[3 : len(outputList) - 3])
 
-        self.assertTrue(out == expected_output)
+        self.assertTrue(output == expected_output)
 
     def test_tiny_test_txt(self):
         expected_output = \
