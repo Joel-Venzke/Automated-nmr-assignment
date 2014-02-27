@@ -138,6 +138,7 @@ def uniform_cost(file_name):
 	while keep_running:
 	        current_cost = float("inf")
 	        best_node = None
+	        print "Running..."
 	        for i in range(len(frontier)):
 	            if (frontier[i].get_cost() < current_cost):
 	                current_cost = frontier[i].get_cost()
