@@ -484,6 +484,73 @@ class TestSequenceFunctions(unittest.TestCase):
 
         self.assertTrue(output == expected_output)
 
+    def test_test16_txt(self):
+        expected_output = \
+"""[55.8, 30.97, 58.89, -1.0]
+[54.802, 18.041, 55.899, 30.518]
+[58.631, 30.288, 54.814, 18.056]
+[56.75, 31.77, 58.637, 30.212]
+[56.6, 32.976, 56.6, 31.735]
+[56.925, 32.948, 56.589, 32.883]
+[54.802, 40.955, 57.011, 32.933]
+[62.673, 69.763, 54.828, 41.008]
+[54.827, 41.082, 62.763, 69.758]
+[59.953, 63.538, 54.824, 41.145]
+"""
+        p = subprocess.Popen(["python", "search_project.py", "./Data/test16.txt"], stdout=subprocess.PIPE)
+        out = p.communicate()
+
+        outputList = out[0].split("\n")
+        output = "\n".join(outputList[3 : len(outputList) - 3])
+        
+        self.assertTrue(output == expected_output)
+
+    def test_test17_txt(self):
+        expected_output = \
+"""[56.925, 32.948, 56.589, 32.883]
+[54.802, 40.955, 57.011, 32.933]
+[62.673, 69.763, 54.828, 41.008]
+[54.827, 41.082, 62.763, 69.758]
+[59.953, 63.538, 54.824, 41.145]
+[59.106, 29.384, 59.991, 63.536]
+[58.873, 29.193, 59.005, 29.374]
+[58.997, 29.351, 58.997, 29.351]
+[64.439, 38.179, 58.929, 29.453]
+[-1.0, -1.0, -1.0, -1.0]
+"""
+
+# Flips these two:
+# [58.873, 29.193, 59.005, 29.374]
+# [58.997, 29.351, 58.997, 29.351]
+        p = subprocess.Popen(["python", "search_project.py", "./Data/test17.txt"], stdout=subprocess.PIPE)
+        out = p.communicate()
+
+        outputList = out[0].split("\n")
+        output = "\n".join(outputList[3 : len(outputList) - 3])
+        
+        self.assertTrue(output == expected_output)
+
+    def test_test18_txt(self):
+        expected_output = \
+"""[55.299, 42.945, 54.696, 39.212]
+[46.219, -1.0, 55.285, 43.018]
+[56.379, 29.68, 46.203, -1.0]
+[56.977, 32.3, 56.426, 29.689]
+[54.244, 44.481, -1.0, -1.0]
+[60.811, 71.02, 54.194, 44.271]
+[57.743, 40.067, 60.786, 71.089]
+[59.742, 29.421, 57.661, -1.0]
+[59.127, 30.173, 59.889, -1.0]
+[67.088, 32.0, 59.056, 30.128]
+"""
+        p = subprocess.Popen(["python", "search_project.py", "./Data/test18.txt"], stdout=subprocess.PIPE)
+        out = p.communicate()
+
+        outputList = out[0].split("\n")
+        output = "\n".join(outputList[3 : len(outputList) - 3])
+        
+        self.assertTrue(output == expected_output)
+
 #     def test_largedata_txt(self):
 #         expected_output = \
 # """[54.796, 41.361, 51.848, 19.414]
