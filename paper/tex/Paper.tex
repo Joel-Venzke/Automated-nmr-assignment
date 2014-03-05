@@ -1,0 +1,101 @@
+% LaTeX template for MICS papers
+% To Run:  pdflatex Sample.tex
+
+\documentclass[12pt]{article}
+
+\setlength{\oddsidemargin}{0in}
+\setlength{\evensidemargin}{0in}
+\setlength{\topmargin}{0in}
+\setlength{\headheight}{0in}
+\setlength{\headsep}{0in}
+\setlength{\textwidth}{6in}
+\setlength{\textheight}{9in}
+\setlength{\parindent}{0in} 
+
+\usepackage{graphicx} %For jpg figure inclusion
+\usepackage{times} %For typeface
+
+\begin{document}
+\pagestyle{plain}
+
+\title{Sample MICS Paper Title}
+
+\author{
+Mary Smith\\
+Name of Department\\
+Name of Institution\\
+City, State Zip\\
+Contact email
+\and
+Joe Jones\\
+Name of Department\\
+Name of Institution\\
+City, State Zip\\
+Contact email
+}
+\date{} 
+
+\maketitle
+\thispagestyle{empty}
+
+\section*{\centering Abstract}
+
+This is the abstract of the paper.  Note that the title and the abstract are the only things on the title page.  This example shows two authors at different institutions.  If information is the same for multiple authors, the authors can be listed as:
+
+\begin{center}
+{\large
+Mary Smith and Joe Jones\\
+Name of Department\\
+Name of Institution\\
+City, State Zip\\
+Contact email
+}
+\end{center}  
+
+\newpage
+\setcounter{page}{1}
+
+\section{Level 1 Header}
+
+This is the first section of the paper.  It starts on a new page.  Note how the left/right justification appears: text is justified on the left as well as on the right.  This section cites a paper by Author A.  It then cites a paper by Author B \cite{Pigeonhole}.  The citations are clearly described in the reference section.  Note that citation format can be determined by the author.  This is only one example.
+
+\subsection{Level 2 Header}
+
+This is a subsection of Section 1.   The figure in Figure~\ref{stars} is of four stars.\\
+
+This is the second paragraph of the subsection.  Note that there is a blank line between the paragraphs and
+no indentation at the beginning of the second paragraph. 
+ 
+% the following includes an image
+% \begin{figure}[h]
+% \centerline{
+% \includegraphics[height=1.5in]{FigureName.jpg}			
+% }
+% \caption{Figure Caption.}
+% \label{stars}
+% \end{figure}
+
+This paragraph starts after the figure.
+
+\subsubsection{Level 3 Header}
+
+This is a sub-subsection of Section 1.  Table~\ref{table1} contains data.
+
+\begin{table}[hbt]
+\begin{center}
+\begin{tabular}{|c|c|} \hline
+Field 1 & Field 2\\ \hline
+data 1a   & data 2a\\ \hline
+data 1b &  data 2b \\ \hline
+\end{tabular}
+\end{center}
+\caption{Table Caption.}
+\label{table1} 
+\end{table}
+
+This paragraph starts after the table.
+ 
+\bibliographystyle{amc}
+\bibliography{Paper}
+
+\end{document}
