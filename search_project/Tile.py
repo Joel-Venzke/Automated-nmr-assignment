@@ -11,8 +11,8 @@ class Tile(object):
         self.c = float(c)
         self.d = float(d)
         self.place_holder = place_holder
-        self.char_weight = .4
-        self.order_weight = .4
+        self.char_weight = .1
+        self.order_weight = 1
         if(self.b == -1.0 and 0<self.a and self.a<50.0):
             self.amino_type = 1 #gly
         elif(0.0<self.b and self.b<20.0 and self.a > 52 and self.a < 56):
@@ -49,7 +49,7 @@ class Tile(object):
         
     def get_error(self, char):
         if(self.place_holder == True or self.a == -1 and self.b == -1):
-            return self.char_weight * .5 
+            return 0
         elif(self.a == -1):
             return (math.fabs(char[0]-self.a)*self.char_weight*2)
         elif(self.b == -1):
@@ -66,7 +66,7 @@ class Tile(object):
              t.get_c() == -1 and t.get_d() ==-1 or \
               t.get_d() == -1 and self.a == -1 or \
                t.get_c() == -1 and self.b == -1):
-            return self.order_weight * .3 
+            return self.order_weight  * 1.9
         elif(self.a == -1 or t.get_c() == -1):
             return math.fabs((self.b-t.get_d()))*self.order_weight
         elif(self.b == -1 or t.get_d() == -1):

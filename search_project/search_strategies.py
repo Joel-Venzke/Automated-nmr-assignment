@@ -111,7 +111,7 @@ def uniform_cost(file_name):
 	root = Node(tile_set, [], 0.0, characteristic,0,0)
 
 	frontier = [root] #list of nodes
-
+	node_count = 1
 	best_solution = None
 	best_cost = float("inf") #set to infinity
 	keep_running = True
@@ -133,7 +133,6 @@ def uniform_cost(file_name):
 	# 	print str(sum) + "\t" + str(i)
 	# for i in tile_set:
 	# 	print i.get_amino_type()
-	
 	#runs while frontier is not empty
 	while keep_running:
 	        current_cost = float("inf")
@@ -154,9 +153,11 @@ def uniform_cost(file_name):
 		#creates child_nodes to search 
 		#adds child_nodes to frontier
 		child_nodes = current_node.expand()
+		node_count = node_count + len(child_nodes)
 		for c_n in child_nodes:
 			frontier.insert(0, c_n)
 		
+		print len(frontier)
 		keep_running = False
 		for i in range(len(frontier)):
 		    if (keep_running==False and frontier[i].get_cost() < best_cost):
@@ -170,3 +171,4 @@ def uniform_cost(file_name):
 	print best_solution
 	print "Char cost:  " + str(best_solution.get_char_cost())
 	print "Order Cost:  " + str(best_solution.get_order_cost())
+	print "Nodes: " + str(node_count)
