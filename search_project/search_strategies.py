@@ -115,7 +115,8 @@ def uniform_cost(file_name):
 	best_solution = None
 	best_cost = float("inf") #set to infinity
 	keep_running = True
-
+	loop = 1
+	
 	# the following code displays how many tiles are assigned to each tile group
 	# for i in range(8):
 	# 	sum = 0
@@ -134,12 +135,12 @@ def uniform_cost(file_name):
 
 	#runs while frontier is not empty
 	while keep_running:
-	        current_cost = float("inf")
-	        best_node = None
-	        for i in range(len(frontier)):
-	            if (frontier[i].get_cost() < current_cost):
-	                current_cost = frontier[i].get_cost()
-	                best_node = i
+		current_cost = float("inf")
+		best_node = None
+		for i in xrange(len(frontier)):
+			if (frontier[i].get_cost() < current_cost):
+				current_cost = frontier[i].get_cost()
+				best_node = i
 		current_node = frontier.pop(best_node) #removes best node in frontier, stores in current_node
 		
 		#checks if current_node is a solution 
@@ -158,9 +159,11 @@ def uniform_cost(file_name):
 		
 		#print len(frontier)
 		keep_running = False
-		for i in range(len(frontier)):
+		for i in xrange(len(frontier)):
 		    if (keep_running==False and frontier[i].get_cost() < best_cost):
 		        keep_running = True
+		# print loop
+		# loop +=1
 		
 	
 	#prints best solution to console
