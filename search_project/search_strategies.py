@@ -131,8 +131,7 @@ def uniform_cost(file_name):
 	# 		if (j.get_amino_type() == i):
 	# 			sum += 1
 	# 	print str(sum) + "\t" + str(i)
-	# for i in tile_set:
-	# 	print i.get_amino_type()
+
 	#runs while frontier is not empty
 	while keep_running:
 	        current_cost = float("inf")
@@ -171,4 +170,4 @@ def uniform_cost(file_name):
 	print best_solution
 	print "Char cost:  " + str(best_solution.get_char_cost())
 	print "Order Cost:  " + str(best_solution.get_order_cost())
-	#print "Nodes: " + str(node_count)
+	print "Nodes: " + str(node_count)
