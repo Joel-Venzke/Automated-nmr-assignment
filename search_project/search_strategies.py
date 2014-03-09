@@ -156,8 +156,6 @@ def uniform_cost(file_name):
 		node_count = node_count + len(child_nodes)
 		for c_n in child_nodes:
 			frontier.insert(0, c_n)
-		
-		#print len(frontier)
 		keep_running = False
 		for i in xrange(len(frontier)):
 		    if (keep_running==False and frontier[i].get_cost() < best_cost):

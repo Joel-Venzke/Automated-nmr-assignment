@@ -50,6 +50,4 @@ class Node(object):
 				c = temp_order_cost + temp_char_cost
 
 				new_nodes.append(Node(temp_ut, temp_pt, self.cost + c, self.characteristic,self.char_cost+temp_char_cost, self.order_cost+temp_order_cost))
-			
-		
 		return new_nodes

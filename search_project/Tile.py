@@ -39,11 +39,11 @@ class Tile(object):
     def get_place_holder(self):
         return self.place_holder
 
-    #returns a
+    #returns c
     def get_c(self):
         return self.c
 
-    #returns b
+    #returns d
     def get_d(self):
         return self.d
         
