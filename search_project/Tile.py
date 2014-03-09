@@ -11,8 +11,8 @@ class Tile(object):
         self.c = float(c)
         self.d = float(d)
         self.place_holder = place_holder
-        self.char_weight = .4
-        self.order_weight = .4
+        self.char_weight = .1
+        self.order_weight = 1
         if(self.b == -1.0 and 0<self.a and self.a<50.0):
             self.amino_type = 1 #gly
         elif(0.0<self.b and self.b<20.0 and self.a > 52 and self.a < 56):
@@ -49,13 +49,13 @@ class Tile(object):
         
     def get_error(self, char):
         if(self.place_holder == True or self.a == -1 and self.b == -1):
-            return self.char_weight * .5 
+            return 0
         elif(self.a == -1):
-            return (math.fabs(char[0]-self.a)*self.char_weight*2)
+            return math.fabs(char[0]-self.a)*.5
         elif(self.b == -1):
-            return (math.fabs(char[1]-self.b)*self.char_weight*2)
+            return math.fabs(char[1]-self.b)*.5
         else:
-            return (self.char_weight*math.fabs(char[0]-self.a)+self.char_weight*math.fabs(char[1]-self.b))
+            return (math.fabs(char[0]-self.a)+math.fabs(char[1]-self.b))*.1
 
     #takes in next the tile above 
     #returns cost of adding the tile above 
@@ -66,12 +66,13 @@ class Tile(object):
              t.get_c() == -1 and t.get_d() ==-1 or \
               t.get_d() == -1 and self.a == -1 or \
                t.get_c() == -1 and self.b == -1):
-            return self.order_weight * .3 
+            return 1.9
         elif(self.a == -1 or t.get_c() == -1):
-            return math.fabs((self.b-t.get_d()))*self.order_weight
+            return math.fabs((self.b-t.get_d()))*4.75
         elif(self.b == -1 or t.get_d() == -1):
-            return math.fabs((self.a-t.get_c()))*self.order_weight
+            return math.fabs((self.a-t.get_c()))*4.75
         else:
-            return  (math.fabs((self.a-t.get_c()))+math.fabs((self.b-t.get_d())))*self.order_weight
+            return  (math.fabs((self.a-t.get_c()))+math.fabs((self.b-t.get_d())))*7
+
 
 
