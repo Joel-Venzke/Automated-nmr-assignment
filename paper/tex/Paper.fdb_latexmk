@@ -1,13 +1,13 @@
 # Fdb version 3
-["bibtex Paper"] 1394000069 "Paper.aux" "Paper.bbl" "Paper" 1394001110
-  "Paper.aux" 1394001110 444 62102d8fd593410ca972f10f5ca74b8a ""
+["bibtex Paper"] 1394573850 "Paper.aux" "Paper.bbl" "Paper" 1394573851
+  "Paper.aux" 1394573851 599 7c43013de2f685618d3403069183030f ""
   "Paper.bcf" 0 -1 0 ""
   "Paper.bib" 1393999686 441 077cce93f67507dbd9c34066beedea23 ""
   "amc.bst" 0 -1 0 ""
   (generated)
   "Paper.bbl"
   "Paper.blg"
-["pdflatex"] 1394001109 "Paper.tex" "Paper.pdf" "Paper" 1394001110
+["pdflatex"] 1394573850 "Paper.tex" "Paper.pdf" "Paper" 1394573851
   "/opt/local/share/texmf-texlive/tex/context/base/supp-pdf.mkii" 1371546415 71627 94eb9990bed73c364d7f53f960cc8c5b ""
   "/opt/local/share/texmf-texlive/tex/generic/oberdiek/etexcmds.sty" 1371546427 7612 c47308d923ec19888707b0f1792b326a ""
   "/opt/local/share/texmf-texlive/tex/generic/oberdiek/ifluatex.sty" 1371546427 7324 11d14f318d865f420e692d4e6c9c18c3 ""
@@ -31,9 +31,9 @@
   "/opt/local/share/texmf-texlive/tex/latex/pdftex-def/pdftex.def" 1371546461 55368 3c8a0d99822330f2dfabc0dfb09ce897 ""
   "/opt/local/share/texmf-texlive/tex/latex/psnfss/ot1ptm.fd" 1371546459 961 15056f4a61917ceed3a44e4ac11fcc52 ""
   "/opt/local/share/texmf-texlive/tex/latex/psnfss/times.sty" 1371546459 857 6c716f26c5eadfb81029fcd6ce2d45e6 ""
-  "Paper.aux" 1394001110 444 62102d8fd593410ca972f10f5ca74b8a ""
-  "Paper.bbl" 1394000069 210 ee1f6ffb9387c00420188da2abb3f892 "bibtex Paper"
-  "Paper.tex" 1394001109 2571 98393c1d0e2aad9ddca35915bdd423dd ""
+  "Paper.aux" 1394573851 599 7c43013de2f685618d3403069183030f ""
+  "Paper.bbl" 1394573850 0 d41d8cd98f00b204e9800998ecf8427e "bibtex Paper"
+  "Paper.tex" 1394573845 2674 c481f70a0f5fe7983cd86fe797faa38c ""
   (generated)
   "Paper.log"
   "Paper.pdf"
