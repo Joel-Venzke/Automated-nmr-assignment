@@ -10,7 +10,7 @@
 \setlength{\headsep}{0in}
 \setlength{\textwidth}{6in}
 \setlength{\textheight}{9in}
-\setlength{\parindent}{0in} 
+\usepackage[parfill]{parskip}
 
 \usepackage{graphicx} %For jpg figure inclusion
 \usepackage{times} %For typeface
@@ -55,47 +55,23 @@ Contact email
 \newpage
 \setcounter{page}{1}
 
-\section{Level 1 Header}
+\section{Method} % (fold)
+\label{sec:method}
 
-This is the first section of the paper.  It starts on a new page.  Note how the left/right justification appears: text is justified on the left as well as on the right.  This section cites a paper by Author A.  It then cites a paper by Author B \cite{Pigeonhole}.  The citations are clearly described in the reference section.  Note that citation format can be determined by the author.  This is only one example.
+\subsection{Algorithm} % (fold)
+\label{sub:algorithm}
+Our algorithm begins by reading in and expected amino acid order and the NMR carbon shift data from a data file. It then changes the amino acids to there expected $C_\alpha$ and $C_{\beta}$ values and stores them in an list that represents the protein chain. Next, the carbon shift values for a single amino acid is placed in a tile. A tile contains the $C_\alpha$ and $C_{\beta}$ values for the amino acid residue $i$ and residue $i-1$. Next, missing data is accounted for. If there are less tiles than the number of amino acids in the protein chain, place holder tiles are generated to make up the difference. Before the search for the best solution begins, the tiles are grouped by the type of amino acids they could represent to accelerate the assignment process. Tiles that do not match a group are grouped with the place holder tiles
 
-\subsection{Level 2 Header}
+To start the search, tiles in the place holder group and tiles in the same amino acid group as the first amino acid in the protein chain are placed in the first position in a node. The tile is then compared to the first amino acid in the protein chain, and a cost is generated. 
 
-This is a subsection of Section 1.   The figure in %Figure~\ref{stars} 
-is of four stars.\\
+%continue assignment
 
-This is the second paragraph of the subsection.  Note that there is a blank line between the paragraphs and
-no indentation at the beginning of the second paragraph. 
- 
-% the following includes an image
-% \begin{figure}[h]
-% \centerline{
-% \includegraphics[height=1.5in]{FigureName.jpg}			
-% }
-% \caption{Figure Caption.}
-% \label{stars}
-% \end{figure}
+%goal state
 
-This paragraph starts after the figure.
+%solution found
 
-\subsubsection{Level 3 Header}
-
-This is a sub-subsection of Section 1.  Table~\ref{table1} contains data.
-
-\begin{table}[hbt]
-\begin{center}
-\begin{tabular}{|c|c|} \hline
-Field 1 & Field 2\\ \hline
-data 1a   & data 2a\\ \hline
-data 1b &  data 2b \\ \hline
-\end{tabular}
-\end{center}
-\caption{Table Caption.}
-\label{table1} 
-\end{table}
-
-This paragraph starts after the table.
- 
+% subsection algorithm (end)
+% section method (end)
 \bibliographystyle{amc}
 \bibliography{Paper}
 
