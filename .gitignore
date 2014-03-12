@@ -29,6 +29,7 @@ __pycache__/
 *.mtc1
 *.out
 *.synctex.gz
+*.fdb_latexmk
 
 # Banish the .DS_Store
 .DS_Store
