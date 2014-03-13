@@ -7,7 +7,6 @@
 
 use strict;
 
-open (FILE, '>', 'out.txt') or die;
 my $firstline = 1;
 while (<>)
 {
