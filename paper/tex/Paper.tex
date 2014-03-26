@@ -21,13 +21,7 @@
 \title{Sample MICS Paper Title}
 
 \author{
-Mary Smith\\
-Name of Department\\
-Name of Institution\\
-City, State Zip\\
-Contact email
-\and
-Joe Jones\\
+Mary Smith and Joe Jones\\
 Name of Department\\
 Name of Institution\\
 City, State Zip\\
@@ -40,17 +34,13 @@ Contact email
 
 \section*{\centering Abstract}
 
-This is the abstract of the paper.  Note that the title and the abstract are the only things on the title page.  This example shows two authors at different institutions.  If information is the same for multiple authors, the authors can be listed as:
+Nuclear magnetic resonance (NMR) spectroscopy is a powerful method for studying the three-dimensional structure of molecules such as proteins. The post-genomic era has created the need to gather functional and structural information of unknown proteins encoded by newly discovered genes. Unfortunately, current manual techniques for analyzing NMR datasets can take days to months to assign, and are prone to error. The current goal of this research is to develop an algorithm to automate the process of assigning nontrivial NMR datasets, in an attempt to minimize human error and accelerate a time consuming task.
 
-\begin{center}
-{\large
-Mary Smith and Joe Jones\\
-Name of Department\\
-Name of Institution\\
-City, State Zip\\
-Contact email
-}
-\end{center}  
+NMR images yield structural information that needs to be analyzed rapidly and accurately. Accurate assignment of nontrivial NMR datasets will provide the necessary framework for continued advancement in the fields of structural biology and proteomics. 
+
+The algorithm utilizes A* search to sequence amino acids produced from NMR datasets of proteins. The program is given a set of nodes, each corresponding to a single amino acid in the protein chain, from an input file. Each node is placed in the initial node position of the protein chain. The node that most correctly fits the reference protein chain is used to generate child nodes. Unplaced nodes are sequentially added to the end of a list to create child node lists. The node list with the smallest error is then expanded further. The error is a running total of how well the nodes fit the reference protein chain, coupled with the accuracy of the match of the placed child. This process of assigning the child nodes and calculating costs repeats until every node is placed and the best node list contains the lowest cost of all generated lists. 
+
+Assignments of test sets have shown this method can be used to assign NMR datasets, but there remains need for improvement. Research is ongoing as we continue to refine our algorithm. Future goals include adjusting for potentially missing data, sorting nodes into amino acid groups, and testing with larger datasets. Upon completion, this algorithm will allow for great advancements in the areas of structural biology and proteomics. 
 
 \newpage
 \setcounter{page}{1}
