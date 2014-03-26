@@ -66,7 +66,7 @@ cite our sources
 
 % subsection manual_assignment (end)
 
-\subsection{Algorithm} % (fold)
+\subsection{Our Algorithm} % (fold)
 \label{sub:algorithm}
 Our algorithm begins by reading in an expected amino acid order and the NMR carbon shift data from a data file. It then changes the amino acids to their expected $C_\alpha$ and $C_{\beta}$ values and stores them in a list that represents the protein chain. Next, the carbon shift values for a single amino acid are placed in a tile. A tile contains the $C_\alpha$ and $C_{\beta}$ values for the amino acid residue $i$ and residue $i-1$. Next, missing data is accounted for. If there are fewer tiles than the number of amino acids in the protein chain, placeholder tiles are generated to make up the difference. Before the search for the best solution begins, the tiles are grouped by the types of amino acids they could represent. The groups were created using the expected $C_\alpha$ and $C_{\beta}$ values shown in Figure~\ref{fig:carbon}. Grouping is done in an attempted to accelerate the assignment process. Tiles that do not match a group are grouped with the placeholder tiles. 
 
