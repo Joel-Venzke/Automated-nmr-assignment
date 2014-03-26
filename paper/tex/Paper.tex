@@ -67,10 +67,11 @@ To start the search, tiles in the placeholder group and tiles in the same amino 
 The node in the frontier with the lowest cost is removed from the frontier and used to generate child nodes. To generate a child node, a tile is added to the end of the node. A child node is generated for all unplaced tiles that are either in the placeholder group or in the group matching the corresponding amino acid in the protein chain. A cost of placing the tile is then generated. The cost is a sum of the cost of placing the previous tiles in the node, how well the current tile matched the corresponding amino acid in the protein chain and how well the tile's residue $i-1$ values match the residue $i$ values of the tile placed before it. The child nodes are then added to the frontier, and the process of generating child nodes is repeated. 
 
 %goal state
-Once a node has every tile placed, it is said to be in the goal state. The first node that reaches goal state is stored as the current best solution. Every node that hits goal state is compared to the current best solution. The node with the lower cost is then saved as the current best solution.
+Once a node has every tile placed, it is said to be in the goal state. The first node that reaches goal state is stored as the current best solution. Every node that hits goal state is compared to the current best solution. The node with the lower cost is then saved as the current best solution. 
 
 %solution found
 A solution has been found once the current best solution's cost is lower than the cost of any nodes in the frontier. The search is then ended. The algorithm then outputs the cost of the best solution followed by the assigned carbon shift values. 
+\cite{guntert_automated_2009} \cite{Alipanahi09ipass:error} \cite{babak_alipanahi_error_2011}
 
 % subsection algorithm (end)
 % section method (end)
