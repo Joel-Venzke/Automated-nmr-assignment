@@ -49,14 +49,22 @@ Assignments of test sets have shown this method can be used to assign NMR datase
 \label{sub:introduction}
 Knowledge of a protein’s structure allows for further understanding of the function of a protein and alterations to its function that can lead to disease. The post-genomic era has brought the need to gather functional and structural information of unknown proteins that are encoded by newly discovered genes. Through the implementation of Nuclear magnetic resonance (NMR) spectroscopy, the structure of molecules, such as proteins, can be studied. However, NMR spectroscopy generates large amounts of data that needs to be assigned. The assignment process can take months to complete and is prone to error. To allow for major advances in structural biology, a faster and more accurate method needs to be developed. Our research focuses on developing an algorithm to automate the assignment process, in an attempt to minimize human error and accelerate the time consuming task.
 
-\subsection{NMR} % (fold)
+\subsection{Nuclear Magnetic Resonance Spectroscopy} % (fold)
 \label{sub:nmr}
 Several types of NMR variables can be used in the analysis of protein structures. In particular, essential information is provided by the chemical shifts of NMR-active nuclei present in proteins, including hydrogen and isotopes of carbon and nitrogen. The chemical shift is a quantifier for the deviation in the resonant frequency of a nucleus from its value in a structure-free environment, and therefore provides information on the local conformation. Determining the chemical shifts of all or most of the nuclei in a biomolecule is the first step in determining its structure. An important set of chemical shifts in a protein are those corresponding to the nuclei in the backbone of the protein polypeptide chain, including the nitrogen, attached hydrogen, and the alpha and beta carbon atoms ($C_\alpha$ and $C_{\beta}$) of each residue. These chemical shifts are measured using various three-dimensional NMR experiments, and then matched to the individual residues in the protein in a process called sequential assignment.
 
 A prerequisite of the assignment process is data collection using experiments that can provide connectivities between neighboring residues. For example, the HNCACB experiment identifies the chemical shifts corresponding to the $C_\alpha$ and $C_{\beta}$ nuclei of one residue (residue $i$), as well as the $C_\alpha$ and $C_{\beta}$ chemical shifts of the immediately preceding residue (residue $i -1$). In this experiment, the values corresponding to residue $i$ can usually be distinguished from the ($i -1$) values by their higher intensity. However, ambiguities can arise if the intensities are comparable or if the chemical shift values are overlapping. These ambiguities can be resolved by using additional experiments, such as CBCA(CO) NH, which yields the chemical shifts of the preceding residue only. Using all inter-residue connectivities, a chain of correlations through the protein backbone chemical shifts can be established.  This pattern of sequentially linked chemical shift values reflects the sequential linear arrangement of the individual residues in the protein sequence. The pattern is then matched with the protein sequence, by using the fact that certain residues have characteristic $C_\alpha$ and $C_{\beta}$ chemical shift ranges which uniquely identify them. Thus, each measured chemical shift is assigned to a protein residue, and this information can then be used to infer structural information about the biomolecule.
 
-\section{Method} % (fold)
+\section{Assignment Methods} % (fold)
 \label{sec:method}
+
+\subsection{Manual Assignment} % (fold)
+\label{sub:manual_assignment}
+% TODO
+add this part
+cite our sources
+
+% subsection manual_assignment (end)
 
 \subsection{Algorithm} % (fold)
 \label{sub:algorithm}
@@ -66,7 +74,7 @@ Our algorithm begins by reading in an expected amino acid order and the NMR carb
 \begin{center}
 \includegraphics{carbon}
 \end{center}
-\caption{Expected Carbon Shift Values}
+\caption{Expected Carbon Shift Values} % TODO citation
 \label{fig:carbon}
 \end{figure}
 
