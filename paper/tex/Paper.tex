@@ -55,14 +55,17 @@ Several types of NMR variables can be used in the analysis of protein structures
 
 A prerequisite of the assignment process is data collection using experiments that can provide connectivities between neighboring residues. For example, the HNCACB experiment identifies the chemical shifts corresponding to the $C_\alpha$ and $C_{\beta}$ nuclei of one residue (residue $i$), as well as the $C_\alpha$ and $C_{\beta}$ chemical shifts of the immediately preceding residue (residue $i -1$). In this experiment, the values corresponding to residue $i$ can usually be distinguished from the ($i -1$) values by their higher intensity. However, ambiguities can arise if the intensities are comparable or if the chemical shift values are overlapping. These ambiguities can be resolved by using additional experiments, such as CBCA(CO) NH, which yields the chemical shifts of the preceding residue only. Using all inter-residue connectivities, a chain of correlations through the protein backbone chemical shifts can be established.  This pattern of sequentially linked chemical shift values reflects the sequential linear arrangement of the individual residues in the protein sequence. The pattern is then matched with the protein sequence, by using the fact that certain residues have characteristic $C_\alpha$ and $C_{\beta}$ chemical shift ranges which uniquely identify them. Thus, each measured chemical shift is assigned to a protein residue, and this information can then be used to infer structural information about the biomolecule.
 
-\section{Assignment Methods} % (fold)
+\section{Assignment} % (fold)
 \label{sec:method}
+
+\subsection{Data Collection} % (fold)
+\label{sub:data_collection}
+Determining the structure of a protein requires many highly involved steps. The first, which can take at least five days, is protein production. NMR experiments are then performed using the produced proteins in order to gather the data necessary for the assignment process. This process usually takes another one to two days for every spectrum involved. The most time consuming process is assignment of the structure. \cite{babak_alipanahi_error_2011}
 
 \subsection{Manual Assignment} % (fold)
 \label{sub:manual_assignment}
 % TODO
-add this part
-cite our sources
+In most cases, backbone NMR data is assigned manually. However, with hundreds of values for the chemical shift values of C(a) and C(b), this process can take anywhere from 20 days to 9 months with perfect data. To complicate matters even more, experience has shown most data sets to have missing or false peaks, requiring whomever is doing the actual assignment to either skip large portions of the protein sequence or to guess where a certain chain is located in the sequence, making this method extremely error prone. \cite{babak_alipanahi_error_2011}
 
 % subsection manual_assignment (end)
 
@@ -101,8 +104,8 @@ Our algorithm has been tested with NMR datasets of varying size from experiments
 \label{sub:future_goals}
 In future research, we will look into maximizing speed and efficiency to the point that our algorithm can assign full amino acid sequences. In order to achieve this, we will experiment with  both parallelization (techniques) and machine learning. The latter of these two will assist in optimizing the cost calculation while the former will increase the speed of assignment. We believe these implementations will help our algorithm handle datasets with numerous missing data points, validating our results even when given incomplete data. 
 % subsection future_goals (end)
-
-% subsection algorithm (end)
+\nocite{guntert_automated_2009}
+\nocite{brief_introduction_Poulsen}
 % section method (end)
 \bibliographystyle{amc}
 \bibliography{Paper}
