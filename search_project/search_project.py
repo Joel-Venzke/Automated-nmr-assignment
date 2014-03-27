@@ -20,5 +20,5 @@ start = time.clock()
 search_strategies.uniform_cost(file_name)
 end = time.clock()
 
-# print "Run Time:  " + str(end-start)
+print "Run Time:  " + str(end-start)
 
