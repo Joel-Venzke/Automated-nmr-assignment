@@ -51,8 +51,15 @@ Knowledge of a protein's structure can explain the function of a protein and how
 
 \subsection{Nuclear Magnetic Resonance Spectroscopy} % (fold)
 \label{sub:nmr}
-Several types of NMR variables can be used in the analysis of proteins' structures. In particular, essential information is provided by the chemical shifts of NMR-active nuclei present in proteins, including hydrogen and isotopes of carbon and nitrogen. The chemical shift is a quantifier for the deviation in the resonant frequency of a nucleus from its value in a structure-free environment, and therefore provides information on the local conformation. Determining the chemical shifts of all or most of the nuclei in a biomolecule is the first step in determining its structure. An important set of chemical shifts in a protein are those corresponding to the nuclei in the backbone of the protein polypeptide chain, including the nitrogen, attached hydrogen, and the alpha and beta carbon atoms ($C_\alpha$ and $C_{\beta}$) of each residue. These chemical shifts are measured using various three-dimensional NMR experiments, and then matched to the individual residues in the protein in a process called sequential assignment.
+Several types of NMR variables can be used in the analysis of proteins' structures. In particular, essential information is provided by the chemical shifts of NMR-active nuclei present in proteins, including hydrogen and isotopes of carbon and nitrogen. The chemical shift is a quantifier for the deviation in the resonant frequency of a nucleus from its value in a structure-free environment, and therefore provides information on the local conformation. Determining the chemical shifts of all or most of the nuclei in a biomolecule is the first step in determining its structure. An important set of chemical shifts in a protein are those corresponding to the nuclei in the backbone of the protein polypeptide chain, including the nitrogen, attached hydrogen, and the alpha and beta carbon atoms ($C_\alpha$ and $C_{\beta}$) of each residue shown in Figure~\ref{fig:nmr}. These chemical shifts are measured using various three-dimensional NMR experiments, and then matched to the individual residues in the protein in a process called sequential assignment.
 
+\begin{figure}[H]
+\begin{center}
+\includegraphics[width=.6\textwidth]{diagram}
+\end{center}
+\caption{NMR} % TODO
+\label{fig:nmr}
+\end{figure}
 A prerequisite of the assignment process is data collection using experiments that can provide connectivities between neighboring residues. For example, the HNCACB experiment identifies the chemical shifts corresponding to the $C_\alpha$ and $C_{\beta}$ nuclei of one residue (residue $i$), as well as the $C_\alpha$ and $C_{\beta}$ chemical shifts of the immediately preceding residue (residue $i -1$). In this experiment, the values corresponding to residue $i$ can usually be distinguished from the ($i -1$) values by their higher intensity. However, ambiguities can arise if the intensities are comparable or if the chemical shift values are overlapping. These ambiguities can be resolved by using additional experiments, such as CBCA(CO) NH, which yields the chemical shifts of the preceding residue only. Using all inter-residue connectivities, a chain of correlations through the protein backbone chemical shifts can be established.  This pattern of sequentially linked chemical shift values reflects the sequential linear arrangement of the individual residues in the protein sequence. The pattern is then matched with the protein sequence, by using the fact that certain residues have characteristic $C_\alpha$ and $C_{\beta}$ chemical shift ranges which uniquely identify them. Thus, each measured chemical shift is assigned to a protein residue, and this information can then be used to infer structural information about the biomolecule.
 
 \section{Assignment} % (fold)
@@ -98,7 +105,17 @@ A solution has been found once the current best solution's cost is lower than th
 
 \subsection{Results}
 \label{sub:results}
-Our algorithm has been tested with NMR datasets of varying size from experiments conducted by Dr. Kilpatrick.  When compared to manually assigned data, the algorithm produces the same, optimal ordering of amino acids. Initially, we focused our research on accurate assignment at the cost of speed. Thus, at the start of our research, our algorithm was only able to assign smaller datasets with a chain of ten to fifteen amino acids. Shifting our focus to optimizing the algorithm's speed while maintaining the accuracy we had managed to achieve, we were able to improve runtime. With the increased performance, we were able to correctly assign forty amino acids in approximately seventy seconds.
+Our algorithm has been tested with NMR datasets of varying size from experiments conducted by Dr. Kilpatrick.  When compared to manually assigned data, the algorithm produces the same, optimal ordering of amino acids. Initially, we focused our research on accurate assignment at the cost of speed. Thus, at the start of our research, our algorithm was only able to assign smaller datasets with a chain of ten to fifteen amino acids. Shifting our focus to optimizing the algorithm's speed while maintaining the accuracy we had managed to achieve, we were able to improve runtime. With the increased performance, we were able to correctly assign forty amino acids in less than 30 seconds. The results of our testing are shown in Figure~\ref{fig:plot}.
+
+\begin{figure}[H]
+\begin{center}
+\includegraphics[width=.65\textwidth]{plot}
+\end{center}
+\caption{Time of Assignment} 
+\label{fig:plot}
+\end{figure}
+
+Since we are using real data to test the algorithm, some data points are missing. Missing data can leads to dramatic increases assignment time. The jump in runtime between 37 and 38 residues, seen in Figure~\ref{fig:plot}, is one such example. Residue 38 is missing the $C_\alpha$ and $C_{\beta}$ values for residue $i-1$. The missing data forces the algorithm to explore a greater number of possibilities to ensure accurate assignment. 
 
 \subsection{Future Goals} % (fold)
 \label{sub:future_goals}
