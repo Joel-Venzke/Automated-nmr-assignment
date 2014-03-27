@@ -65,7 +65,7 @@ Determining the structure of a protein requires many highly involved steps. The 
 \subsection{Manual Assignment} % (fold)
 \label{sub:manual_assignment}
 % TODO
-In most cases, backbone NMR data is assigned manually. However, with hundreds of chemical shift values, this process can take anywhere from 20 days to 9 months with perfect data. To complicate matters even more, experience has shown most data sets to have missing or false peaks, requiring whomever is doing the actual assignment to either skip large portions of the protein sequence or to guess where a certain chain is located in the sequence. As a result, this method is extremely error prone. \cite{babak_alipanahi_error_2011}
+In most cases, backbone NMR data is assigned manually. However, with hundreds of chemical shift values, this process can take anywhere from 20 days to 9 months with perfect data\cite{guntert_automated_2009}. To complicate matters even more, experience has shown most data sets to have missing or false peaks, requiring whomever is doing the actual assignment to either skip large portions of the protein sequence or to guess where a certain chain is located in the sequence. As a result, this method is extremely error prone \cite{babak_alipanahi_error_2011}.
 
 % subsection manual_assignment (end)
 
@@ -104,7 +104,6 @@ Our algorithm has been tested with NMR datasets of varying size from experiments
 \label{sub:future_goals}
 In future research, we will look into maximizing speed and efficiency with the goal of assigning  full amino acid sequences. In order to achieve this, we will experiment with both parallelization  and machine learning. The latter of these two will assist in optimizing the cost calculation while the former will increase the speed of assignment. We believe these implementations will help our algorithm handle datasets with numerous missing data points, validating our results even when given incomplete data.
 % subsection future_goals (end)
-\nocite{*}
 % section method (end)
 \bibliographystyle{amc}
 \bibliography{Paper}
