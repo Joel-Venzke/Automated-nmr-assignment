@@ -88,39 +88,75 @@ Drake University\\
 \tableofcontents 
 \end{frame}
 
+\subsection{Motivation} 
+\begin{frame}
+	\frametitle{Title}
+	\begin{itemize}
+		\item Nuclear Magnetic Resonance Spectroscopy
+		\begin{itemize}
+			\item Gain knowledge protein structure
+			\item Study how mutations lead to diseases
+		\end{itemize}
+		\item Problems
+		\begin{itemize}
+			\item Generators large amounts of data
+			\item Data analysis it slow and error prone 
+		\end{itemize}
+		\item Goal
+		\begin{itemize}
+			\item automate the assignment process
+			\item decrease human error
+			\item increase productivity
+		\end{itemize}
+	\end{itemize}
+\end{frame}
 
 % =======================================================================
 \subsection{Nuclear Magnetic Resonance Spectroscopy} 
 \begin{frame}
-	\frametitle{Title}
+	\frametitle{Nuclear Magnetic Resonance (NMR)}
 	\begin{itemize}
 		\item 
 	\end{itemize}
 \end{frame}
+
+\begin{frame}
+	\frametitle{Chemical Shift Values}
+	\begin{figure}[H]
+	\begin{center}
+	\includegraphics[width=.65\textwidth]{diagram}
+	\end{center}
+	\end{figure}
+\end{frame}
+
+
 
 % =======================================================================
 % =======================================================================
 \section{Assignment Process}
-\begin{frame}
-	\frametitle{Title}
-	\begin{itemize}
-		\item 
-	\end{itemize}
-\end{frame}
 
 % =======================================================================
 \subsection{Data Collection}
 \begin{frame}
-	\frametitle{Title}
+	\frametitle{Data Collection Time Line}
 	\begin{itemize}
-		\item 
+		\item Protein production
+		\begin{itemize}
+			\item At least 5 days \cite{babak_alipanahi_error_2011}
+		\end{itemize}
+		\item NMR Experiments 
+		\begin{itemize}
+			\item 1 to 2 days per spectrum involved \cite{babak_alipanahi_error_2011}
+		\end{itemize}
+		\item Assignment can begin
 	\end{itemize}
+	
 \end{frame}
 
 % =======================================================================
 \subsection{Manual Assignment}
 \begin{frame}
-	\frametitle{Title}
+	\frametitle{Manual Methods}
 	\begin{itemize}
 		\item 
 	\end{itemize}
@@ -130,10 +166,48 @@ Drake University\\
 
 % =======================================================================
 % =======================================================================
-\section{Automation}
+\section{Automation Algorithm}
 
 % =======================================================================
-\subsection{Algorithm Design}
+\subsection{Preprocessing}
+
+\begin{frame}
+	\frametitle{Initialization}
+	\begin{itemize}
+		\item Input
+		\begin{itemize}
+			\item Expected amino acid sequence
+			\begin{itemize}
+				\item Covered to expectation chemical shift values
+				\item Stored as the protein chain
+			\end{itemize}
+			\item NMR chemical shift data
+			\begin{itemize}
+				\item $C_\alpha$ and $C_{\beta}$ for residue $i$ and $i-1$
+				\item Stored in a tile
+			\end{itemize}
+		\end{itemize}
+		\item Missing data
+		\begin{itemize}
+			\item Place holder tile generation
+		\end{itemize}
+		\item Grouping 
+	\end{itemize}
+\end{frame}
+
+\begin{frame}
+	\frametitle{Grouping}
+	\begin{figure}[H]
+	\begin{center}
+	\includegraphics[width=.65\textwidth]{carbon}
+	\end{center}
+	\end{figure}
+\cite{carbon}
+\end{frame}
+
+% =======================================================================
+\subsection{Assignment}
+
 \begin{frame}
 	\frametitle{Title}
 	\begin{itemize}
@@ -180,7 +254,7 @@ Drake University\\
 			\item Decrease assignment time
 			\item Allow for lager data sets
 		\end{itemize}
-		\item Machine learning
+		\item Machine learning 
 		\begin{itemize}
 			\item Increase accuracy of assignment
 			\item Optimize cost calculation
@@ -191,6 +265,6 @@ Drake University\\
 
 \begin{frame}{Bibliography}
 \bibliographystyle{amc}
-\bibliography{Paper}
+\bibliography{presentaion}
 \end{frame}
 \end{document}
