@@ -47,7 +47,7 @@ Assignments of test sets have shown this method can be used to assign NMR datase
 
 \section{Introduction}
 \label{sub:introduction}
-Knowledge of a protein's structure can explain the function of a protein and how alterations to its function can lead to disease. With the use of nuclear magnetic resonance (NMR) spectroscopy, the structure of molecules, such as proteins, can be studied. However, NMR spectroscopy generates large amounts of data that needs to be analyzed. This process can take months to complete and is prone to error. To allow for major advances in structural biology, a faster and more accurate method of analysis needs to be developed. Our research focuses on developing an algorithm to automate the assignment process. We hope our attempts can minimize the human error and decrease the time consumption associated with manual assignment, increasing the overall effectiveness of the operation.
+Knowledge of a protein's structure can explain the function of a protein and how alterations to its function can lead to disease. With the use of nuclear magnetic resonance (NMR) spectroscopy, the structure of molecules, such as proteins, can be studied. However, NMR spectroscopy generates large amounts of data that need to be analyzed. This process can take months to complete and is prone to error. To allow for major advances in structural biology, a faster and more accurate method of analysis needs to be developed. Our research focuses on developing an algorithm to automate the assignment process. We hope our attempts can minimize the human error and decrease the time consumption associated with manual assignment, increasing the overall effectiveness of the operation.
 
 \subsection{Nuclear Magnetic Resonance Spectroscopy} % (fold)
 \label{sub:nmr}
@@ -60,25 +60,25 @@ Several types of NMR variables can be used in the analysis of proteins' structur
 \caption{NMR} % TODO
 \label{fig:nmr}
 \end{figure}
-A prerequisite of the assignment process is data collection using experiments that can provide connectivities between neighboring residues. For example, the HNCACB experiment identifies the chemical shifts corresponding to the $C_\alpha$ and $C_{\beta}$ nuclei of one residue (residue $i$), as well as the $C_\alpha$ and $C_{\beta}$ chemical shifts of the immediately preceding residue (residue $i -1$). In this experiment, the values corresponding to residue $i$ can usually be distinguished from the ($i -1$) values by their higher intensity. However, ambiguities can arise if the intensities are comparable or if the chemical shift values are overlapping. These ambiguities can be resolved by using additional experiments, such as CBCA(CO) NH, which yields the chemical shifts of the preceding residue only. Using all inter-residue connectivities, a chain of correlations through the protein backbone chemical shifts can be established.  This pattern of sequentially linked chemical shift values reflects the sequential linear arrangement of the individual residues in the protein sequence. The pattern is then matched with the protein sequence, by using the fact that certain residues have characteristic $C_\alpha$ and $C_{\beta}$ chemical shift ranges which uniquely identify them. Thus, each measured chemical shift is assigned to a protein residue, and this information can then be used to infer structural information about the biomolecule.
+A prerequisite of the assignment process is data collection using experiments that can provide connectivities between neighboring residues. For example, the HNCACB experiment identifies the chemical shifts corresponding to the $C_\alpha$ and $C_{\beta}$ nuclei of one residue (residue $i$), as well as the $C_\alpha$ and $C_{\beta}$ chemical shifts of the immediately preceding residue (residue $i -1$). In this experiment, the values corresponding to residue $i$ can usually be distinguished from the ($i -1$) values by their higher intensity. However, ambiguities can arise if the intensities are comparable or if the chemical shift values are overlapping. These ambiguities can be resolved by using additional experiments, such as CBCA(CO) NH, which yields the chemical shifts of the preceding residue only. Using all inter-residue connectivities, a chain of correlations through the protein backbone chemical shifts can be established.  This pattern of sequentially linked chemical shift values reflects the sequential linear arrangement of the individual residues in the protein sequence. The pattern is then matched with the protein sequence by using the fact that certain residues have characteristic $C_\alpha$ and $C_{\beta}$ chemical shift ranges to uniquely identify them. Thus, each measured chemical shift is assigned to a protein residue, and this information can then be used to infer structural information about the biomolecule.
 
 \section{Assignment} % (fold)
 \label{sec:method}
 
 \subsection{Data Collection} % (fold)
 \label{sub:data_collection}
-Determining the structure of a protein requires many highly involved steps. The first, which can take at least five days, is protein production. NMR experiments are then performed using the produced proteins in order to gather the data necessary for the assignment process. This process usually takes another one to two days for every spectrum involved. After all the data has been gathered, the assigning of the protein's structure, the most lengthy of the steps, will then begin. \cite{babak_alipanahi_error_2011}
+Determining the structure of a protein requires many highly involved steps. The first, which can take at least five days, is protein production. NMR experiments are then performed using the produced proteins in order to gather the data necessary for the assignment process. This process usually takes another one to two days for every spectrum involved. After all the data has been gathered, the assigning of the protein's structure, the most lengthy of the steps, will begin \cite{babak_alipanahi_error_2011}.
 
 \subsection{Manual Assignment} % (fold)
 \label{sub:manual_assignment}
 % TODO
-In most cases, backbone NMR data is assigned manually. However, with hundreds of chemical shift values, this process can take anywhere from 20 days to 9 months with perfect data\cite{guntert_automated_2009}. To complicate matters even more, experience has shown most data sets to have missing or false peaks, requiring whomever is doing the actual assignment to either skip large portions of the protein sequence or to guess where a certain chain is located in the sequence. As a result, this method is extremely error prone \cite{babak_alipanahi_error_2011}.
+In most cases, backbone NMR data is assigned manually. However, with hundreds of chemical shift values, this process can take anywhere from 20 days to 9 months with perfect data \cite{guntert_automated_2009}. To complicate matters even more, experience has shown most data sets to have missing or false peaks, requiring whomever is doing the actual assignment to either skip large portions of the protein sequence or to guess where a certain chain is located in the sequence. As a result, this method is extremely error prone \cite{babak_alipanahi_error_2011}.
 
 % subsection manual_assignment (end)
 
 \subsection{Algorithm Design} % (fold)
 \label{sub:algorithm}
-Our algorithm begins by reading in an expected amino acid sequence and the NMR chemical shift data. It then changes the amino acids to their expected $C_\alpha$ and $C_{\beta}$ values and stores them in a list that represents the protein chain. Next, the carbon shift values for a single amino acid are placed in a tile. A tile contains the $C_\alpha$ and $C_{\beta}$ values for the amino acid residue $i$ and residue $i-1$. Next, missing data is accounted for. If there are fewer tiles than the number of amino acids in the protein chain, placeholder tiles are generated to make up the difference. Before the search for the best solution begins, the tiles are grouped by the types of amino acids they could represent. The groups are created using the expected $C_\alpha$ and $C_{\beta}$ values shown in Figure~\ref{fig:carbon}. Grouping is done in an attempt to accelerate the assignment process. Tiles that do not match are grouped with the placeholder tiles. 
+Our algorithm, which is designed to decrease the error and time consumption associated with manual assignment, begins by reading in an expected amino acid sequence and the NMR chemical shift data. It then changes the amino acids to their expected $C_\alpha$ and $C_{\beta}$ values and stores them in a list that represents the protein chain. A tile containing the $C_\alpha$ and $C_{\beta}$ values for the amino acid residue $i$ and residue ($i-1$) is then created. Next, missing data is accounted for. If there are fewer tiles than the number of amino acids in the protein chain, placeholder tiles are generated to make up the difference. Before the search for the best solution begins, the tiles are grouped by the types of amino acids they most likely represent in an attempt to accelerate the assignment process. These groups are created using the expected $C_\alpha$ and $C_{\beta}$ values shown in Figure~\ref{fig:carbon}. Tiles that do not match are grouped with the placeholder tiles. 
 
 \begin{figure}[H]
 \begin{center}
@@ -89,16 +89,16 @@ Our algorithm begins by reading in an expected amino acid sequence and the NMR c
 \end{figure}
 
 %start search
-To start the search,  all the tiles matching the first amino acid in the reference protein chain are placed in the first position in a node. All placeholder tiles are also added to this position. The tile is then compared to the first amino acid in the protein chain to generate a cost. The cost is the sum of the differences generated by placing any previous tiles in the node, how well the current tile matched the corresponding amino acid in the protein chain and how well the tile's residue $i-1$ values match the residue $i$ values of the tile placed before it. All of the generated nodes are placed in an array of possible solutions, also called the frontier. 
+To start the search,  all the tiles matching the first amino acid in the reference protein chain are placed in the first position of a node. All placeholder tiles are also added to this position. The tile is then compared to the first amino acid in the protein chain to generate a cost. The cost is the sum of the differences generated by placing any previous tiles in the node, how well the current tile matches the corresponding amino acid in the protein chain, and the disparity between the tile's residue ($i-1$) values and the residue $i$ values of the tile placed before it. All of the generated nodes are placed in an array of possible solutions, also called the frontier. 
 
 %continue assignment
-The node in the frontier with the lowest cost is removed from the array and used to generate child nodes. To create a child node, a tile is added to the end of the node. A child node is generated for all unplaced tiles that are either in the placeholder group or in the group matching the corresponding amino acid in the protein chain. The cost of placing the tile is then calculated.  Next, the child nodes are added to the frontier, and the process of generating child nodes is repeated until a goal state is reached. 
+The node in the frontier with the lowest cost is removed from the array and used to generate child nodes, which is accomplished simply by adding a tile to the end of the node. A child node is generated for all unplaced tiles that are either in the placeholder group or in the group matching the corresponding amino acid in the protein chain. The cost of placing the tile is then calculated.  Next, the child nodes are added to the frontier. This process of generating child nodes is repeated until a goal state is reached. 
 
 %goal state
-Once a node has every tile placed, it is said to be in the goal state. The first node that reaches this state is stored as the current best solution. Every node that achieves goal state is compared to the current best solution. The node with the lowest cost is then replaces the previously stored best solution. 
+Once a node has every tile placed, it is said to be in the goal state. The first node that reaches this state is stored as the current best solution. Every node that achieves the goal state is compared to the current best solution. The node with the lowest cost then replaces the previously stored best solution. 
 
 %solution found
-A solution has been found once the current best solution's cost is lower than the cost of any other nodes in the frontier. The search is completed. The algorithm then outputs the cost of the best solution followed by the assigned chemical shift values. 
+The final solution has been found once the current best solution's cost is lower than the cost of any other nodes in the frontier. The search is completed. The algorithm then outputs the cost of the best solution followed by the assigned chemical shift values. 
 
 \section{Conclusions}
 \label{sec:conclusions}
@@ -109,13 +109,13 @@ Our algorithm has been tested with NMR datasets of varying size from experiments
 
 \begin{figure}[H]
 \begin{center}
-\includegraphics[width=.65\textwidth]{plot}
+\includegraphics[width=.6\textwidth]{plot}
 \end{center}
 \caption{Time of Assignment} 
 \label{fig:plot}
 \end{figure}
 
-Since we are using real data to test the algorithm, some data points are missing. Missing data can leads to dramatic increases assignment time. The jump in runtime between 37 and 38 residues, seen in Figure~\ref{fig:plot}, is one such example. Residue 38 is missing the $C_\alpha$ and $C_{\beta}$ values for residue $i-1$. The missing data forces the algorithm to explore a greater number of possibilities to ensure accurate assignment. 
+Since we are using real data to test the algorithm, some data points are missing. Missing data can lead to dramatic increases in assignment time. The jump in runtime between 37 and 38 residues, seen in Figure~\ref{fig:plot}, is one such example. Residue 38 is missing the $C_\alpha$ and $C_{\beta}$ values for residue ($i-1$). This missing data forces the algorithm to explore a greater number of possibilities to ensure accurate assignment, incidentally increasing the time it takes for the best solution to be found. 
 
 \subsection{Future Goals} % (fold)
 \label{sub:future_goals}
