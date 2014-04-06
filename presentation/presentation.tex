@@ -90,23 +90,23 @@ Drake University\\
 
 \subsection{Motivation} 
 \begin{frame}
-	\frametitle{Title}
+	\frametitle{Motivation}
 	\begin{itemize}
 		\item Nuclear Magnetic Resonance Spectroscopy
 		\begin{itemize}
-			\item Gain knowledge protein structure
+			\item Gain knowledge about protein structure
 			\item Study how mutations lead to diseases
 		\end{itemize}
 		\item Problems
 		\begin{itemize}
-			\item Generators large amounts of data
-			\item Data analysis it slow and error prone 
+			\item Generates large amounts of data
+			\item Data analysis is slow and error prone 
 		\end{itemize}
 		\item Goal
 		\begin{itemize}
-			\item automate the assignment process
-			\item decrease human error
-			\item increase productivity
+			\item Automate the assignment process
+			\item Decrease human error
+			\item Increase productivity
 		\end{itemize}
 	\end{itemize}
 \end{frame}
@@ -116,7 +116,19 @@ Drake University\\
 \begin{frame}
 	\frametitle{Nuclear Magnetic Resonance (NMR)}
 	\begin{itemize}
-		\item 
+		\item Used to obtain structural information 
+		\begin{itemize}
+			\item Chemical shift values
+		\end{itemize}
+		\item HNCACB experiment
+		\begin{itemize}
+			\item Generates $C_\alpha$ and $C_{\beta}$ residue $i$ and $i-1$
+		\end{itemize}
+		\item CBCA(CO) NH experiment 
+		\begin{itemize}
+			\item Generates $C_\alpha$ and $C_{\beta}$ for residue $i$
+			\item Confirms residue data
+		\end{itemize}
 	\end{itemize}
 \end{frame}
 
@@ -150,7 +162,7 @@ Drake University\\
 		\end{itemize}
 		\item Assignment can begin
 	\end{itemize}
-	
+	****** graphic *********
 \end{frame}
 
 % =======================================================================
@@ -209,12 +221,44 @@ Drake University\\
 \subsection{Assignment}
 
 \begin{frame}
-	\frametitle{Title}
+	\frametitle{Starting the assignment}
 	\begin{itemize}
-		\item 
+		\item Include Diagram of first step in the assignment process
 	\end{itemize}
 \end{frame}
 
+\begin{frame}
+	\frametitle{Cost Calculation}
+	\begin{itemize}
+		\item Accuracy matching the protein chain residue
+		\item Accuracy matching the tile above current tile
+		\item Cost of all tiles place before current tile
+		\begin{itemize}
+			\item Obtained from parent node
+		\end{itemize}
+	\end{itemize}
+\end{frame}
+
+
+\begin{frame}
+	\frametitle{Generating child nodes}
+	\begin{itemize}
+		\item The node with the lowest cost is selected
+	\end{itemize}
+	****** Include graphic *********
+\end{frame}
+
+\begin{frame}
+	\frametitle{Goal State}
+	\begin{itemize}
+		\item Child nodes are generated until goal state is reached
+		\item Goal state
+		\begin{itemize}
+			\item All tiles are placed 
+		\end{itemize}
+	\end{itemize}
+
+\end{frame}
 
 % =======================================================================
 % =======================================================================
@@ -239,6 +283,7 @@ Drake University\\
 		\begin{itemize}
 			\item increases assignment time
 		\end{itemize}
+		\item ****** add more or remove slide ********
 	\end{itemize}
 \end{frame}
 
