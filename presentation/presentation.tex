@@ -56,7 +56,8 @@
 
 \usepackage{graphicx} % Allows including images
 \usepackage{booktabs} % Allows the use of \toprule, \midrule and \bottomrule in tables
-
+\usepackage{tikz}
+\usepackage{graphicx}
 %----------------------------------------------------------------------------------------
 %	TITLE PAGE
 %----------------------------------------------------------------------------------------
@@ -145,32 +146,44 @@ Drake University\\
 
 % =======================================================================
 % =======================================================================
-\section{Assignment Process}
+\section{NMR Assignment Overview}
 
 % =======================================================================
-\subsection{Data Collection}
+\subsection{Data Collection and Manual Assignment}
 \begin{frame}
-	\frametitle{Data Collection Time Line}
-	\begin{itemize}
-		\item Protein production
-		\begin{itemize}
-			\item At least 5 days \cite{babak_alipanahi_error_2011}
-		\end{itemize}
-		\item NMR Experiments 
-		\begin{itemize}
-			\item 1 to 2 days per spectrum involved \cite{babak_alipanahi_error_2011}
-		\end{itemize}
-		\item Assignment can begin
-	\end{itemize}
-	****** graphic *********
+	\frametitle{Time Line}
+	
+	\vspace{1.5cm}
+	\begin{tikzpicture} [scale=.5]
+
+		\draw [thick, ->] (0,0) -- (20,0);
+
+		\draw (0,-.2) -- (0, .2);
+
+		\draw (5,-.2) -- (5, .2);
+
+		\draw (7.5,-.2) -- (7.5, .2);
+
+		\node[align=left, above] at (2,.5)%
+		{\small Protein\\ \small Production\\ \small at least 5 days};
+
+		\node[align=left, below] at (7,-.5)%
+		{\small NMR\\ \small Experiments\\ \small 1-2 days};
+
+		\node[align=left, above] at (11,.5)%
+		{\small Data Assignment\\ \small 20 days to 9 months};
+	\end{tikzpicture}
+
+	\vspace{1cm}
+	\hfill \scriptsize\cite{babak_alipanahi_error_2011}
 \end{frame}
 
-% =======================================================================
-\subsection{Manual Assignment}
 \begin{frame}
 	\frametitle{Manual Methods}
 	\begin{itemize}
-		\item 
+		\item Most time consuming part
+		\item Prone to human error
+		\item Missing and ambiguous data forces chunks to be skipped
 	\end{itemize}
 
 \end{frame}
@@ -214,7 +227,7 @@ Drake University\\
 	\includegraphics[width=.65\textwidth]{carbon}
 	\end{center}
 	\end{figure}
-\cite{carbon}
+\hfill \scriptsize\cite{carbon}
 \end{frame}
 
 % =======================================================================
@@ -222,9 +235,32 @@ Drake University\\
 
 \begin{frame}
 	\frametitle{Starting the assignment}
-	\begin{itemize}
-		\item Include Diagram of first step in the assignment process
-	\end{itemize}
+	\begin{tikzpicture} [scale=.5]
+		\draw [thick] (1.5,6.5) -- (13.5,6.5) -- (13.5,3.5) -- (1.5,3.5) -- (1.5,6.5);
+		\node[align=center] at (4.5,5) {\textbf{Tiles to assign:}};
+		\node[align=center, box, draw] at (8.5,5) {13\\9};
+		\node[align=center, box, draw] at (10.5,5) {11\\13};
+		\node[align=center, box, draw] at (12.5,5) {9\\12};		
+		\draw [thick] (-4,2) -- (18,2);
+
+		\node[align=right] at (11,2.5) {\textbf{Tiles}};
+
+		\node[align=center, box, draw, fill = green] at (5,0) {13\\9};
+		\node[align=center] at (6.5,0) {1.5};
+		\node[align=center, box, draw, fill = green] at (11,0) {11\\13};
+		\node[align=center] at (12.5,0) {0.5};
+		\node[align=center, box, draw, fill = green] at (16.5,0) {9\\12};
+		\node[align=center] at (18,0) {2.5};
+
+
+		\draw [thick] (2,3) -- (2,-6);
+
+		\node[align=right] at (-1,2.5) {\textbf{Protein Chain}};
+		\node[align=right] at (-1,0) {11.5};
+		\node[align=right] at (-1,-2.5) {12.5};
+		\node[align=right] at (-1,-5) {9.6};
+
+	\end{tikzpicture}
 \end{frame}
 
 \begin{frame}
@@ -233,31 +269,226 @@ Drake University\\
 		\item Accuracy matching the protein chain residue
 		\item Accuracy matching the tile above current tile
 		\item Cost of all tiles place before current tile
-		\begin{itemize}
-			\item Obtained from parent node
-		\end{itemize}
 	\end{itemize}
 \end{frame}
-
 
 \begin{frame}
 	\frametitle{Generating child nodes}
-	\begin{itemize}
-		\item The node with the lowest cost is selected
-	\end{itemize}
-	****** Include graphic *********
+	\begin{tikzpicture} [scale=.5]
+		\draw [thick] (1.5,6.5) -- (13.5,6.5) -- (13.5,3.5) -- (1.5,3.5) -- (1.5,6.5);
+		\node[align=center] at (4.5,5) {\textbf{Tiles to assign:}};
+		\node[align=center, box, draw] at (8.5,5) {13\\9};
+		\node[align=center, box, draw] at (10.5,5) {11\\13};
+		\node[align=center, box, draw] at (12.5,5) {9\\12};		
+		\draw [thick] (-4,2) -- (18,2);
+
+		\node[align=right] at (11,2.5) {\textbf{Tiles}};
+
+		\node[align=center, box, draw, fill = orange] at (5,0) {13\\9};
+		\node[align=center] at (6.5,0) {1.5};
+		\node[align=center, box, draw, fill = orange] at (11,0) {11\\13};
+		\node[align=center] at (12.5,0) {0.5};
+		\node[align=center, box, draw, fill = orange] at (16.5,0) {9\\12};
+		\node[align=center] at (18,0) {2.5};
+
+
+		\draw [thick] (2,3) -- (2,-6);
+
+		\node[align=right] at (-1,2.5) {\textbf{Protein Chain}};
+		\node[align=right] at (-1,0) {11.5};
+		\node[align=right] at (-1,-2.5) {12.5};
+		\node[align=right] at (-1,-5) {9.6};
+
+	\end{tikzpicture}
 \end{frame}
 
 \begin{frame}
-	\frametitle{Goal State}
-	\begin{itemize}
-		\item Child nodes are generated until goal state is reached
-		\item Goal state
-		\begin{itemize}
-			\item All tiles are placed 
-		\end{itemize}
-	\end{itemize}
+	\frametitle{Generating child nodes}
+	\begin{tikzpicture} [scale=.5]
+		\draw [thick] (1.5,6.5) -- (13.5,6.5) -- (13.5,3.5) -- (1.5,3.5) -- (1.5,6.5);
+		\node[align=center] at (4.5,5) {\textbf{Tiles to assign:}};
+		\node[align=center, box, draw] at (8.5,5) {13\\9};
+		\node[align=center, box, draw] at (10.5,5) {11\\13};
+		\node[align=center, box, draw] at (12.5,5) {9\\12};		
+		\draw [thick] (-4,2) -- (18,2);
 
+		\node[align=right] at (11,2.5) {\textbf{Tiles}};
+
+		\draw [thick, ->] (11,1.5) -- (11,1);
+		\node[align=center, box, draw, fill = orange] at (5,0) {13\\9};
+		\node[align=center] at (6.5,0) {1.5};
+		\node[align=center, box, draw, fill = green] at (11,0) {11\\13};
+		\node[align=center] at (12.5,0) {0.5};
+		\node[align=center, box, draw, fill = orange] at (16.5,0) {9\\12};
+		\node[align=center] at (18,0) {2.5};
+
+		\draw (11,-1) -- (9.5,-1.5);
+		\draw (11,-1) -- (13,-1.5);
+
+		
+		\node[align=center, box, draw, fill = orange] at (9.5,-2.5) {13\\9};
+		\node[align=center] at (11,-2.5) {1.0};
+		\node[align=center, box, draw, fill = orange] at (12.5,-2.5) {9\\12};
+		\node[align=center] at (14,-2.5) {8.0};
+
+
+		\draw [thick] (2,3) -- (2,-6);
+
+		\node[align=right] at (-1,2.5) {\textbf{Protein Chain}};
+		\node[align=right] at (-1,0) {11.5};
+		\node[align=right] at (-1,-2.5) {12.5};
+		\node[align=right] at (-1,-5) {9.6};
+
+	\end{tikzpicture}
+\end{frame}
+
+
+\subsection{Goal State}
+\begin{frame}
+	\frametitle{Goal State}
+	\begin{tikzpicture} [scale=.5]
+		\draw [thick] (1.5,6.5) -- (13.5,6.5) -- (13.5,3.5) -- (1.5,3.5) -- (1.5,6.5);
+		\node[align=center] at (4.5,5) {\textbf{Tiles to assign:}};
+		\node[align=center, box, draw] at (8.5,5) {13\\9};
+		\node[align=center, box, draw] at (10.5,5) {11\\13};
+		\node[align=center, box, draw] at (12.5,5) {9\\12};		
+		\draw [thick] (-4,2) -- (18,2);
+
+		\node[align=right] at (11,2.5) {\textbf{Tiles}};
+
+		\node[align=center, box, draw, fill = orange] at (5,0) {13\\9};
+		\node[align=center] at (6.5,0) {1.5};
+		\node[align=center, box, draw, ] at (11,0) {11\\13};
+		\node[align=center] at (12.5,0) {0.5};
+		\node[align=center, box, draw, fill = orange] at (16.5,0) {9\\12};
+		\node[align=center] at (18,0) {2.5};
+
+		\draw (11,-1) -- (9.5,-1.5);
+		\draw (11,-1) -- (13,-1.5);
+
+		\draw [thick, ->] (9.5,-1) -- (9.5,-1.5);
+		\node[align=center, box, draw, fill = green] at (9.5,-2.5) {13\\9};
+		\node[align=center] at (11,-2.5) {1.0};
+		\node[align=center, box, draw, fill = orange] at (12.5,-2.5) {9\\12};
+		\node[align=center] at (14,-2.5) {8.0};
+
+		\draw (9.5,-4) -- (9.5,-3.5);
+
+		\node[align=center, box, draw, fill = orange] at (9.5,-5) {9\\12};
+		\node[align=center] at (11,-5) {1.6};
+
+		\draw [thick] (2,3) -- (2,-6);
+
+		\node[align=right] at (-1,2.5) {\textbf{Protein Chain}};
+		\node[align=right] at (-1,0) {11.5};
+		\node[align=right] at (-1,-2.5) {12.5};
+		\node[align=right] at (-1,-5) {9.6};
+
+	\end{tikzpicture}
+\end{frame}
+
+
+\begin{frame}
+	\frametitle{Goal State}
+	\begin{tikzpicture} [scale=.5]
+		\draw [thick] (1.5,6.5) -- (13.5,6.5) -- (13.5,3.5) -- (1.5,3.5) -- (1.5,6.5);
+		\node[align=center] at (4.5,5) {\textbf{Tiles to assign:}};
+		\node[align=center, box, draw] at (8.5,5) {13\\9};
+		\node[align=center, box, draw] at (10.5,5) {11\\13};
+		\node[align=center, box, draw] at (12.5,5) {9\\12};		
+		\draw [thick] (-4,2) -- (18,2);
+
+		\node[align=right] at (11,2.5) {\textbf{Tiles}};
+
+		\draw [thick, ->] (5,1.5) -- (5,1);
+		\node[align=center, box, draw, fill = green] at (5,0) {13\\9};
+		\node[align=center] at (6.5,0) {1.5};
+		\node[align=center, box, draw] at (11,0) {11\\13};
+		\node[align=center] at (12.5,0) {0.5};
+		\node[align=center, box, draw, fill = orange] at (16.5,0) {9\\12};
+		\node[align=center] at (18,0) {2.5};
+
+		\draw (11,-1) -- (9.5,-1.5);
+		\draw (11,-1) -- (13,-1.5);
+
+		\node[align=center, box, draw] at (9.5,-2.5) {13\\9};
+		\node[align=center] at (11,-2.5) {1.0};
+		\node[align=center, box, draw, fill = orange] at (12.5,-2.5) {9\\12};
+		\node[align=center] at (14,-2.5) {8.0};
+
+
+		\draw (5,-1) -- (3.5,-1.5);
+		\draw (5,-1) -- (6.5,-1.5);
+
+		\node[align=center, box, draw, fill = orange] at (3.5,-2.5) {13\\9};
+		\node[align=center] at (5,-2.5) {6.0};
+		\node[align=center, box, draw, fill = orange] at (6.5,-2.5) {9\\12};
+		\node[align=center] at (8,-2.5) {5.0};
+
+		\draw (9.5,-4) -- (9.5,-3.5);
+
+		\node[align=center, box, draw, fill = orange] at (9.5,-5) {9\\12};
+		\node[align=center] at (11,-5) {1.6};
+
+		\draw [thick] (2,3) -- (2,-6);
+
+		\node[align=right] at (-1,2.5) {\textbf{Protein Chain}};
+		\node[align=right] at (-1,0) {11.5};
+		\node[align=right] at (-1,-2.5) {12.5};
+		\node[align=right] at (-1,-5) {9.6};
+
+	\end{tikzpicture}
+\end{frame}
+
+\begin{frame}
+	\frametitle{Solution State}
+	\begin{tikzpicture} [scale=.5]
+		\draw [thick] (1.5,6.5) -- (13.5,6.5) -- (13.5,3.5) -- (1.5,3.5) -- (1.5,6.5);
+		\node[align=center] at (4.5,5) {\textbf{Tiles to assign:}};
+		\node[align=center, box, draw] at (8.5,5) {13\\9};
+		\node[align=center, box, draw] at (10.5,5) {11\\13};
+		\node[align=center, box, draw] at (12.5,5) {9\\12};		
+		\draw [thick] (-4,2) -- (18,2);
+
+		\node[align=right] at (11,2.5) {\textbf{Tiles}};
+
+		\node[align=center, box, draw] at (5,0) {13\\9};
+		\node[align=center] at (6.5,0) {1.5};
+		\node[align=center, box, draw, fill = green] at (11,0) {11\\13};
+		\node[align=center] at (12.5,0) {0.5};
+		\node[align=center, box, draw, fill = orange] at (16.5,0) {9\\12};
+		\node[align=center] at (18,0) {2.5};
+
+		\draw (11,-1) -- (9.5,-1.5);
+		\draw (11,-1) -- (13,-1.5);
+
+		\node[align=center, box, draw, fill = green] at (9.5,-2.5) {13\\9};
+		\node[align=center] at (11,-2.5) {1.0};
+		\node[align=center, box, draw, fill = orange] at (12.5,-2.5) {9\\12};
+		\node[align=center] at (14,-2.5) {8.0};
+
+
+		\draw (5,-1) -- (3.5,-1.5);
+		\draw (5,-1) -- (6.5,-1.5);
+
+		\node[align=center, box, draw, fill = orange] at (3.5,-2.5) {13\\9};
+		\node[align=center] at (5,-2.5) {6.0};
+		\node[align=center, box, draw, fill = orange] at (6.5,-2.5) {9\\12};
+		\node[align=center] at (8,-2.5) {5.0};
+
+		\draw (9.5,-4) -- (9.5,-3.5);
+
+		\node[align=center, box, draw, fill = green] at (9.5,-5) {9\\12};
+		\node[align=center] at (11,-5) {1.6};
+
+		\draw [thick] (2,3) -- (2,-6);
+
+		\node[align=right] at (-1,2.5) {\textbf{Protein Chain}};
+		\node[align=right] at (-1,0) {11.5};
+		\node[align=right] at (-1,-2.5) {12.5};
+		\node[align=right] at (-1,-5) {9.6};
+
+	\end{tikzpicture}
 \end{frame}
 
 % =======================================================================
@@ -276,18 +507,6 @@ Drake University\\
 	\end{figure}
 \end{frame}
 
-\begin{frame}
-	\frametitle{Assignment Issues}
-	\begin{itemize}
-		\item Missing data decreases accuracy
-		\begin{itemize}
-			\item increases assignment time
-		\end{itemize}
-		\item ****** add more or remove slide ********
-	\end{itemize}
-\end{frame}
-
-
 
 % =======================================================================
 \subsection{Outlook}
@@ -297,7 +516,7 @@ Drake University\\
 		\item Parallelization
 		\begin{itemize}
 			\item Decrease assignment time
-			\item Allow for lager data sets
+			\item Allow for larger data sets
 		\end{itemize}
 		\item Machine learning 
 		\begin{itemize}
@@ -307,9 +526,34 @@ Drake University\\
 	\end{itemize}
 \end{frame}
 
+\begin{frame}
+	\frametitle{Acknowledgments}
+	\begin{itemize}
+		\item Dr. Tim Urness (Mathematics and Computer Science)
+		\item Dr. Adina Kilpatrick (Physic)
+		\item Rachel Davis (research colleague)
+		\item John Emmons (research colleague)
+		\item  Katherine Roth (research colleague)
+		\item  David Mascharka (research colleague)
+		\item  Leah Robison (research colleague)
+	\end{itemize}
+\end{frame}
 
 \begin{frame}{Bibliography}
 \bibliographystyle{amc}
 \bibliography{presentaion}
 \end{frame}
+
+\begin{frame}
+	\frametitle{Thank You} 
+	\begin{center}
+	\includegraphics[width=0.3\textwidth]{carbon}\hspace{2em}
+	\includegraphics[width=0.3\textwidth]{diagram}
+	\end{center}
+	\begin{center}
+	\includegraphics[width=0.4\textwidth]{time_line}\hspace{2em}
+	\includegraphics[width=0.3\textwidth]{plot}
+\end{center}
+\end{frame}
+
 \end{document}
