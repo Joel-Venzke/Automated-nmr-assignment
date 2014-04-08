@@ -205,18 +205,15 @@ Drake University\\
 \begin{frame}
 	\frametitle{Initialization}
 	\begin{itemize}
-		\item Input
+		\item Expected amino acid sequence
 		\begin{itemize}
-			\item Expected amino acid sequence
-			\begin{itemize}
-				\item Converted to expected chemical shift values
-				\item Stored as the reference protein chain
-			\end{itemize}
-			\item NMR chemical shift data
-			\begin{itemize}
-				\item $C_\alpha$ and $C_{\beta}$ for residue $i$ and $i-1$
-				\item Stored in a tile
-			\end{itemize}
+			\item Converted to expected chemical shift values
+			\item Stored as the reference protein chain
+		\end{itemize}
+		\item NMR experiment's chemical shift data
+		\begin{itemize}
+			\item $C_\alpha$ and $C_{\beta}$ for residue $i$ and $i-1$
+			\item Stored in a tile
 		\end{itemize}
 		\item Missing data
 		\begin{itemize}
