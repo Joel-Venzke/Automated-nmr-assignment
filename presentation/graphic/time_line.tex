@@ -28,8 +28,7 @@
 \maketitle
 \vspace{-3cm}
 
-
-\begin{tikzpicture} [scale=.5]
+	\begin{tikzpicture} [scale=.5]
 		\draw [thick] (6,6) -- (10,6) -- (10,3.5) -- (6,3.5) -- (6,6);
 		\draw [thick] (14.5,6) -- (10.5,6) -- (10.5,3.5) -- (14.5,3.5) -- (14.5,6);
 		\node[align=center] at (0,4.75) {\textbf{Tiles to assign:}};
@@ -37,34 +36,34 @@
 		\draw [thick] (5.5,6) -- (3,6) -- (3,3.5) -- (5.5,3.5) -- (5.5,6);
 		\node[align=center, above] at (8,6) {Group 1};
 		\node[align=center, above] at (12.5,6) {Group 2};
-		\node[align=center, box, draw] at (7,4.75) {9\\12};
-		\node[align=center, box, draw] at (9,4.75) {11\\13};
-		\node[align=center, box, draw] at (12.5,4.75) {13\\9};		
+		\node[align=center, rounded corners, box, draw] at (7,4.75) {9\\12};
+		\node[align=center, rounded corners, box, draw] at (9,4.75) {11\\13};
+		\node[align=center, rounded corners, box, draw] at (12.5,4.75) {13\\9};		
 		\draw [thick] (-4,2) -- (18,2);
 
 		\node[align=right] at (10.5,2.8) {\scriptsize \textbf{Nodes}};
 
-		\node[align=center, box, draw] at (7,.5) {9\\12};
+		\node[align=center, rounded corners, box, draw] at (7,.5) {9\\12};
 		\node[align=center] at (8.5,.5) {1.5};
-		\node[align=center, box, draw, fill = green] at (14,.5) {11\\13};
+		\node[align=center, rounded corners, box, draw, fill = green] at (14,.5) {11\\13};
 		\node[align=center] at (15.5,.5) {0.5};
 
 		\draw (10.5,2) -- (7,1.5);
 		\draw (10.5,2) -- (14,1.5);
 
-		\node[align=center, box, draw, fill = green] at (14,-2) {13\\9};
+		\node[align=center, rounded corners, box, draw, fill = green] at (14,-2) {13\\9};
 		\node[align=center] at (15.5,-2) {1.0};
 
 
 		\draw (7,-.5) -- (7,-1);
 		\draw (14,-.5) -- (14,-1);
 
-		\node[align=center, box, draw, fill = orange] at (7,-2) {13\\9};
+		\node[align=center, rounded corners, box, draw, fill = orange] at (7,-2) {13\\9};
 		\node[align=center] at (8.5,-2) {3.0};
 
 		\draw (14,-3) -- (14,-3.5);
  
-		\node[align=center, box, draw, fill = green] at (14,-4.5) {9\\12};
+		\node[align=center, rounded corners, box, draw, fill = green] at (14,-4.5) {9\\12};
 		\node[align=center] at (15.5,-4.5) {1.6};
 
 		\draw [thick] (2,3.5) -- (2,-5.5);
