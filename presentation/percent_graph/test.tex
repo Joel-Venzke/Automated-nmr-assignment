@@ -1,0 +1,29 @@
+% to run use
+% $ pdflatex -shell-escape plot.tex
+
+\documentclass[varwidth]{standalone}
+\usepackage{tikz}
+\usepackage{pgfplots}
+\usepackage{graphics}
+\usepackage{graphicx}
+
+\begin{document}
+\begin{figure}
+\begin{center}
+\begin{tikzpicture}
+
+\begin{axis}[width = \columnwidth, grid=major, xlabel={Number of Residues}, ylabel={Time to Completion (seconds)}]
+\addplot[no markers, red] gnuplot [raw gnuplot] { 
+fac(x) = (int(x)==0) ? 1.0 : int(x) * fac(int(x)-1.0);
+g(x) = (a*x**2+b*x+c)/(d*x+e);
+fit g(x) 'percent.dat' using 1:(log10($2/fac($1))) via a,b,c,d,e;
+plot 'percent.dat' using 1:(log10($2/fac($1))) title 'Data', g(x);
+}; 
+
+\end{axis}
+\end{tikzpicture}
+% \caption{Time to completion for analysis of a uniform filesystem with uniform branching factor two plotted with entry counts.}
+% \label{fig:radix_2_line}
+\end{center}
+\end{figure}
+\end{document}

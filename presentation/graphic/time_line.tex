@@ -29,51 +29,57 @@
 \vspace{-3cm}
 
 
-\begin{tikzpicture} [scale=.5]
-		\draw [thick] (1.5,6.5) -- (13.5,6.5) -- (13.5,3.5) -- (1.5,3.5) -- (1.5,6.5);
-		\node[align=center] at (4.5,5) {\textbf{Tiles to assign:}};
-		\node[align=center, box, draw] at (8.5,5) {13\\9};
-		\node[align=center, box, draw] at (10.5,5) {11\\13};
-		\node[align=center, box, draw] at (12.5,5) {9\\12};		
+	\begin{tikzpicture} [scale=.5]
+		\draw [thick] (6,6) -- (10,6) -- (10,3.5) -- (6,3.5) -- (6,6);
+		\draw [thick] (14.5,6) -- (10.5,6) -- (10.5,3.5) -- (14.5,3.5) -- (14.5,6);
+		\node[align=center] at (2.5,4.75) {\textbf{Tiles to assign:}};
+		\node[align=center, above] at (8,6) {Group 1};
+		\node[align=center, above] at (12.5,6) {Group 2};
+		\node[align=center, box, draw] at (7,4.75) {13\\9};
+		\node[align=center, box, draw] at (9,4.75) {11\\13};
+		\node[align=center, box, draw] at (12.5,4.75) {9\\12};		
 		\draw [thick] (-4,2) -- (18,2);
 
-		\node[align=right] at (11,2.5) {\textbf{Tiles}};
+		\node[align=right] at (10.5,2.8) {\scriptsize \textbf{Nodes}};
 
-		\node[align=center, box, draw] at (5,0) {13\\9};
-		\node[align=center] at (6.5,0) {1.5};
-		\node[align=center, box, draw, fill = green] at (11,0) {11\\13};
-		\node[align=center] at (12.5,0) {0.5};
-		\node[align=center, box, draw, fill = orange] at (16.5,0) {9\\12};
-		\node[align=center] at (18,0) {2.5};
+		\node[align=center, box, draw] at (7,.5) {13\\9};
+		\node[align=center] at (8.5,.5) {1.5};
+		\node[align=center, box, draw, fill = green] at (14,.5) {11\\13};
+		\node[align=center] at (15.5,.5) {0.5};
 
-		\draw (11,-1) -- (9.5,-1.5);
-		\draw (11,-1) -- (12.5,-1.5);
+		\draw (10.5,2) -- (7,1.5);
+		\draw (10.5,2) -- (14,1.5);
 
-		\node[align=center, box, draw, fill = green] at (9.5,-2.5) {13\\9};
-		\node[align=center] at (11,-2.5) {1.0};
-		\node[align=center, box, draw, fill = orange] at (12.5,-2.5) {9\\12};
-		\node[align=center] at (14,-2.5) {8.0};
+		\node[align=center, box, draw, fill = green] at (14,-2) {13\\9};
+		\node[align=center] at (15.5,-2) {1.0};
 
 
-		\draw (5,-1) -- (3.5,-1.5);
-		\draw (5,-1) -- (6.5,-1.5);
+		\draw (7,-.5) -- (7,-1);
+		\draw (14,-.5) -- (14,-1);
 
-		\node[align=center, box, draw, fill = orange] at (3.5,-2.5) {13\\9};
-		\node[align=center] at (5,-2.5) {6.0};
-		\node[align=center, box, draw, fill = orange] at (6.5,-2.5) {9\\12};
-		\node[align=center] at (8,-2.5) {5.0};
+		\node[align=center, box, draw, fill = orange] at (7,-2) {11\\13};
+		\node[align=center] at (8.5,-2) {5.0};
 
-		\draw (9.5,-4) -- (9.5,-3.5);
+		\draw (14,-3) -- (14,-3.5);
+ 
+		\node[align=center, box, draw, fill = green] at (14,-4.5) {9\\12};
+		\node[align=center] at (15.5,-4.5) {1.6};
 
-		\node[align=center, box, draw, fill = green] at (9.5,-5) {9\\12};
-		\node[align=center] at (11,-5) {1.6};
+		\draw [thick] (2,3.5) -- (2,-5.5);
 
-		\draw [thick] (2,3) -- (2,-6);
+		\draw  (-.75,1.75) -- (-.75,-5.5);
+		\draw  (-4,1.125) -- (1.25,1.125);
 
-		\node[align=right] at (-1,2.5) {\textbf{Protein Chain}};
-		\node[align=right] at (-1,0) {11.5};
-		\node[align=right] at (-1,-2.5) {12.5};
-		\node[align=right] at (-1,-5) {9.6};
+		\node[align=right] at (-1,3.2) {\scriptsize \textbf{Reference}};
+		\node[align=right] at (-1,2.5) {\scriptsize \textbf{Protein Chain}};
+		\node[align=right] at (-2.5,1.5) {\tiny Chemical Shift};
+		\node[align=right] at (.25,1.5) {\tiny Group};
+		\node[align=right] at (-2.5,.5) {11.5};
+		\node[align=right] at (-2.5,-2) {12.5};
+		\node[align=right] at (-2.5,-4.5) {9.6};
+		\node[align=right] at (.25,.5) {1};
+		\node[align=right] at (.25,-2) {1};
+		\node[align=right] at (.25,-4.5) {2};
 
 	\end{tikzpicture}
 \end{document}
