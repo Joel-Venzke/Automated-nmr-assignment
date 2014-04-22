@@ -11,4 +11,4 @@ set xtics 5
 set ytics 5
 set grid lt 1 lc rgb '#bbbbbb' lw .1
 unset key 
-plot 'percent.dat' using 1:(log10($2/fac($1))) pt 4 ps .5 lc rgb 'black', g(x) lt 1 linecolor rgb "red"
+plot 'percent.dat' using 1:(log10($2/fac($1))) pt 7 ps 1 lc rgb 'black', g(x) lt 1 linecolor rgb "red"
