@@ -25,7 +25,6 @@
 \date{}
 
 \begin{document}
-\maketitle
 \vspace{-3cm}
 
 	\begin{tikzpicture} [scale=.5]
@@ -40,52 +39,52 @@
 		\node[align=center, above] at (12.5,6) {Group 2};
 
 		% tiles
-		\node[align=center, rounded corners, box, draw] at (7,4.75) {9\\12};
-		\node[align=center, rounded corners, box, draw] at (9,4.75) {11\\13};
-		\node[align=center, rounded corners, box, draw] at (11.5,4.75) {13\\9};
-		\node[align=center, rounded corners, box, draw] at (13.5,4.75) {12\\9.2};		
+		\node[align=center, rounded corners, draw] at (7,4.75) {9\\12};
+		\node[align=center, rounded corners, draw] at (9,4.75) {11\\13};
+		\node[align=center, rounded corners, draw] at (11.5,4.75) {13\\9};
+		\node[align=center, rounded corners, draw] at (13.5,4.75) {12\\9.2};		
 		\draw [thick] (-4,2) -- (18,2);
 
 		% title
 		\node[align=right] at (10.5,2.8) {\scriptsize \textbf{Nodes}};
 
 		%first 
-		\node[align=center, rounded corners, box, draw] at (7,.5) {9\\12};
+		\node[align=center, rounded corners, draw] at (7,.5) {9\\12};
 		% \node[align=center] at (8.5,.5) {1.5};
-		\node[align=center, rounded corners, box, draw] at (14,.5) {11\\13};
+		\node[align=center, rounded corners, draw] at (14,.5) {11\\13};
 		% \node[align=center] at (15.5,.5) {0.5};
 		\draw (10.5,2) -- (7,1.5);
 		\draw (10.5,2) -- (14,1.5);
 
 		%right side row 2
-		\node[align=center, rounded corners, box, draw] at (12.5,-2) {13\\9};
+		\node[align=center, rounded corners, draw] at (12.5,-2) {13\\9};
 		% \node[align=center] at (14,-2) {1.0};
 		\draw (14,-.5) -- (12.5,-1);
-		\node[align=center, rounded corners, box, draw, fill = orange] at (15.5,-2) {12\\9.2};
+		\node[align=center, rounded corners, draw, fill = orange] at (15.5,-2) {12\\9.2};
 		\node[align=center] at (17,-2) {1.8};
 		\draw (14,-.5) -- (15.5,-1);
 
 		% left side row 2
 		\draw (7,-.5) -- (5.5,-1);
 		\draw (7,-.5) -- (8.5,-1);
-		\node[align=center, rounded corners, box, draw, fill = orange] at (5.5,-2) {13\\9};
+		\node[align=center, rounded corners, draw, fill = orange] at (5.5,-2) {13\\9};
 		\node[align=center] at (7,-2) {3.0};
-		\node[align=center, rounded corners, box, draw, fill = green] at (8.5,-2) {12\\9.2};
+		\node[align=center, rounded corners, draw, fill = green] at (8.5,-2) {12\\9.2};
 		\node[align=center] at (10,-2) {1.8};
 
 		% left side row 3
-		\node[align=center, rounded corners, box, draw, fill = orange] at (8.5,-4.5) {11\\13};
+		\node[align=center, rounded corners, draw, fill = orange] at (8.5,-4.5) {11\\13};
 		\node[align=center] at (10,-4.5) {5.2};
 		\draw (8.5,-3) -- (8.5,-3.5);
 
 		% right side row 3
 		\draw (12.5,-3) -- (12.5,-3.5);
-		\node[align=center, rounded corners, box, draw] at (12.5,-4.5) {9\\12};
+		\node[align=center, rounded corners, draw] at (12.5,-4.5) {9\\12};
 		% \node[align=center] at (14,-4.5) {1.6};
 
 		% right side row 4
 		\draw (12.5,-5.5) -- (12.5,-6);
-		\node[align=center, rounded corners, box, draw, fill = orange] at (12.5,-7) {12\\9.2};
+		\node[align=center, rounded corners, draw, fill = orange] at (12.5,-7) {12\\9.2};
 		\node[align=center] at (14,-7) {2.0};
 
 		% grid
