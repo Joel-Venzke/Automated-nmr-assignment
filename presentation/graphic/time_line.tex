@@ -1,0 +1,79 @@
+\documentclass[10pt, varwidth]{standalone}
+
+%
+% compile using: pdflatex -shell-escape reu_paper.tex
+%
+
+\usepackage{tikz}
+\usetikzlibrary{calc}
+\usetikzlibrary{shapes,arrows}
+
+\usepackage{pgfplots}
+
+\usepackage{caption}
+\usepackage{amsmath}
+\usepackage{graphics}
+\usepackage{graphicx}
+\usepackage{multicol}
+\usepackage{amsfonts}
+\usepackage{algorithm}
+\usepackage{algorithmic}
+\usepackage{mdwlist}
+\usepackage{mathtools}
+\usepackage{url}
+
+\date{}
+
+\begin{document}
+\maketitle
+\vspace{-3cm}
+
+
+\begin{tikzpicture} [scale=.5]
+		\draw [thick] (1.5,6.5) -- (13.5,6.5) -- (13.5,3.5) -- (1.5,3.5) -- (1.5,6.5);
+		\node[align=center] at (4.5,5) {\textbf{Tiles to assign:}};
+		\node[align=center, box, draw] at (8.5,5) {13\\9};
+		\node[align=center, box, draw] at (10.5,5) {11\\13};
+		\node[align=center, box, draw] at (12.5,5) {9\\12};		
+		\draw [thick] (-4,2) -- (18,2);
+
+		\node[align=right] at (11,2.5) {\textbf{Tiles}};
+
+		\node[align=center, box, draw] at (5,0) {13\\9};
+		\node[align=center] at (6.5,0) {1.5};
+		\node[align=center, box, draw, fill = green] at (11,0) {11\\13};
+		\node[align=center] at (12.5,0) {0.5};
+		\node[align=center, box, draw, fill = orange] at (16.5,0) {9\\12};
+		\node[align=center] at (18,0) {2.5};
+
+		\draw (11,-1) -- (9.5,-1.5);
+		\draw (11,-1) -- (12.5,-1.5);
+
+		\node[align=center, box, draw, fill = green] at (9.5,-2.5) {13\\9};
+		\node[align=center] at (11,-2.5) {1.0};
+		\node[align=center, box, draw, fill = orange] at (12.5,-2.5) {9\\12};
+		\node[align=center] at (14,-2.5) {8.0};
+
+
+		\draw (5,-1) -- (3.5,-1.5);
+		\draw (5,-1) -- (6.5,-1.5);
+
+		\node[align=center, box, draw, fill = orange] at (3.5,-2.5) {13\\9};
+		\node[align=center] at (5,-2.5) {6.0};
+		\node[align=center, box, draw, fill = orange] at (6.5,-2.5) {9\\12};
+		\node[align=center] at (8,-2.5) {5.0};
+
+		\draw (9.5,-4) -- (9.5,-3.5);
+
+		\node[align=center, box, draw, fill = green] at (9.5,-5) {9\\12};
+		\node[align=center] at (11,-5) {1.6};
+
+		\draw [thick] (2,3) -- (2,-6);
+
+		\node[align=right] at (-1,2.5) {\textbf{Protein Chain}};
+		\node[align=right] at (-1,0) {11.5};
+		\node[align=right] at (-1,-2.5) {12.5};
+		\node[align=right] at (-1,-5) {9.6};
+
+	\end{tikzpicture}
+\end{document}
