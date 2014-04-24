@@ -118,19 +118,80 @@ Drake University\\
 	\end{itemize}
 \end{frame}
 
+\subsection{Applications}
+
+\begin{frame}
+	\frametitle{Applications}
+    \begin{itemize}
+    	\item Studying Mutations
+    	\begin{itemize}
+    		\item Protein Folding
+    		\item Biological effects
+    	\end{itemize}
+    	\vspace{12pt}
+    	\item Pharmaceuticals
+    	\begin{itemize}
+    		\item Block proteins leading to mutations
+    		\item Prevent onset of disease
+    	\end{itemize}
+    \end{itemize}
+\end{frame}
+
+\begin{frame}
+	\frametitle{Mutation Example}
+    \vspace{-.5cm}
+	\center
+	\includegraphics[width=.4\textwidth]{fruit}
+\end{frame}
+
+% =======================================================================
+% =======================================================================
+\section{NMR Assignment Background}
 % =======================================================================
 \subsection{Nuclear Magnetic Resonance Spectroscopy} 
 \begin{frame}
 	\frametitle{Nuclear Magnetic Resonance (NMR)}
 	\begin{itemize}
-		\item Used to obtain structural information 
+		\item NMR:  phenomenon in which atomic nuclei absorb and re-emit EM radiation
+	\end{itemize}
+	\begin{enumerate}
+		\item Alignment of nuclear magnetic spins in constant magnetic field
+		\item EM radiation pulses disturb alignment
+	\end{enumerate}
+	\begin{itemize}
+		\item  Chemical Shift Values Generated
 		\begin{itemize}
-			\item Chemical shift values
+			\item Resonant frequency depends on environment
+			\item Deviation from the Larmor Frequency creates chemical shift values
 		\end{itemize}
+	\end{itemize}
+\end{frame}
+
+% \begin{frame}
+% 	\frametitle{Nuclear Magnetic Resonance (NMR)}
+% 	\begin{itemize}
+% 		\item Used to obtain structural information 
+% 		\begin{itemize}
+% 			\item Chemical shift values
+% 		\end{itemize}
+% 	\end{itemize}
+% \end{frame}
+
+\begin{frame}
+	\frametitle{Assigned Chemical Shift Values}
+    \vspace{-.5cm}
+	\center
+	\includegraphics[width=.9\textwidth]{ChemShiftChart}
+\end{frame}
+
+\begin{frame}
+	\frametitle{NMR Experiments}
+	\begin{itemize}
 		\item HNCACB experiment
 		\begin{itemize}
 			\item Generates $C_\alpha$ and $C_{\beta}$ residue $i$ and $i-1$
 		\end{itemize}
+		\vspace{12pt}
 		\item CBCA(CO) NH experiment 
 		\begin{itemize}
 			\item Generates $C_\alpha$ and $C_{\beta}$ for residue $i$
@@ -140,7 +201,7 @@ Drake University\\
 \end{frame}
 
 \begin{frame}
-	\frametitle{Chemical Shift Values}
+	\frametitle{Backbone Structure}
 	\begin{figure}[H]
 	\begin{center}
 	\includegraphics[width=.65\textwidth]{diagram}
@@ -150,9 +211,7 @@ Drake University\\
 
 
 
-% =======================================================================
-% =======================================================================
-\section{NMR Assignment Background}
+
 
 % =======================================================================
 \subsection{Data Collection and Manual Assignment}
@@ -161,7 +220,9 @@ Drake University\\
 	\frametitle{Manual Methods}
 	\begin{itemize}
 		\item Most time consuming part
+		\vspace{12pt}
 		\item Missing and ambiguous data forces chunks to be skipped
+		\vspace{12pt}
 		\item Prone to human error
 	\end{itemize}
 
@@ -205,15 +266,16 @@ Drake University\\
 \subsection{Preprocessing}
 \begin{frame}
 \frametitle{Automating Assignment}
-	\begin{itemize}
-		\item 4 Step process
-		\begin{enumerate}
-			\item Initialization
-			\item Generating child nodes
-			\item Goal State
-			\item Solution State
-		\end{enumerate}
-	\end{itemize}
+	\begin{enumerate}
+		\item Initialization
+		\vspace{12pt}
+		\item Generating child nodes
+		\vspace{12pt}
+		\item Goal State
+		\vspace{12pt}
+		\item Solution State
+		\vspace{12pt}
+	\end{enumerate}
 \end{frame}
 
 \begin{frame}
@@ -268,7 +330,9 @@ Drake University\\
 	\frametitle{Cost Calculation}
 	\begin{itemize}
 		\item Accuracy matching the protein chain residue
+		\vspace{12pt}
 		\item Accuracy matching the tile above current tile
+		\vspace{12pt}
 		\item Cost of placing all previous tiles
 	\end{itemize}
 \end{frame}
