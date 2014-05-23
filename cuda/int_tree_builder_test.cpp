@@ -56,11 +56,15 @@ int upOneLevel(int n, int value) {
 
 // use: number of tiles, number of current location, number of levels down
 // startLevelValue(n,i+1) gives first value in the i+1 level
-// (value - startLevelValue(n,i))*width(n,i+1) gives location of the value in the i+1 level
+// (value - startLevelValue(n,i))*w gives location of the value in the i+1 level
 int downLevelFirst(int n, int value, int num = 1) {
 	int i = generateLevel(n,value);
-	// TODO make num work
-	return startLevelValue(n,i+1) + (value - startLevelValue(n,i))*width(n,i+1);
+	int w = width(n,i+1);
+	for (int j = 0; j < num; j++) {
+		value = startLevelValue(n,i+1) + (value - startLevelValue(n,i))*w;
+		w--; i++;
+	}
+	return value;
 }
 
 
@@ -70,8 +74,11 @@ int downLevelFirst(int n, int value, int num = 1) {
 int downLevelLast(int n, int value, int num = 1) {
 	int i = generateLevel(n,value);
 	int w = width(n,i+1);
-	// TODO make num work
-	return startLevelValue(n,i+1) + (value - startLevelValue(n,i)+1)*w - 1;
+	for (int j = 0; j < num; j++) {
+		value = startLevelValue(n,i+1) + (value - startLevelValue(n,i)+1)*w - 1;
+		w--; i++;
+	}
+	return value;
 }
 
 
@@ -136,7 +143,7 @@ int* generateIndex(int n, int value) {
 	int *placedTiles = generatePath(n,i,value);
 	list<int> unplacedTiles;
 	list<int>::iterator it;
-	
+
 	// fill list with possible tile indexes
 	for (int j = 0; j < n; ++j)
 	{
@@ -161,9 +168,8 @@ int* generateIndex(int n, int value) {
 
 int main(int argc, char const *argv[])
 {
-	cout << downLevelFirst(6,1240);
+	cout << downLevelFirst(4,3,3) << '\n';
 	int *path = generateIndex(6,1240);
-	// cout << startLevelValue(6,5);
 	for (int i = 0; i<6; i++) {
 		cout << path[i] << '\t';
 	}
