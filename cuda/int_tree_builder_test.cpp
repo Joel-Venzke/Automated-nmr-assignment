@@ -120,11 +120,6 @@ int* generateIndex(int n, int i, int value) {
 		temp = (index[j]-startLevelValue(n,j)) % width(n,j);
 		index[j] = tileIndex[temp];
 		tileIndex.erase(tileIndex.begin() + temp);
-		for (int b = 0; b < tileIndex.size(); ++b)
-		{
-			cout << tileIndex[b] <<'\t';
-		}
-		cout << '\n';
 	}
 	return index;
 }
@@ -141,11 +136,6 @@ int* generateIndex(int n, int value) {
 		temp = (index[j]-startLevelValue(n,j)) % width(n,j);
 		index[j] = tileIndex[temp];
 		tileIndex.erase(tileIndex.begin() + temp);
-		for (int b = 0; b < tileIndex.size(); ++b)
-		{
-			cout << tileIndex[b] <<'\t';
-		}
-		cout << '\n';
 	}
 	return index;
 }
