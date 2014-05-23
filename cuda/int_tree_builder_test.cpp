@@ -1,21 +1,7 @@
 #include <iostream>
-#include <vector> 
+#include <iterator>
+#include <list>
 using namespace std;
-
-// int factOverFact(int n, int d);
-// int startLevelValue(int n, int i);
-// int generateLevel(int n, int value);
-// int width(int n, int i);
-// int upOneLevel(int n, int i, int value);
-// int upOneLevel(int n, int value);
-// int downLevelFirst(int n, int i, int value, int num);
-// int downLevelFirst(int n, int value, int num);
-// int downLevelLast(int n, int i, int value, int num);
-// int downLevelLast(int n, int value, int num);
-// int* generatePath(int n, int i, int value);
-// int* generatePath(int n, int value);
-// int* generateIndex(int n, int i, int value);
-// int* generateIndex(int n, int value);
 
 // calculates (n!)/(d!)
 int factOverFact(int n, int d) {
@@ -111,15 +97,18 @@ int* generatePath(int n, int value){
 int* generateIndex(int n, int i, int value) {
 	int temp;
 	int *index = generatePath(n,i,value);
-	vector<int> tileIndex;
+	list<int> tileIndex;
+	list<int>::iterator it;
 	for (int j = 0; j < n; ++j)
 	{
 		tileIndex.push_back(j);
 	}
 	for (int j = 0; j<i+1; j++) {
+		it = tileIndex.begin();
 		temp = (index[j]-startLevelValue(n,j)) % width(n,j);
-		index[j] = tileIndex[temp];
-		tileIndex.erase(tileIndex.begin() + temp);
+		advance(it,temp);
+		index[j] = *it;
+		tileIndex.erase(it);
 	}
 	return index;
 }
@@ -127,23 +116,27 @@ int* generateIndex(int n, int i, int value) {
 int* generateIndex(int n, int value) {
 	int i = generateLevel(n,value), temp;
 	int *index = generatePath(n,i,value);
-	vector<int> tileIndex;
+	list<int> tileIndex;
+	list<int>::iterator it;
 	for (int j = 0; j < n; ++j)
 	{
 		tileIndex.push_back(j);
 	}
 	for (int j = 0; j<i+1; j++) {
+		it = tileIndex.begin();
 		temp = (index[j]-startLevelValue(n,j)) % width(n,j);
-		index[j] = tileIndex[temp];
-		tileIndex.erase(tileIndex.begin() + temp);
+		advance(it,temp);
+		index[j] = *it;
+		tileIndex.erase(it);
 	}
 	return index;
 }
 
 int main(int argc, char const *argv[])
 {
-	int *path = generateIndex(4,60);
-	for (int i = 0; i<4; i++) {
+	int *path = generateIndex(6,1240);
+	// cout << startLevelValue(6,5);
+	for (int i = 0; i<6; i++) {
 		cout << path[i] << '\t';
 	}
 	delete path;
