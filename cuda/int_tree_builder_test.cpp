@@ -6,6 +6,8 @@ using namespace std;
 // calculates (n!)/(d!)
 int fact_over_fact(int numerator, int denominator) {
 	int total = 1;
+
+	// multiply all numbers in the set [n, n-1, ... , d]
 	while (numerator > denominator) {
 		total *= numerator;
 		numerator--;
@@ -14,9 +16,10 @@ int fact_over_fact(int numerator, int denominator) {
 }
 
 // returns start of the next level down one
-// use: total number of tiles, level number
 int start_level_value(int numberOfTiles, int currentLevel){
 	int total = 0;
+
+	// sum the number of tiles on each level until you get to the current level
 	for (int j = 1; j<=currentLevel; j++) {
 		total += fact_over_fact(numberOfTiles, (numberOfTiles-j));
 	}
@@ -24,69 +27,79 @@ int start_level_value(int numberOfTiles, int currentLevel){
 }
 
 // returns what level of the tree the value occurs on
-// use: total number of tiles, value 
 int generate_level(int numberOfTiles, int currentValue) {
 	int currentLevel = numberOfTiles;
+
+	// loop until the value is no longer less than the start of the level
 	while (currentValue < start_level_value(numberOfTiles, currentLevel)) {
 		currentLevel--;
 	}
 	return currentLevel;
 }
 
-// calculates width of "packet"
-// use: total number of tiles, level number
+// calculates width of a "packet" on a given level of a tree
 int get_width(int numberOfTiles, int currentLevel) {
 	return numberOfTiles-currentLevel;
 }
 
-// use: number of tiles, current level, number of current location
-// start_level_value(n,i-1) gives first value in the i-1 level
-// (value-start_level_value(n,i)) gives number in the current level
-// get_width(n,i) gives the number of tiles placed under each tile above (number of tiles in a "packet")
-// (value-start_level_value(n,i))/(get_width(n,i)) give witch "packet" the tile is in
+// returns the location of the parent
+// start_level_value(numberOfTiles, currentLevel-1) gives first value in the level above the current
+// currentValue-start_level_value(numberOfTiles, currentLevel) gives number in the current level
+// get_width(numberOfTiles, currentLevel) gives the number of tiles placed under each tile above (number of tiles in a "packet")
+// (currentValue-start_level_value(numberOfTiles, currentLevel))/(get_width(numberOfTiles, currentLevel)) give which "packet" the tile is in on the current level
 int up_one_level(int numberOfTiles, int currentLevel, int currentValue) {
 	return start_level_value(numberOfTiles, currentLevel-1) + (currentValue-start_level_value(numberOfTiles, currentLevel))/(get_width(numberOfTiles, currentLevel));
 }
 
-// use: number of tiles, number of current location
+// see overloaded function
 int up_one_level(int numberOfTiles, int currentValue) {
 	int currentLevel = generate_level(numberOfTiles, currentValue);
 	return start_level_value(numberOfTiles, currentLevel-1) + (currentValue-start_level_value(numberOfTiles, currentLevel))/(get_width(numberOfTiles, currentLevel));
 }
 
-// use: number of tiles, number of current location, number of levels down
-// start_level_value(n,i+1) gives first value in the i+1 level
-// (value - start_level_value(n,i))*w gives location of the value in the i+1 level
+// start_level_value(numberOfTiles, currentLevel+1) gives first value in the level bellow the current
+// (currentValue - start_level_value(numberOfTiles, currentLevel))*width gives location of the value in the level bellow the current
 int down_level_first(int numberOfTiles, int currentValue, int numberOfLevelsDown = 1) {
 	int currentLevel = generate_level(numberOfTiles, currentValue);
+
+	// width of level one below the current level
 	int width = get_width(numberOfTiles, currentLevel+1);
 	for (int j = 0; j < numberOfLevelsDown; j++) {
 		currentValue = start_level_value(numberOfTiles, currentLevel+1) + (currentValue - start_level_value(numberOfTiles, currentLevel))*width;
-		width--; currentLevel++;
+		
+		// width of next level down is one less than current level
+		width--;
+		currentLevel++;
 	}
 	return currentValue;
 }
 
-
-// use: number of tiles, number of current location, number of levels down
 // same idea as down_level_first()
 // just adds the width-1 to down_level_first()
 int down_level_last(int numberOfTiles, int currentValue, int numberOfLevelsDown = 1) {
 	int currentLevel = generate_level(numberOfTiles, currentValue);
+
+	// width of level one below the current level
 	int width = get_width(numberOfTiles, currentLevel+1);
 	for (int j = 0; j < numberOfLevelsDown; j++) {
 		currentValue = start_level_value(numberOfTiles, currentLevel+1) + (currentValue - start_level_value(numberOfTiles, currentLevel)+1)*width - 1;
-		width--; currentLevel++;
+		
+		// width of next level down is one less than current level
+		width--; 
+		currentLevel++;
 	}
 	return currentValue;
 }
 
 
-// use: number of tiles, current level, number of current location
-// returns the path to get to the current location from the start
+// returns the path to get to the current location from the zeroth level
 int* generate_path(int numberOfTiles, int currentLevel, int currentValue){
 	int *path = new int[currentLevel+1];
+
+	// store the current value at the ending location of the path
 	path[currentLevel] = currentValue;
+
+	// genorates path from current level to root
 	while (currentLevel>0) {
 		path[currentLevel-1] = up_one_level(numberOfTiles, currentLevel, path[currentLevel]); 
 		currentLevel--;
@@ -94,11 +107,15 @@ int* generate_path(int numberOfTiles, int currentLevel, int currentValue){
 	return path;
 }
 
-// use: number of tiles, number of current location
+// see overloaded function
 int* generate_path(int numberOfTiles, int currentValue){
 	int currentLevel = generate_level(numberOfTiles, currentValue);
 	int *path = new int[currentLevel+1];
+
+	// store the current value at the ending location of the path
 	path[currentLevel] = currentValue;
+
+	// genorates path from current level to root
 	while (currentLevel>0) {
 		path[currentLevel-1] = up_one_level(numberOfTiles, currentLevel, path[currentLevel]); 
 		currentLevel--;
@@ -106,8 +123,8 @@ int* generate_path(int numberOfTiles, int currentValue){
 	return path;
 }
 
-// use: number of tiles, current level, number of current location
-// returns the indexes of the tile being along the path to the current location
+
+// returns the index of the tile being placed at the that level of the tree
 // basically generates the old placed tiles array
 int* generate_index(int numberOfTiles, int currentLevel, int currentValue) {
 	int temp;
@@ -120,6 +137,8 @@ int* generate_index(int numberOfTiles, int currentLevel, int currentValue) {
 	{
 		unplacedTiles.push_back(j);
 	}
+
+	// genorate placedTiles from root to current level
 	for (int j = 0; j<currentLevel+1; j++) {
 		// set it to the being of the list
 		it = unplacedTiles.begin();
@@ -137,7 +156,7 @@ int* generate_index(int numberOfTiles, int currentLevel, int currentValue) {
 	return placedTiles;
 }
 
-// use: number of tiles, number of current location
+// see overloaded function
 int* generate_index(int numberOfTiles, int currentValue) {
 	int currentLevel = generate_level(numberOfTiles, currentValue), temp;
 	int *placedTiles = generate_path(numberOfTiles, currentLevel, currentValue);
@@ -149,6 +168,8 @@ int* generate_index(int numberOfTiles, int currentValue) {
 	{
 		unplacedTiles.push_back(j);
 	}
+
+	// genorate placedTiles from root to current level
 	for (int j = 0; j<currentLevel+1; j++) {
 		// set it to the being of the list
 		it = unplacedTiles.begin();
