@@ -1,36 +1,37 @@
 #include <iostream>
 #include <string>
 #include <list>
+#include "node.cu"
+#include "nmr_data.cu"
 using namespace std;
 
+struct protein
+{
+	float cAlpha1; // c alpha for i
+	float cBeta1; // c beta for i
+	int group;
+};
+
+
 // take in abbreviation, generates chemical shift data
-array lettersToNumbers(string acid){
+protein letters_to_numbers(char acid[4]){
 
 	// TODO: Create data base file for values
 	// TODO: Make it easer to update 
 	// TODO: python script for runtime?
-
-}
-
-// read in protein from data file
-Protein readInProtein(string &fileName){
-
-}
-
-// read in Chemical Shift Values from data file
-NMR readInNMR(string &fileName) {
-
-	//place holder tiles
+	switch (acid) {
+		case ala: 
+	}
 }
 
 // read in all data from file
-void readInFile(string &fileName, Protein &p, NMR &n) {
-	p = readInProtein(fileName);
-	n = readInNMR(fileName);
+void read_In_File(string &fileName, protein &p, nmrData &n) {
+	
+	// float value = atof(myString.c_str());
 }
 
 
-void startSearch(string fileName){
+void start_search(string fileName){
 	// Initialize variables
 
 	// Read in file, Store NRM Data and protein chain in array
@@ -40,7 +41,7 @@ void startSearch(string fileName){
 	// Create frontier linked list
 
 	// Loop till solution is found
-	while (keepRunning) {
+	// while (keepRunning) {
 		// Find best node to expand
 
 		// Remove best node from list
@@ -50,7 +51,7 @@ void startSearch(string fileName){
 		// Expand Node
 
 		// Check if the solution has been found
-	}
+	// }
 
 	// Print results
 
