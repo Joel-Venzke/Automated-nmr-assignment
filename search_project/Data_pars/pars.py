@@ -1,5 +1,5 @@
 import sys
-from Tile import Tile
+from Tile_pars import Tile
 import re
 
 
