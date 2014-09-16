@@ -27,10 +27,30 @@ class Tile(object):
             self.amino_type = 6 #pro, val
         else:
             self.amino_type = 0 # no appropriate match found
+        if(self.c == -1.0 and 0<self.d and self.d<50.0):
+            self.amino_type_before = 1 #gly
+        elif(0.0<self.c and self.c<20.0 and self.d > 52 and self.d < 56):
+            self.amino_type_before = 2 #ala
+        elif(36.0<self.c and self.c < 45.0 and 50.0 < self.a):
+            self.amino_type_before = 3 #asn, asp, leu, cyso
+        elif(27.0<self.c and self.c < 35.0 and 54.0 < self.d and self.d <62.0):
+            self.amino_type_before = 4 # met, gln, lys, arg, his, glu, trp, cysr
+        elif(61.0<self.c and self.c < 74.0 and 59.0 < self.d and self.d <67.0):
+            self.amino_type_before = 5 # ser, thr
+        elif(30.0<self.c and self.c < 35.0 and 62.0 < self.d):
+            self.amino_type_before = 6 #pro, val
+        else:
+            self.amino_type_before = 0 # no appropriate match found
+
 
     #return amino acid type
     def get_amino_type(self):
         return self.amino_type
+
+    #return amino acid type for i-1
+    def get_amino_type_before(self):
+        return self.amino_type_before
+
     #returns a list of tile values
     def get_tile(self):
         return [self.a, self.b, self.c, self.d]
