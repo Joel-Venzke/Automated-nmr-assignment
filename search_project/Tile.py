@@ -13,6 +13,8 @@ class Tile(object):
         self.place_holder = place_holder
         self.char_weight = .1
         self.order_weight = 1
+
+        # Group I 
         if(self.b == -1.0 and 0<self.a and self.a<50.0):
             self.amino_type = 1 #gly
         elif(0.0<self.b and self.b<20.0 and self.a > 52 and self.a < 56):
@@ -27,17 +29,19 @@ class Tile(object):
             self.amino_type = 6 #pro, val
         else:
             self.amino_type = 0 # no appropriate match found
-        if(self.c == -1.0 and 0<self.d and self.d<50.0):
+
+        # Group I-1
+        if(self.d == -1.0 and 0<self.c and self.c<50.0):
             self.amino_type_before = 1 #gly
-        elif(0.0<self.c and self.c<20.0 and self.d > 52 and self.d < 56):
+        elif(0.0<self.d and self.d<20.0 and self.c > 52 and self.c < 56):
             self.amino_type_before = 2 #ala
-        elif(36.0<self.c and self.c < 45.0 and 50.0 < self.a):
+        elif(36.0<self.d and self.d < 45.0 and 50.0 < self.c):
             self.amino_type_before = 3 #asn, asp, leu, cyso
-        elif(27.0<self.c and self.c < 35.0 and 54.0 < self.d and self.d <62.0):
+        elif(27.0<self.d and self.d < 35.0 and 54.0 < self.c and self.c <62.0):
             self.amino_type_before = 4 # met, gln, lys, arg, his, glu, trp, cysr
-        elif(61.0<self.c and self.c < 74.0 and 59.0 < self.d and self.d <67.0):
+        elif(61.0<self.d and self.d < 74.0 and 59.0 < self.c and self.c <67.0):
             self.amino_type_before = 5 # ser, thr
-        elif(30.0<self.c and self.c < 35.0 and 62.0 < self.d):
+        elif(30.0<self.d and self.d < 35.0 and 62.0 < self.c):
             self.amino_type_before = 6 #pro, val
         else:
             self.amino_type_before = 0 # no appropriate match found

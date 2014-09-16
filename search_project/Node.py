@@ -37,7 +37,7 @@ class Node(object):
 		char_num = len(self.placed_tiles) 
 		for i in range(len(self.unplaced_tiles)):
 			if(self.unplaced_tiles[i].get_amino_type() == self.characteristic[char_num][2] or self.unplaced_tiles[i].get_amino_type()==0):
-				if(char_num>0):
+				if(char_num<1):
 					temp_ut = list(self.unplaced_tiles)
 					placed_tile = temp_ut.pop(i)
 					temp_pt = list(self.placed_tiles)
