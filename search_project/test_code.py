@@ -185,8 +185,8 @@ class TestSequenceFunctions(unittest.TestCase):
     # def test_data40_txt(self):
     #     self.assertTrue(getOutput("data40.txt") == getExpectedOutput("data40.txt"))
 
-    # def test_data41_txt(self):
-    #     self.assertTrue(getOutput("data41.txt") == getExpectedOutput("data41.txt"))
+    def test_data41_txt(self):
+        self.assertTrue(getOutput("data41.txt") == getExpectedOutput("data41.txt"))
 
 suite = unittest.TestLoader().loadTestsFromTestCase(TestSequenceFunctions)
 unittest.TextTestRunner(verbosity=2).run(suite)
