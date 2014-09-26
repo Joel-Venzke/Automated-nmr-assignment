@@ -115,7 +115,7 @@ def uniform_cost(file_name):
 	best_solution = None
 	best_cost = float("inf") #set to infinity
 	keep_running = True
-	loop = 1
+	# loop = 1
 	
 	# the following code displays how many tiles are assigned to each tile group
 	# for i in range(8):

@@ -1,0 +1,38 @@
+Search overview
+	randomly select 20 tiles
+	carry out uniform cost without protein sequence
+	if (cost of 2 consecutive tiles < threshold) {
+		group tiles into one
+		check with protein sequence to ensure correct assignment
+	}
+	add tiles back onto list
+	loop till done
+
+Things to change
+	search_strategies.py
+		make uniform_cost() take in a node and returns a solution not prints it
+		add a initialization function that gets the data from our input file and returns a node
+		make a printing function to display results (and save to a file?)
+		develop a function to make a node containing 20 random tiles and start a search on them
+		develop a function to check if tile cost on combined tiles are low enough and match the protein chain
+
+	search_project.py
+		adjust it to call the correct starter function
+		Add another command line input to select algorithm?
+
+	Node.py
+		check to see if the characteristic==null
+			if it does, do not calculate the characteristic cost in the expand function
+
+	Tile.py
+		add a tile list so we can store many tiles in a single tile
+		overload the __init__ so we can pass in a tile list
+		if no tile list, tile list should be set to null
+
+Others
+	calculation of threshold
+		should it be a function of number of iterations? 
+		find a good value from current data
+	output data file?
+	print characteristic with output 
+	makeFile?
