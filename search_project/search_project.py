@@ -15,9 +15,11 @@ if len(sys.argv) < 2:
 
 file_name = sys.argv[1]
 
+integer = sys.argv[2]
+
 
 start = time.clock()
-search_strategies.uniform_cost(file_name)
+search_strategies.read_file(fileName, integer)
 end = time.clock()
 
 print "Run Time:  " + str(end-start)
