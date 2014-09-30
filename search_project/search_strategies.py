@@ -2,6 +2,7 @@ from Tile import Tile
 from Node import Node
 import sys
 import re
+import random
 
 #takes in a file 
 #returns list of tiles from the file
@@ -174,3 +175,22 @@ def uniform_cost(file_name):
 	print "Char cost:  " + str(best_solution.get_char_cost())
 	print "Order Cost:  " + str(best_solution.get_order_cost())
 	print "Nodes: " + str(node_count)
+
+def puzzle_building_search(Tile[] allTiles):
+	
+	tempTileArray[]; 
+	while len(allTiles) > 1:
+		for i in len 20:
+			randomNum = random.ranint(0,len(allTiles)-1)
+			tempTileArray.append(allTiles.pop(randomNum))
+
+		tempNode = Node(tempTileArray,[],0,[],0,0)
+		outputNode, count = uniform_cost(tempNode)
+		newList = find_matches(outputNode)
+		for i in len(newList):
+			allTiles.append(newList[i])
+
+	return allTiles[0]
+
+	
+
