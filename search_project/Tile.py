@@ -15,20 +15,8 @@ class Tile(object):
             self.place_holder = place_holder
             self.char_weight = .1
             self.order_weight = 1
-            if(self.b == -1.0 and 0<self.a and self.a<50.0):
-                self.amino_type = 1 #gly
-            elif(0.0<self.b and self.b<20.0 and self.a > 52 and self.a < 56):
-                self.amino_type = 2 #ala
-            elif(36.0<self.b and self.b < 45.0 and 50.0 < self.a):
-                self.amino_type = 3 #asn, asp, leu, cyso
-            elif(27.0<self.b and self.b < 35.0 and 54.0 < self.a and self.a<62.0):
-                self.amino_type = 4 # met, gln, lys, arg, his, glu, trp, cysr
-            elif(61.0<self.b and self.b < 74.0 and 59.0 < self.a and self.a<67.0):
-                self.amino_type = 5 # ser, thr
-            elif(30.0<self.b and self.b < 35.0 and 62.0 < self.a):
-                self.amino_type = 6 #pro, val
-            else:
-                self.amino_type = 0 # no appropriate match found
+            self.tile_list_cost = 0
+            self.amino_type = self.calculate_amino_type()
         else:
             self.tile_list = tile_list
             self.amino_type = 0
@@ -45,7 +33,33 @@ class Tile(object):
             #of the combined tiles
             self.c = float(tile_list[0].c)
             self.d = float(tile_list[0].d)
+            self.tile_list_cost = self.calculate_tile_list_cost()
 
+
+    def calculate_tile_list_cost(self):
+        last = len(tile_list)
+        cost = 0
+        for i in xrange(last):
+            if (i==last-1):
+                return cost
+            else:
+                cost += tile_list[i].compare_above(tile_list[i+1])
+
+    def calculate_amino_type(self):
+        if(self.b == -1.0 and 0<self.a and self.a<50.0):
+            return 1 #gly
+        elif(0.0<self.b and self.b<20.0 and self.a > 52 and self.a < 56):
+            return 2 #ala
+        elif(36.0<self.b and self.b < 45.0 and 50.0 < self.a):
+            return 3 #asn, asp, leu, cyso
+        elif(27.0<self.b and self.b < 35.0 and 54.0 < self.a and self.a<62.0):
+            return 4 # met, gln, lys, arg, his, glu, trp, cysr
+        elif(61.0<self.b and self.b < 74.0 and 59.0 < self.a and self.a<67.0):
+            return 5 # ser, thr
+        elif(30.0<self.b and self.b < 35.0 and 62.0 < self.a):
+            return 6 #pro, val
+        else:
+            return 0 # no appropriate match found
 
     #return amino acid type
     def get_amino_type(self):

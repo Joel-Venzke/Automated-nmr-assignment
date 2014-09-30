@@ -186,16 +186,17 @@ def uniform_cost(root):
 	return best_solution, node_count
 
 def puzzle_building_search(allTiles):
-	tempTileArray = []
 	while len(allTiles) > 1:
-		for i in xrange(20):
-			randomNum = random.ranint(0,len(allTiles)-1)
-			tempTileArray.append(allTiles.pop(randomNum))
-
+		tempTileArray = []
+		if (len(allTiles)>20):
+			for i in xrange(20):
+				randomNum = random.ranint(0,len(allTiles)-1)
+				tempTileArray.append(allTiles.pop(randomNum))
+		else: 
+			tempTileArray = allTiles
 		tempNode = Node(tempTileArray,[],0,[],0,0)
 		outputNode, count = uniform_cost(tempNode)
 		newList = find_matches(outputNode.placed_tiles)
 		for i in len(newList):
 			allTiles.append(newList[i])
-
 	return allTiles[0]
