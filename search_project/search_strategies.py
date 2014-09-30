@@ -2,6 +2,7 @@ from Tile import Tile
 from Node import Node
 import sys
 import re
+import random
 
 #takes in a file 
 #returns list of tiles from the file
@@ -111,7 +112,8 @@ def start_search(file_name, type):
 		best_solution, node_count = uniform_cost(root)
 		output_soultion(best_solution, node_count)
 
-
+def find_matches(outputNode):
+	return outputNode
 
 def output_soultion(finalNode, nodeCount):
 	#prints best solution to console
@@ -181,3 +183,18 @@ def uniform_cost(root):
 		# print loop
 		# loop +=1
 	return best_solution, node_count
+
+def puzzle_building_search(allTiles):
+	tempTileArray = []
+	while len(allTiles) > 1:
+		for i in xrange(20):
+			randomNum = random.ranint(0,len(allTiles)-1)
+			tempTileArray.append(allTiles.pop(randomNum))
+
+		tempNode = Node(tempTileArray,[],0,[],0,0)
+		outputNode, count = uniform_cost(tempNode)
+		newList = find_matches(outputNode)
+		for i in len(newList):
+			allTiles.append(newList[i])
+
+	return allTiles[0]

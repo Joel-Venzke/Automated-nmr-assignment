@@ -35,21 +35,44 @@ class Node(object):
 	def expand(self):
 		new_nodes = []
 		char_num = len(self.placed_tiles) 
-		for i in range(len(self.unplaced_tiles)):
-			if(self.unplaced_tiles[i].get_amino_type() == self.characteristic[char_num][2] or self.unplaced_tiles[i].get_amino_type()==0):
-				temp_ut = list(self.unplaced_tiles)
-				placed_tile = temp_ut.pop(i)
-				temp_pt = list(self.placed_tiles)
-				temp_pt.append(placed_tile)
-				if(self.placed_tiles):
-					temp_char_cost = placed_tile.get_error(self.characteristic[char_num])
-					temp_order_cost = self.placed_tiles[-1].compare_above(placed_tile)
-				else:
-					temp_char_cost = placed_tile.get_error(self.characteristic[char_num])
-					temp_order_cost = 0
-				c = temp_order_cost + temp_char_cost
+		if(self.characteristic):
+			for i in range(len(self.unplaced_tiles)):
+				if(self.unplaced_tiles[i].get_amino_type() == self.characteristic[char_num][2] or self.unplaced_tiles[i].get_amino_type()==0):
+					temp_ut = list(self.unplaced_tiles)
+					placed_tile = temp_ut.pop(i)
+					temp_pt = list(self.placed_tiles)
+					temp_pt.append(placed_tile)
+					if(self.placed_tiles):
+						temp_char_cost = placed_tile.get_error(self.characteristic[char_num])
+						temp_order_cost = self.placed_tiles[-1].compare_above(placed_tile)
+					else:
+						temp_char_cost = placed_tile.get_error(self.characteristic[char_num])
+						temp_order_cost = 0
+					c = temp_order_cost + temp_char_cost
 
-				new_nodes.append(Node(temp_ut, temp_pt, self.cost + c, self.characteristic,self.char_cost+temp_char_cost, self.order_cost+temp_order_cost))
+					new_nodes.append(Node(temp_ut, temp_pt, self.cost + c, self.characteristic,self.char_cost+temp_char_cost, self.order_cost+temp_order_cost))
+				
 			
-		
-		return new_nodes
+			return new_nodes
+		else:
+			for i in range(len(self.unplaced_tiles)):
+				#no longer comparing the amino acid type of the unplaced tile to the characteristic as the characteristic does not exist
+				if(self.unplaced_tiles[i].get_amino_type()==0):
+					temp_ut = list(self.unplaced_tiles)
+					placed_tile = temp_ut.pop(i)
+					temp_pt = list(self.placed_tiles)
+					temp_pt.append(placed_tile)
+					if(self.placed_tiles):
+						#won't be generating a cost due to the characteristic anymore
+						# temp_char_cost = placed_tile.get_error(self.characteristic[char_num])
+						temp_order_cost = self.placed_tiles[-1].compare_above(placed_tile)
+					else:
+						# temp_char_cost = placed_tile.get_error(self.characteristic[char_num])
+						temp_order_cost = 0
+					#no longer adding the temp_order_cost and the temp_char_cost as the the latter does not have a value
+					c = temp_order_cost
+
+					new_nodes.append(Node(temp_ut, temp_pt, self.cost + c,[],0, self.order_cost+temp_order_cost))
+				
+			
+			return new_nodes
