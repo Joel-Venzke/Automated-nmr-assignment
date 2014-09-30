@@ -10,6 +10,7 @@ class Tile(object):
         self.b = float(b)
         self.c = float(c)
         self.d = float(d)
+        self.tileList = []
         self.place_holder = place_holder
         self.char_weight = .1
         self.order_weight = 1
@@ -28,6 +29,24 @@ class Tile(object):
         else:
             self.amino_type = 0 # no appropriate match found
 
+    def__init__(self,tile_List):
+        self.tileList = tile_List
+        self.amino_type = 0
+        self.placeholder = false
+        self.char_weight = .1
+        self.order_weight = 1
+        
+        #assigns a and b of the last tile to the a and b value
+        #of combined tile
+        self.a = float(tileList[-1].self.a)
+        self.b = float(tileList[-1].self.b)
+
+        #assigns c and d of the fist tile to the c and d value
+        #of the combined tiles
+        self.c = float(tileList[0].self.c)
+        self.d = float(tileList[0].self.d)
+
+
     #return amino acid type
     def get_amino_type(self):
         return self.amino_type
@@ -39,11 +58,11 @@ class Tile(object):
     def get_place_holder(self):
         return self.place_holder
 
-    #returns a
+    #returns c
     def get_c(self):
         return self.c
 
-    #returns b
+    #returns d
     def get_d(self):
         return self.d
         
