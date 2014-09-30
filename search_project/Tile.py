@@ -5,7 +5,7 @@ import math
 class Tile(object):
 
     #Makes a tile with values a, b, c, d
-    def __init__(self,a,b,c,d, place_holder=False, tile_list=[]):
+    def __init__(self,a=0 ,b=0 ,c=0 ,d=0 , place_holder=False, tile_list=[]):
         if (not tile_list):
             self.a = float(a)
             self.b = float(b)
