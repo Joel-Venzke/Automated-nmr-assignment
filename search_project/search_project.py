@@ -17,7 +17,7 @@ file_name = sys.argv[1]
 
 
 start = time.clock()
-search_strategies.uniform_cost(file_name)
+search_strategies.start_search(file_name,sys.argv[2])
 end = time.clock()
 
 print "Run Time:  " + str(end-start)

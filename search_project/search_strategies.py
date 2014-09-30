@@ -98,10 +98,7 @@ def generate_placeholders(tile_set, characteristic):
 			tile_set.append(Tile(-1, -1, -1, -1, True))
 	return tile_set
 
-
-#runs a breath_first search
-#prints best solution to console
-def uniform_cost(file_name):
+def start_search(file_name, type):
 	tile_set = read_file(file_name) #list of tiles
 	
 	characteristic = letters_to_numbers(tile_set.pop(0)) #takes the characteristic array off of the tile_set 
@@ -110,6 +107,25 @@ def uniform_cost(file_name):
 
 	root = Node(tile_set, [], 0.0, characteristic,0,0)
 
+	if (int(type) == 0):
+		best_solution, node_count = uniform_cost(root)
+		output_soultion(best_solution, node_count)
+
+
+
+def output_soultion(finalNode, nodeCount):
+	#prints best solution to console
+	print "HERE IS THE BEST"
+	print "Cost: " + str(finalNode.get_cost())
+	print ""
+	print finalNode
+	print "Char cost:  " + str(finalNode.get_char_cost())
+	print "Order Cost:  " + str(finalNode.get_order_cost())
+	print "Nodes: " + str(nodeCount)
+
+#runs a breath_first search
+#prints best solution to console
+def uniform_cost(root):
 	frontier = [root] #list of nodes
 	node_count = 1
 	best_solution = None
@@ -164,13 +180,4 @@ def uniform_cost(file_name):
 		        keep_running = True
 		# print loop
 		# loop +=1
-		
-	
-	#prints best solution to console
-	print "HERE IS THE BEST"
-	print "Cost: " + str(best_cost)
-	print ""
-	print best_solution
-	print "Char cost:  " + str(best_solution.get_char_cost())
-	print "Order Cost:  " + str(best_solution.get_order_cost())
-	print "Nodes: " + str(node_count)
+	return best_solution, node_count
