@@ -37,13 +37,13 @@ class Tile(object):
 
 
     def calculate_tile_list_cost(self):
-        last = len(tile_list)
+        last = len(self.tile_list)
         cost = 0
         for i in xrange(last):
             if (i==last-1):
                 return cost
             else:
-                cost += tile_list[i].compare_above(tile_list[i+1])
+                cost += self.tile_list[i].compare_above(self.tile_list[i+1])
 
     def calculate_amino_type(self):
         if(self.b == -1.0 and 0<self.a and self.a<50.0):
