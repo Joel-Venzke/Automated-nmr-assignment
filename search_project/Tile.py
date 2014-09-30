@@ -5,46 +5,46 @@ import math
 class Tile(object):
 
     #Makes a tile with values a, b, c, d
-    def __init__(self,a,b,c,d, place_holder):
-        self.a = float(a)
-        self.b = float(b)
-        self.c = float(c)
-        self.d = float(d)
-        self.tileList = []
-        self.place_holder = place_holder
-        self.char_weight = .1
-        self.order_weight = 1
-        if(self.b == -1.0 and 0<self.a and self.a<50.0):
-            self.amino_type = 1 #gly
-        elif(0.0<self.b and self.b<20.0 and self.a > 52 and self.a < 56):
-            self.amino_type = 2 #ala
-        elif(36.0<self.b and self.b < 45.0 and 50.0 < self.a):
-            self.amino_type = 3 #asn, asp, leu, cyso
-        elif(27.0<self.b and self.b < 35.0 and 54.0 < self.a and self.a<62.0):
-            self.amino_type = 4 # met, gln, lys, arg, his, glu, trp, cysr
-        elif(61.0<self.b and self.b < 74.0 and 59.0 < self.a and self.a<67.0):
-            self.amino_type = 5 # ser, thr
-        elif(30.0<self.b and self.b < 35.0 and 62.0 < self.a):
-            self.amino_type = 6 #pro, val
+    def __init__(self,a,b,c,d, place_holder=False, tile_list=[]):
+        if (not tile_list):
+            self.a = float(a)
+            self.b = float(b)
+            self.c = float(c)
+            self.d = float(d)
+            self.tile_list = []
+            self.place_holder = place_holder
+            self.char_weight = .1
+            self.order_weight = 1
+            if(self.b == -1.0 and 0<self.a and self.a<50.0):
+                self.amino_type = 1 #gly
+            elif(0.0<self.b and self.b<20.0 and self.a > 52 and self.a < 56):
+                self.amino_type = 2 #ala
+            elif(36.0<self.b and self.b < 45.0 and 50.0 < self.a):
+                self.amino_type = 3 #asn, asp, leu, cyso
+            elif(27.0<self.b and self.b < 35.0 and 54.0 < self.a and self.a<62.0):
+                self.amino_type = 4 # met, gln, lys, arg, his, glu, trp, cysr
+            elif(61.0<self.b and self.b < 74.0 and 59.0 < self.a and self.a<67.0):
+                self.amino_type = 5 # ser, thr
+            elif(30.0<self.b and self.b < 35.0 and 62.0 < self.a):
+                self.amino_type = 6 #pro, val
+            else:
+                self.amino_type = 0 # no appropriate match found
         else:
-            self.amino_type = 0 # no appropriate match found
+            self.tile_list = tile_list
+            self.amino_type = 0
+            self.placeholder = False
+            self.char_weight = .1
+            self.order_weight = 1
+            
+            #assigns a and b of the last tile to the a and b value
+            #of combined tile
+            self.a = float(tile_list[-1].a)
+            self.b = float(tile_list[-1].b)
 
-    # def __init__(self,tile_List):
-    #     self.tileList = tile_List
-    #     self.amino_type = 0
-    #     self.placeholder = false
-    #     self.char_weight = .1
-    #     self.order_weight = 1
-        
-    #     #assigns a and b of the last tile to the a and b value
-    #     #of combined tile
-    #     self.a = float(tileList[-1].self.a)
-    #     self.b = float(tileList[-1].self.b)
-
-    #     #assigns c and d of the fist tile to the c and d value
-    #     #of the combined tiles
-    #     self.c = float(tileList[0].self.c)
-    #     self.d = float(tileList[0].self.d)
+            #assigns c and d of the fist tile to the c and d value
+            #of the combined tiles
+            self.c = float(tile_list[0].c)
+            self.d = float(tile_list[0].d)
 
 
     #return amino acid type

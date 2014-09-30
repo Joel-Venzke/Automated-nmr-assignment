@@ -31,7 +31,7 @@ def read_file(file_name):
 				c = -1
 			if (d == "na"):
 				d = -1
-			tile_set_list.append(Tile(a, b, c, d, False))
+			tile_set_list.append(Tile(a, b, c, d))
 		tile_set_list.insert(0, characteristic)
 	return tile_set_list
 
@@ -112,7 +112,8 @@ def start_search(file_name, type):
 		best_solution, node_count = uniform_cost(root)
 		output_soultion(best_solution, node_count)
 
-def find_matches(outputNode):
+def find_matches(tiles):
+	outputNode = tiles
 	return outputNode
 
 def output_soultion(finalNode, nodeCount):
@@ -193,7 +194,7 @@ def puzzle_building_search(allTiles):
 
 		tempNode = Node(tempTileArray,[],0,[],0,0)
 		outputNode, count = uniform_cost(tempNode)
-		newList = find_matches(outputNode)
+		newList = find_matches(outputNode.placed_tiles)
 		for i in len(newList):
 			allTiles.append(newList[i])
 
