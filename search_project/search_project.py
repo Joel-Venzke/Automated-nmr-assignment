@@ -1,5 +1,5 @@
 """
-Name: Joel Venzke
+Name: Joel Venzke, Katie Roth, Paxten Johnson, Rachel Davis, Leah Robison, John Emmons, Tim Urness, Adina Kilpatrick
 Date created: October 12th, 2013
 Description: This program automates the assignment of NMR data. 
 				The data is read in from a file and then the search will begin.
