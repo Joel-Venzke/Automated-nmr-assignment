@@ -98,7 +98,7 @@ def letters_to_numbers(characteristic):
 
 
 """
-prints results to counsel
+prints results to console
 take in a solution node and the number of nodes generated
 """
 def output_soultion(finalNode, nodeCount):
