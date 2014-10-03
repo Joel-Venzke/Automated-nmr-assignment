@@ -27,7 +27,7 @@ class Node(object):
 		self.order_cost = order_cost
 
 	"""
-	prints the node to the counsel
+	prints the node to the console
 	"""
 	def __str__(self):
 		for tile in self.placed_tiles:
