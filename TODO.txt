@@ -1,17 +1,6 @@
-Paper
-	start full paper
-edit cost
-	clean up if statements 
-	optimize weight
-	optimize error calculation
-fix command line input
-comment/clean up code
-create more data sets
-
-Completed
-	updated input file
-	grouped amino acids (Speeds up code alot)
-	not starting with correct tile (Fixed!!!!)
-
-Problems
-	NONE!!!
+calculated average error on full file
+	by type?
+code: manage grouped tiles
+code: compare grouped tiles and characristic
+code: test tiles for grouping
+David work on machine learning stuff
