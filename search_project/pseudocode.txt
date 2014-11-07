@@ -1,0 +1,33 @@
+Search overview
+	randomly select 20 tiles
+	carry out uniform cost without protein sequence
+	if (cost of 2 consecutive tiles < threshold) {
+		group tiles into one
+		check with protein sequence to ensure correct assignment
+	}
+	add tiles back onto list
+	loop till done
+
+Things to change
+
+	COMMENT ALL THE CODE (JOEL TELLING HIMSELF TO DO THIS)
+	
+	search_strategies.py
+		develop a function to make a node containing 20 random tiles and start a search on them (needs testing)
+		develop a function to check if tile cost on combined tiles are low enough and match the protein chain (needs to be made)
+		Save data to file?
+
+	search_project.py
+		Good for now
+
+	Node.py
+		Good for now
+
+	Tile.py
+		Good for now
+
+Others
+	calculation of threshold
+		should it be a function of number of iterations? 
+		find a good value from current data
+	print characteristic with output 
