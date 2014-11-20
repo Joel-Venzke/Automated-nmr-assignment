@@ -49,7 +49,9 @@ class Node(object):
 			for i in range(len(self.unplaced_tiles)):
 
 				# check to see if current tile can be placed in this location
-				if(self.unplaced_tiles[i].get_amino_type() == self.characteristic[char_num][2] or self.unplaced_tiles[i].get_amino_type()==0):
+				amino_type_list = self.unplaced_tiles[i].get_amino_type()
+				amino_Idx = self.characteristic[char_num][2]
+				if(amino_type_list[amino_Idx] > 0.01):
 
 					# copy unplaced and placed tile lists, remove tile from list and add it to the placed tile list
 					temp_ut = list(self.unplaced_tiles) 
