@@ -187,6 +187,7 @@ def read_file(file_name):
 				d = -1
 			# adds a new Tile to tile_set_list
 			tile_set_list.append(Tile(a, b, c, d, nmrClass)) 
+	jvm.stop()
 	return tile_set_list, characteristic
 
 

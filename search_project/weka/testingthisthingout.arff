@@ -1,0 +1,7 @@
+@relation AminoAcids
+@attribute residue { ALA, CYS, ASP, GLU, PHE, GLY, HIS, ILE, LYS, LEU, MET, ASN, PRO, GLN, ARG, SER, THR, VAL, TRP, TYR }
+@attribute c_alpha numeric
+@attribute c_beta numeric
+
+@data
+ALA,50.26,17.23

@@ -59,7 +59,12 @@ class Tile(object):
             tempA = "?"
         if (tempB==-1):
             tempB = "?"
-        i = Instance.create_instance(values=[tempA, tempB])
+        i = Instance.create_instance(values=[1.0, tempA, tempB])
+        from weka.core.converters import Loader
+        loader = Loader("weka.core.converters.ArffLoader")
+        myDataset = loader.load_file("weka/testingthisthingout.arff")
+        myDataset.set_class_index(0)
+        i.set_dataset(myDataset)
         return model.distribution_for_instance(i)
 
 
