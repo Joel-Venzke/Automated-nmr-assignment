@@ -2,7 +2,6 @@
 
 import math
 from weka.core.dataset import Instance
-from weka.core.converters import Loader
 from weka.classifiers import Classifier
 
 
@@ -56,9 +55,9 @@ class Tile(object):
         tempA = self.a
         tempB = self.b
         if (tempA==-1):
-            tempA = "?"
+            tempA = -1
         if (tempB==-1):
-            tempB = "?"
+            tempB = -1
         i = Instance.create_instance(values=[1.0, tempA, tempB])
         from weka.core.converters import Loader
         loader = Loader("weka.core.converters.ArffLoader")
