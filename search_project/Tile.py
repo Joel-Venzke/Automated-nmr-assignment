@@ -55,8 +55,10 @@ class Tile(object):
     def calculate_amino_type(self, model):
         tempA = self.a
         tempB = self.b
-        if (tempA==-1) tempA = "?"
-        if (tempB==-1) tempB = "?"
+        if (tempA==-1):
+            tempA = "?"
+        if (tempB==-1):
+            tempB = "?"
         i = Instance.create_instance(values=[tempA, tempB])
         return model.distribution_for_instance(i)
 
