@@ -52,13 +52,11 @@ class Tile(object):
     Group tiles by expected amino acid type 
     """
     def calculate_amino_type(self, model):
-        tempA = self.a
-        tempB = self.b
-        if (tempA==-1):
-            tempA = -1
-        if (tempB==-1):
-            tempB = -1
-        i = Instance.create_instance(values=[1.0, tempA, tempB])
+        i = Instance.create_instance(values=[1.0, self.a, self.b])
+        if (self.a==-1):
+            i.set_missing(1)
+        if (self.b==-1):
+            i.set_missing(2)
         from weka.core.converters import Loader
         loader = Loader("weka.core.converters.ArffLoader")
         myDataset = loader.load_file("weka/testingthisthingout.arff")

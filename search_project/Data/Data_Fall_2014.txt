@@ -1,5 +1,6 @@
+Met Ala Ser Thr Ile Thr Glu Lys Asp Ile Ile Glu Ala Ile Gly Asp Gly Lys Val Asn Ile Lys  Glu Phe Gly Lys Phe Ile Arg Arg Lys Tyr Pro Gly Ala Glu Asn Lys Lys Leu Met Phe Ala Ile Val Lys Lys Leu Cys Arg Lys Val Gly Asn Asp His Met Glu Leu Lys Lys Glu
 68.205	40.111	55.165	41.004
-63	40.745	62.708	72.02
+63.0	40.745	62.708	72.02
 59.21	32.332	57.325	34.471
 53.698	20.789	56.691	34.294
 55.149	41.057	60.233	36.167
