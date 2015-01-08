@@ -62,6 +62,7 @@ class Tile(object):
         myDataset = loader.load_file("weka/testingthisthingout.arff")
         myDataset.set_class_index(0)
         i.set_dataset(myDataset)
+        # print model.distribution_for_instance(i)
         return model.distribution_for_instance(i)
 
 

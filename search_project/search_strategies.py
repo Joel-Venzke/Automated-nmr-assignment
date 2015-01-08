@@ -31,6 +31,7 @@ def generate_placeholders(tile_set, characteristic, nmrClass):
 	gap = len(characteristic) - len(tile_set) # number of place holder tiles needed
 	if gap > 0:
 		for n in range(gap):
+			print "making"
 			tile_set.append(Tile(-1, -1, -1, -1, nmrClass)) # add place holder tiles to tile set
 	return tile_set
 
