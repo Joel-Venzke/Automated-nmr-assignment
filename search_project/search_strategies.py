@@ -27,11 +27,11 @@ Creates enough place holder tiles to do a full search
 takes in the tile set and characteristic lists
 returns tile list with place holder tiles
 """
-def generate_placeholders(tile_set, characteristic):
+def generate_placeholders(tile_set, characteristic, nmrClass):
 	gap = len(characteristic) - len(tile_set) # number of place holder tiles needed
 	if gap > 0:
 		for n in range(gap):
-			tile_set.append(Tile(-1, -1, -1, -1)) # add place holder tiles to tile set
+			tile_set.append(Tile(-1, -1, -1, -1, nmrClass)) # add place holder tiles to tile set
 	return tile_set
 
 
@@ -49,7 +49,7 @@ def letters_to_numbers(characteristic):
 		# finds amino acid type and gets expected chemical shift data
 		if ch == "ala":
 			temp = [54.8, 18.3, 0]
-		elif ch == "cyso":
+		elif ch == "cys":
 			temp = [58.0, 39.4, 1]
 		elif ch == "asp":
 			temp = [56.7, 40.5, 2]
@@ -175,7 +175,6 @@ def read_file(file_name):
 			#reads each line and grabs numbers and na data
 			#file format "a b c d"
 			a, b, c, d = re.findall(r'\b\d+\.\d*\b|\bna\b', line)
-
 			# Dealing with missing data
 			if (a == "na"):
 				a = -1
@@ -187,8 +186,7 @@ def read_file(file_name):
 				d = -1
 			# adds a new Tile to tile_set_list
 			tile_set_list.append(Tile(a, b, c, d, nmrClass)) 
-	jvm.stop()
-	return tile_set_list, characteristic
+	return tile_set_list, characteristic, nmrClass
 
 
 """
@@ -197,8 +195,9 @@ takes in file name and search type number
 outputs results to console
 """
 def start_search(file_name, type):
-	tile_set, characteristic = read_file(file_name) # gets data from file
-	tile_set = generate_placeholders(tile_set, characteristic) # gets place holder tiles
+	tile_set, characteristic, nmrClass = read_file(file_name) # gets data from file
+	tile_set = generate_placeholders(tile_set, characteristic, nmrClass) # gets place holder tiles
+	jvm.stop()
 	root = Node(tile_set, [], 0.0, characteristic,0,0) # makes start state for search
 
 	# picks algorithm
