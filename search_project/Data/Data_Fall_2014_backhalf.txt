@@ -1,4 +1,4 @@
-Pro Gly Ala Glu Asn Lys Lys Leu Met Phe Ala Ile Val Lys Lys Leu Cys Arg Lys Val Gly Asn Asp His Met Glu Leu Lys Lys Glu
+Gly Ala Glu Asn Lys Lys Leu Met Phe Ala Ile Val Lys Lys Leu Cys Arg Lys Val Gly Asn Asp His Met Glu Leu Lys Lys Glu
 46.128	na	64.537	34.761
 56.837	20.398	46.12	na
 60.942	29.819	na	na
