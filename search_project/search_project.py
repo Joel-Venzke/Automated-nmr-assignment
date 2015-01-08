@@ -20,13 +20,13 @@ import time
 import sys
 
 # Error if not enough data is provided
-if len(sys.argv) < 3:
+if len(sys.argv) < 2:
 	exit("NO INPUT DATA FILE OR MISSING SEARCH TYPE NUMBER\n\nPlease type: \nshell$ python search_project.py Path/To/Data/File.txt NumberOfSearchType\
 		\n\nSearch Type Numbers:\nUniform Cost: 0\nPuzzle Building: 1")
 
 # time and run search
 start = time.clock()
-search_strategies.start_search(sys.argv[1],sys.argv[2])
+search_strategies.start_search(sys.argv[1],0)
 end = time.clock()
 
 print "Run Time:  " + str(end-start)
