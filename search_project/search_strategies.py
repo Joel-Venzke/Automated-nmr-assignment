@@ -164,7 +164,7 @@ def read_file(file_name):
 	tile_set_list = []
 	characteristic = []
 	jvm.start()
-	nmrClass = Classifier(jobject=serialization.read("j48model.model"))
+	nmrClass = Classifier(jobject=serialization.read("models/lmt.model"))
 	with open(file_name) as f: # opens file
 
 		# reads in characteristic protein sequence and coverts it to expected chemical shift values
