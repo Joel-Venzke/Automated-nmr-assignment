@@ -17,15 +17,9 @@
 import javabridge
 import os
 import glob
-import logging
 
 
 started = None
-
-# logging setup
-logging.basicConfig(level=logging.DEBUG)
-logger = logging.getLogger(__name__)
-
 
 def add_bundled_jars():
     """
@@ -47,12 +41,10 @@ def add_weka_packages():
     """
     prefix = os.getenv("WEKA_HOME", "~")
     package_dir = os.path.expanduser(prefix + os.sep + "wekafiles" + os.sep + "packages")
-    logger.debug("package_dir=" + package_dir)
     # traverse packages
     for p in os.listdir(package_dir):
         if os.path.isdir(package_dir + os.sep + p):
             directory = package_dir + os.sep + p
-            logger.debug("  directory=" + directory)
             # inspect package directory
             for l in os.listdir(directory):
                 if l.lower().endswith(".jar"):
@@ -89,29 +81,21 @@ def start(class_path=None, bundled=True, packages=False, system_cp=False, max_he
     global started
 
     if not started is None:
-        logger.info("JVM already running, call jvm.stop() first")
         return
 
     # add user-defined jars first
     if not class_path is None:
         for cp in class_path:
-            logger.debug("Adding user-supplied classpath=" + cp)
             javabridge.JARS.append(cp)
 
     if bundled:
-        logger.debug("Adding bundled jars")
         add_bundled_jars()
 
     if packages:
-        logger.debug("Adding Weka packages")
         add_weka_packages()
 
     if system_cp:
-        logger.debug("Adding system classpath")
         add_system_classpath()
-
-    logger.debug("Classpath=" + str(javabridge.JARS))
-    logger.debug("MaxHeapSize=" + ("default" if (max_heap_size is None) else max_heap_size))
 
     javabridge.start_vm(run_headless=True, max_heap_size=max_heap_size)
     javabridge.attach()
