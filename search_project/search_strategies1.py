@@ -31,7 +31,7 @@ def generate_placeholders(tile_set, characteristic, nmrClass):
 	gap = len(characteristic) - len(tile_set) # number of place holder tiles needed
 	if gap > 0:
 		for n in range(gap):
-			print "making"
+			print "MAKING"
 			tile_set.append(Tile(-1, -1, -1, -1, nmrClass)) # add place holder tiles to tile set
 	return tile_set
 
@@ -164,7 +164,7 @@ def read_file(file_name):
 	tile_set_list = []
 	characteristic = []
 	jvm.start()
-	nmrClass = Classifier(jobject=serialization.read("models/decisiontable_new.model"))
+	nmrClass = Classifier(jobject=serialization.read("models/voting2.model"))
 	with open(file_name) as f: # opens file
 
 		# reads in characteristic protein sequence and coverts it to expected chemical shift values
@@ -216,12 +216,6 @@ returns the best solution
 """
 def uniform_cost(root):
 	frontier = [root] # holds list of node that need exploring
-	lowest = 1.0
-	for i in range(len(root.unplaced_tiles)):
-		if (root.unplaced_tiles[i].amino_type[root.characteristic[i][2]] < lowest):
-			lowest = root.unplaced_tiles[i].amino_type[root.characteristic[i][2]]
-	print lowest
-
 	node_count = 1
 	best_solution = None
 	best_cost = float("inf") 
