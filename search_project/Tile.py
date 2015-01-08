@@ -53,9 +53,11 @@ class Tile(object):
     """
     def calculate_amino_type(self, model):
         i = Instance.create_instance(values=[1.0, self.a, self.b])
-        if (self.a==-1):
+        if (self.a==-1 and self.b==-1 ):
+            return [1.0, 1.0, 1.0, 1.0, 1.0, 1.0, 1.0, 1.0, 1.0, 1.0, 1.0, 1.0, 1.0, 1.0, 1.0, 1.0, 1.0, 1.0, 1.0, 1.0]
+        elif (self.a==-1):
             i.set_missing(1)
-        if (self.b==-1):
+        elif (self.b==-1):
             i.set_missing(2)
         from weka.core.converters import Loader
         loader = Loader("weka.core.converters.ArffLoader")
