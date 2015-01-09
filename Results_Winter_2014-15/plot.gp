@@ -1,4 +1,7 @@
 set term jpeg
 set output "plot.jpg"
 set log y
-plot "Nodes_Genorated.dat" u 1:2 t "2", "Nodes_Genorated.dat" u 1:4 t "4"
+set key top left
+set ylabel "Nodes Genorated"
+set xlabel "Number of Amino Acids"
+plot "Nodes_Genorated.dat" u 1:2 t "No Filter", "Nodes_Genorated.dat" u 1:3 t "DecisionTable"
