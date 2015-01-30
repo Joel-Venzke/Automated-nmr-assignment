@@ -48,46 +48,51 @@ def letters_to_numbers(characteristic):
 		ch = ch.lower().strip() # deal with case problems
 		temp = []
 		# finds amino acid type and gets expected chemical shift data
+		# Values come from BRMB data. The exact values are the average
+		# Ca and Cb values as recorded on 01-22-2015
+		# Here is the link: http://www.bmrb.wisc.edu/ref_info/statsel.htm
+		# the last index is for amino acid type identification in the 
+		# machine learning model
 		if ch == "ala":
-			temp = [54.8, 18.3, 0]
+			temp = [53.19, 18.96, 0]
 		elif ch == "cys":
-			temp = [58.0, 39.4, 1]
+			temp = [58.23, 32.85, 1]
 		elif ch == "asp":
-			temp = [56.7, 40.5, 2]
+			temp = [54.70, 40.87, 2]
 		elif ch == "glu":
-			temp = [59.1, 29.4, 3]
+			temp = [57.35, 29.97, 3]
 		elif ch == "phe":
-			temp = [60.8, 38.8, 4]
+			temp = [58.14, 39.94, 4]
 		elif ch == "gly":
-			temp = [46.9, -1, 5]
+			temp = [45.36, -1, 5]
 		elif ch == "his":
-			temp = [59.0, 29.5, 6]
+			temp = [56.52, 30.22, 6]
 		elif ch == "ile":
-			temp = [64.6, 37.6, 7]
+			temp = [61.67, 38.58, 7]
 		elif ch == "lys":
-			temp = [58.9, 32.3, 8]
+			temp = [56.98, 32.77, 8]
 		elif ch == "leu":
-			temp = [57.5, 41.6, 9]
+			temp = [55.69, 42.26, 9]
 		elif ch == "met":
-			temp = [58.1, 32.3, 10]
+			temp = [56.13, 32.94, 10]
 		elif ch == "asn":
-			temp = [55.5, 38.6, 11]
+			temp = [53.56, 38.68, 11]
 		elif ch == "pro":
-			temp = [65.5, 31.5, 12]
+			temp = [63.36, 31.84, 12]
 		elif ch == "gln":
-			temp = [58.5, 28.5, 13]
+			temp = [56.62, 29.16, 13]
 		elif ch == "arg":
-			temp = [58.9, 30.1, 14]
+			temp = [56.82, 30.65, 14]
 		elif ch == "ser":
-			temp = [60.9, 63.1, 15]
+			temp = [58.75, 63.79, 15]
 		elif ch == "thr":
-			temp = [65.6, 68.9, 16]
+			temp = [62.26 , 69.71, 16]
 		elif ch == "val":
-			temp = [66.2, 31.5, 17]
+			temp = [62.58, 32.71, 17]
 		elif ch == "trp":
-			temp = [60.0, 29.3, 18]
+			temp = [57.74, 29.97, 18]
 		elif ch == "tyr":
-			temp = [61.0, 38.3, 19]
+			temp = [58.18, 39.27, 19]
 
 		# deal with data that is not in our list
 		else:

@@ -92,11 +92,11 @@ class Tile(object):
               t.get_c() == -1 and self.b == -1): # place holder tile or too much missing data
             return 1.9
         elif(self.a == -1 or t.get_c() == -1): # missing carbon alpha data
-            return math.fabs((self.b-t.get_d()))*4.75
+            return math.fabs((self.b-t.get_d()))*3.5
         elif(self.b == -1 or t.get_d() == -1): # missing carbon beta data 
-            return math.fabs((self.a-t.get_c()))*4.75
+            return math.fabs((self.a-t.get_c()))*3.5
         else: # all data exist
-            return  (math.fabs((self.a-t.get_c()))+math.fabs((self.b-t.get_d())))*7
+            return  (math.fabs((self.a-t.get_c()))+math.fabs((self.b-t.get_d())))*7.0
 
     """
     return the expected amino acid group 
@@ -123,11 +123,11 @@ class Tile(object):
         if( self.a == -1 and self.b == -1): # place holder tile
             return 0
         elif(self.a == -1): # no carbon alpha 
-            return math.fabs(char[0]-self.a)*.5
+            return math.fabs(char[0]-self.a)*1.0
         elif(self.b == -1): # no carbon beta
-            return math.fabs(char[1]-self.b)*.5
+            return math.fabs(char[1]-self.b)*1.0
         else: # has both carbon alpha and beta
-            return (math.fabs(char[0]-self.a)+math.fabs(char[1]-self.b))*.1
+            return (math.fabs(char[0]-self.a)+math.fabs(char[1]-self.b))*.071
 
     """
     return a list of the tile's carbon shift values
