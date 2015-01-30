@@ -31,7 +31,7 @@ def generate_placeholders(tile_set, characteristic, nmrClass):
 	gap = len(characteristic) - len(tile_set) # number of place holder tiles needed
 	if gap > 0:
 		for n in range(gap):
-			print "making"
+			# print "making"
 			tile_set.append(Tile(-1, -1, -1, -1, nmrClass)) # add place holder tiles to tile set
 	return tile_set
 
@@ -110,6 +110,8 @@ take in a solution node and the number of nodes generated
 """
 def output_soultion(finalNode, nodeCount):
 	#prints best solution to console
+	with open("../Results_Winter_2014-15/j48_BRMB_3sd.dat", "a") as dataFile:
+		dataFile.write(str(len(finalNode.characteristic)) + "\t" + str(nodeCount) + "\n")
 	print "HERE IS THE BEST"
 	print "Cost: " + str(finalNode.get_cost())
 	print ""
@@ -221,11 +223,11 @@ returns the best solution
 """
 def uniform_cost(root):
 	frontier = [root] # holds list of node that need exploring
-	lowest = 1.0
-	for i in range(len(root.unplaced_tiles)):
-		if (root.unplaced_tiles[i].amino_type[root.characteristic[i][2]] < lowest):
-			lowest = root.unplaced_tiles[i].amino_type[root.characteristic[i][2]]
-	print lowest
+	# lowest = 1.0
+	# for i in range(len(root.unplaced_tiles)):
+	# 	if (root.unplaced_tiles[i].amino_type[root.characteristic[i][2]] < lowest):
+	# 		lowest = root.unplaced_tiles[i].amino_type[root.characteristic[i][2]]
+	# print lowest
 
 	node_count = 1
 	best_solution = None
