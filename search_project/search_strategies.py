@@ -110,7 +110,7 @@ take in a solution node and the number of nodes generated
 """
 def output_soultion(finalNode, nodeCount):
 	#prints best solution to console
-	with open("../Results_Winter_2014-15/j48_BRMB_3sd.dat", "a") as dataFile:
+	with open("../Results_Winter_2014-15/lmt_3sd.dat", "a") as dataFile:
 		dataFile.write(str(len(finalNode.characteristic)) + "\t" + str(nodeCount) + "\n")
 	print "HERE IS THE BEST"
 	print "Cost: " + str(finalNode.get_cost())
@@ -171,7 +171,7 @@ def read_file(file_name):
 	tile_set_list = []
 	characteristic = []
 	jvm.start()
-	nmrClass = Classifier(jobject=serialization.read("models/j48.model"))
+	nmrClass = Classifier(jobject=serialization.read("models/lmt_3sd.model"))
 	with open(file_name) as f: # opens file
 
 		# reads in characteristic protein sequence and coverts it to expected chemical shift values
