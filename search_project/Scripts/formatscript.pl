@@ -1,6 +1,6 @@
 #!/usr/bin/perl
 #
-# FormatScript.pl
+# formatscript.pl
 # Author: David Mascharka
 #
 # This format script loops through all .str files (star files from BMRB: http://www.bmrb.wisc.edu/), pulls out
@@ -44,14 +44,13 @@ foreach $file (@files) {
 			s/^\s*//;
 			s/^\d*\s*\.(\s*\d*)*\s*//;
 			s/\s+/\t/g;
-			# below -> word characters are also numbers
-			# does this mess with it? try [A-Z] instead?
+
 			m/(\w{3}\t\w{2}).*?(\d+\.\d+).*/;
 			if (defined $1 and defined $2) {
-				$line = "$1,$2\n";
-				$line =~ s/\t/,/g;
+			    $line = "$1,$2\n";
+			    $line =~ s/\t/,/g;
 			}
-
+			
 			if (m/.*CA|CB.*/) {
 				if ($line =~ m/^\w{3},\w{2},\d{3,}\./) {
 					next;
@@ -217,7 +216,7 @@ foreach $file (@files) {
 				    $average = 32.17;
 				}
 				
-				$number = $1 if $line =~ m/\w{3},C[AB],(\d+\.\d+)/;
+				$number = $1 if $line =~ m/C[AB],(\d+\.\d+)/;
 			
 				if (defined($number) && $number >= $average - $stdDeviations * $deviation &&
 				    $number <= $average + $stdDeviations * $deviation) {
@@ -235,7 +234,9 @@ close $filehandle;
 open $filehandle, '<', $savefile or die "Cannot open $savefile: $!";
 open $finalfilehandle, '>', $finalfile or die "Cannot open $finalfile: $!";
 
-print $finalfilehandle "\@relation AminoAcid\n\@attribute residue { ALA, CYS, ASP, GLU, PHE, GLY, HIS, ILE, LYS, LEU, MET, ASN, PRO, GLN, ARG, SER, THR, VAL, TRP, TYR }\n\@attribute c_alpha numeric\n\@attribute c_beta numeric\n\n\@data\n";
+print $finalfilehandle "\@relation AminoAcid\n\@attribute residue { ALA, CYS, ASP, GLU, PHE, GLY, HIS, ILE, LYS,";
+print $finalfilehandle "LEU, MET, ASN, PRO, GLN, ARG, SER, THR, VAL, TRP, TYR }\n\@attribute c_alpha numeric\n";
+print $finalfilehandle "\@attribute c_beta numeric\n\n\@data\n";
 
 my $lastline;
 my $firstline = 1;
@@ -248,26 +249,24 @@ foreach (<$filehandle>) {
 
 	my ($aminoAcid) = $lastline =~ /(\w{3}).*CA.*/;
 
-	if (defined $aminoAcid) {
-		if ($aminoAcid eq "ALA" || $aminoAcid eq "CYS" || $aminoAcid eq "ASP"
-		|| $aminoAcid eq "GLU" || $aminoAcid eq "PHE" || $aminoAcid eq "GLY"
-		|| $aminoAcid eq "HIS" || $aminoAcid eq "ILE" || $aminoAcid eq "LYS"
-		|| $aminoAcid eq "LEU" || $aminoAcid eq "MET" || $aminoAcid eq "ASN"
-		|| $aminoAcid eq "PRO" || $aminoAcid eq "GLN" || $aminoAcid eq "ARG"
-		|| $aminoAcid eq "SER" || $aminoAcid eq "THR" || $aminoAcid eq "VAL"
-		|| $aminoAcid eq "TYR" || $aminoAcid eq "TRP") {
-			if (m/$aminoAcid.*CB.*/) {
-				chomp $lastline;
-				$lastline =~ s/CA,//;
-				chomp;
-				s/\w{3},CB,//;
-				print $finalfilehandle "$lastline,$_\n";
-			} else {
-				chomp $lastline;
-				$lastline =~ s/CA,//;
-				print $finalfilehandle "$lastline,?\n";
-			}
-		}		
+	if (defined $aminoAcid && ($aminoAcid eq "ALA" || $aminoAcid eq "CYS" || $aminoAcid eq "ASP"
+	|| $aminoAcid eq "GLU" || $aminoAcid eq "PHE" || $aminoAcid eq "GLY"
+	|| $aminoAcid eq "HIS" || $aminoAcid eq "ILE" || $aminoAcid eq "LYS"
+	|| $aminoAcid eq "LEU" || $aminoAcid eq "MET" || $aminoAcid eq "ASN"
+	|| $aminoAcid eq "PRO" || $aminoAcid eq "GLN" || $aminoAcid eq "ARG"
+	|| $aminoAcid eq "SER" || $aminoAcid eq "THR" || $aminoAcid eq "VAL"
+	|| $aminoAcid eq "TYR" || $aminoAcid eq "TRP")) {
+		if (m/$aminoAcid.*CB.*/) {
+			chomp $lastline;
+			$lastline =~ s/CA,//;
+			chomp;
+			s/\w{3},CB,//;
+			print $finalfilehandle "$lastline,$_\n";
+		} else {
+			chomp $lastline;
+			$lastline =~ s/CA,//;
+			print $finalfilehandle "$lastline,?\n";
+		}
 	} else {
 		my ($aminoAcid) = $lastline =~ /(\w{3}).*CB.*/;
 		if (defined $aminoAcid && ($aminoAcid eq "ALA" || $aminoAcid eq "CYS" || $aminoAcid eq "ASP"
