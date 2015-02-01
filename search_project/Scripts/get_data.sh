@@ -2,7 +2,7 @@
 
 cd ..
 
-for i  in $(seq 1 33); 
+for i  in $(seq 34 50); 
 do 
 	echo | tee -a Scripts/lmt_3sd.log
 	echo ================================== | tee -a Scripts/lmt_3sd.log
