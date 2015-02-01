@@ -1,6 +1,6 @@
 #!/usr/bin/perl
 #
-# formatscript.pl
+# FormatScript.pl
 # Author: David Mascharka
 #
 # This format script loops through all .str files (star files from BMRB: http://www.bmrb.wisc.edu/), pulls out
@@ -62,156 +62,118 @@ foreach $file (@files) {
 				if ($line =~ m/^ALA,CA/) {
 				    $deviation = 1.95;
 				    $average = 53.19;
-				}
-				if ($line =~ m/^ALA,CB/) {
+				} elsif ($line =~ m/^ALA,CB/) {
 				    $deviation = 1.78;
 				    $average = 18.96;
-				}
-				if ($line =~ m/^ARG,CA/) {
+				} elsif ($line =~ m/^ARG,CA/) {
 				    $deviation = 2.31;
 				    $average = 56.82;
-				}
-				if ($line =~ m/^ARG,CB/) {
+				} elsif ($line =~ m/^ARG,CB/) {
 				    $deviation = 1.82;
 				    $average = 30.65;
-				}
-				if ($line =~ m/^ASN,CA/) {
+				} elsif ($line =~ m/^ASN,CA/) {
 				    $deviation = 1.88;
 				    $average = 53.56;
-				}
-				if ($line =~ m/^ASN,CB/) {
+				} elsif ($line =~ m/^ASN,CB/) {
 				    $deviation = 1.67;
 				    $average = 38.68;
-				}
-				if ($line =~ m/^ASP,CA/) {
+				} elsif ($line =~ m/^ASP,CA/) {
 				    $deviation = 2.04;
 				    $average = 54.70;
-				}
-				if ($line =~ m/^ASP,CB/) {
+				} elsif ($line =~ m/^ASP,CB/) {
 				    $deviation = 1.61;
 				    $average = 40.87;
-				}
-				if ($line =~ m/^CYS,CA/) {
+				} elsif ($line =~ m/^CYS,CA/) {
 				    $deviation = 3.38;
 				    $average = 58.23;
-				}
-				if ($line =~ m/^CYS,CB/) {
+				} elsif ($line =~ m/^CYS,CB/) {
 				    $deviation = 6.24;
 				    $average = 32.85;
-				}
-				if ($line =~ m/^GLN,CA/) {
+				} elsif ($line =~ m/^GLN,CA/) {
 				    $deviation = 2.12;
 				    $average = 56.62;
-				}
-				if ($line =~ m/^GLN,CB/) {
+				} elsif ($line =~ m/^GLN,CB/) {
 				    $deviation = 1.81;
 				    $average = 29.16;
-				}
-				if ($line =~ m/^GLU,CA/) {
+				} elsif ($line =~ m/^GLU,CA/) {
 				    $deviation = 2.07;
 				    $average = 57.35;
-				}
-				if ($line =~ m/^GLU,CB/) {
+				} elsif ($line =~ m/^GLU,CB/) {
 				    $deviation = 1.70;
 				    $average = 29.97;
-				}
-				if ($line =~ m/^GLY,CA/) {
+				} elsif ($line =~ m/^GLY,CA/) {
 				    $deviation = 1.27;
 				    $average = 45.36;
-				}
-				if ($line =~ m/^HIS,CA/) {
+				} elsif ($line =~ m/^HIS,CA/) {
 				    $deviation = 2.32;
 				    $average = 56.52;
-				}
-				if ($line =~ m/^HIS,CB/) {
+				} elsif ($line =~ m/^HIS,CB/) {
 				    $deviation = 2.09;
 				    $average = 30.22;
-				}
-				if ($line =~ m/^ILE,CA/) {
+				} elsif ($line =~ m/^ILE,CA/) {
 				    $deviation = 2.69;
 				    $average = 61.67;
-				}
-				if ($line =~ m/^ILE,CB/) {
+				} elsif ($line =~ m/^ILE,CB/) {
 				    $deviation = 1.99;
 				    $average = 38.58;
-				}
-				if ($line =~ m/^LEU,CA/) {
+				} elsif ($line =~ m/^LEU,CA/) {
 				    $deviation = 2.12;
 				    $average = 55.69;
-				}
-				if ($line =~ m/^LEU,CB/) {
+				} elsif ($line =~ m/^LEU,CB/) {
 				    $deviation = 1.85;
 				    $average = 42.26;
-				}
-				if ($line =~ m/^LYS,CA/) {
+				} elsif ($line =~ m/^LYS,CA/) {
 				    $deviation = 2.18;
 				    $average = 56.98;
-				}
-				if ($line =~ m/^LYS,CB/) {
+				} elsif ($line =~ m/^LYS,CB/) {
 				    $deviation = 1.77;
 				    $average = 32.77;
-				}
-				if ($line =~ m/^MET,CA/) {
+				} elsif ($line =~ m/^MET,CA/) {
 				    $deviation = 2.23;
 				    $average = 56.13;
-				}
-				if ($line =~ m/^MET,CB/) {
+				} elsif ($line =~ m/^MET,CB/) {
 				    $deviation = 2.20;
 				    $average = 32.94;
-				}
-				if ($line =~ m/^PHE,CA/) {
+				} elsif ($line =~ m/^PHE,CA/) {
 				    $deviation = 2.59;
 				    $average = 58.14;				   
-				}
-				if ($line =~ m/^PHE,CB/) {
+				} elsif ($line =~ m/^PHE,CB/) {
 				    $deviation = 1.07;
 				    $average = 39.94;
-				}
-				if ($line =~ m/^PRO,CA/) {
+				} elsif ($line =~ m/^PRO,CA/) {
 				    $deviation = 1.51;
 				    $average = 63.36;
-				}
-				if ($line =~ m/^PRO,CB/) {
+				} elsif ($line =~ m/^PRO,CB/) {
 				    $deviation = 1.18;
 				    $average = 31.84;
-				}
-				if ($line =~ m/^SER,CA/) {
+				} elsif ($line =~ m/^SER,CA/) {
 				    $deviation = 2.09;
 				    $average = 58.75;
-				}
-				if ($line =~ m/^SER,CB/) {
+				} elsif ($line =~ m/^SER,CB/) {
 				    $deviation = 1.52;
 				    $average = 63.79;
-				}
-				if ($line =~ m/^THR,CA/) {
+				} elsif ($line =~ m/^THR,CA/) {
 				    $deviation = 2.59;
 				    $average = 62.26;
-				}
-				if ($line =~ m/^THR,CB/) {
+				} elsif ($line =~ m/^THR,CB/) {
 				    $deviation = 1.75;
 				    $average = 69.71;
-				}
-				if ($line =~ m/^TRP,CA/) {
+				} elsif ($line =~ m/^TRP,CA/) {
 				    $deviation = 2.58;
 				    $average = 57.74;
-				}
-				if ($line =~ m/^TRP,CB/) {
+				} elsif ($line =~ m/^TRP,CB/) {
 				    $deviation = 2.00;
 				    $average = 29.97;
-				}
-				if ($line =~ m/^TYR,CA/) {
+				} elsif ($line =~ m/^TYR,CA/) {
 				    $deviation = 2.52;
 				    $average = 58.18;
-				}
-				if ($line =~ m/^TYR,CB/) {
+				} elsif ($line =~ m/^TYR,CB/) {
 				    $deviation = 2.14;
 				    $average = 39.27;
-				}
-				if ($line =~ m/^VAL,CA/) {
+				} elsif ($line =~ m/^VAL,CA/) {
 				    $deviation = 2.86;
 				    $average = 62.58;
-				}
-				if ($line =~ m/^VAL,CB/) {
+				} elsif ($line =~ m/^VAL,CB/) {
 				    $deviation = 1.78;
 				    $average = 32.17;
 				}
