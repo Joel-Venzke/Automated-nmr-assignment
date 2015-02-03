@@ -48,4 +48,3 @@ Met Ala Ser Thr Ile Thr Glu Lys Asp Ile Ile Glu Ala Ile Gly Asp Gly Lys Val Asn 
 57.749	46.456	60.023	35.014
 59.718	32.937	57.662	46.47
 54.909	35.055	59.756	32.929
-58.89	34.268	54.963	34.985
