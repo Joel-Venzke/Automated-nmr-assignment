@@ -9,10 +9,10 @@ def getExpectedOutput(filename):
     return expected_output
 
 def getOutput(filename):
-    p = subprocess.Popen(["python", "search_project.py", "./Data/"+filename, "0"], stdout=subprocess.PIPE)
+    p = subprocess.Popen(["python", "search_project1.py", "./Data/"+filename, "0"], stdout=subprocess.PIPE)
     out = p.communicate()
     outputList = out[0].split("\n")
-    output = "\n".join(outputList[10 : len(outputList) - 5])
+    output = "\n".join(outputList[3 : len(outputList) - 5])
     return output
 
 class TestSequenceFunctions(unittest.TestCase):
