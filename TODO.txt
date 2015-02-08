@@ -1,6 +1,9 @@
-calculated average error on full file
-	by type?
-code: manage grouped tiles
-code: compare grouped tiles and characristic
-code: test tiles for grouping
-David work on machine learning stuff
+give all tiles, assign 20 then restart at 20
+
+*implemented but heuristic could be better* A* stuff 
+
+More filtering (try new models, work on settings of current models)
+
+machine learning for cost calculation
+
+*implemented* Pro case (loop through all tiles, count pro, make special place holder tiles, check in search) 
