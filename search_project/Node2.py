@@ -18,14 +18,13 @@ class Node(object):
 	char_cost: cost from comparing with the characteristic
 	order_cost: cost from comparing tiles with the one before it
 	"""
-	def __init__(self, ut, pt, cost, characteristic, char_cost, order_cost, heuristic=0):
+	def __init__(self, ut, pt, cost, characteristic, char_cost, order_cost):
 		self.unplaced_tiles = ut
 		self.placed_tiles = pt
 		self.cost = cost
 		self.characteristic = characteristic
 		self.char_cost = char_cost
 		self.order_cost = order_cost
-		self.heuristic_cost = heuristic
 
 	"""
 	prints the node to the console
@@ -59,9 +58,10 @@ class Node(object):
 					temp_pt.append(placed_tile)
 
 					# add child node to list of new_nodes
-					new_nodes.append(Node(temp_ut, temp_pt, self.cost, self.characteristic, self.char_cost, self.order_cost, heuristic=self.heuristic_cost))
+					new_nodes.append(Node(temp_ut, temp_pt, self.cost, self.characteristic, self.char_cost, self.order_cost))
 
-				elif(amino_type_list[amino_Idx] > 0.004):
+				elif(amino_type_list[amino_Idx] > -2.0):
+
 					# copy unplaced and placed tile lists, remove tile from list and add it to the placed tile list
 					temp_ut = list(self.unplaced_tiles) 
 					placed_tile = temp_ut.pop(i) 
@@ -75,10 +75,10 @@ class Node(object):
 					else: # first tile being placed 
 						temp_char_cost = placed_tile.get_error(self.characteristic[char_num])
 						temp_order_cost = 0 # no before it to compare to
-					c = temp_order_cost + temp_char_cost - placed_tile.heuristic_cost
+					c = temp_order_cost + temp_char_cost
 
 					# add child node to list of new_nodes
-					new_nodes.append(Node(temp_ut, temp_pt, self.cost + c, self.characteristic,self.char_cost+temp_char_cost, self.order_cost+temp_order_cost,heuristic=self.heuristic_cost-placed_tile.heuristic_cost))
+					new_nodes.append(Node(temp_ut, temp_pt, self.cost + c, self.characteristic,self.char_cost+temp_char_cost, self.order_cost+temp_order_cost))
 			return new_nodes
 
 		# Account for nodes that do not have a characteristic protein sequence

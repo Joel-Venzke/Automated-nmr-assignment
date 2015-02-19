@@ -15,7 +15,7 @@ Description: This program automates the assignment of NMR data.
 """
 
 
-import search_strategies1
+import search_strategies2
 import time
 import sys
 
@@ -26,7 +26,7 @@ if len(sys.argv) < 2:
 
 # time and run search
 start = time.clock()
-search_strategies1.start_search(sys.argv[1],0)
+search_strategies2.start_search(sys.argv[1],0)
 end = time.clock()
 
 print "Run Time:  " + str(end-start)

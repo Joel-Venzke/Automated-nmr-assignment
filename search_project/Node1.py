@@ -60,7 +60,7 @@ class Node(object):
 					# add child node to list of new_nodes
 					new_nodes.append(Node(temp_ut, temp_pt, self.cost, self.characteristic, self.char_cost, self.order_cost))
 
-				elif(amino_type_list[amino_Idx] > 0.004):
+				elif(amino_type_list[amino_Idx] > 0.001):
 
 					# copy unplaced and placed tile lists, remove tile from list and add it to the placed tile list
 					temp_ut = list(self.unplaced_tiles) 
