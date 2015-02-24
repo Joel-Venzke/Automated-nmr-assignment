@@ -7,3 +7,5 @@ More filtering (try new models, work on settings of current models)
 machine learning for cost calculation
 
 *implemented* Pro case (loop through all tiles, count pro, make special place holder tiles, check in search) 
+
+heapq for the frontier data structure

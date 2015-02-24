@@ -2,11 +2,12 @@
 
 cd ..
 
-for i  in $(seq 33 62); 
+for i  in $(seq 1 50); 
 do 
-	echo | tee -a Scripts/profix_no_filter.log
-	echo ================================== | tee -a Scripts/profix_no_filter.log
-	echo Data/Data_Fall_2014_$i.txt | tee -a Scripts/profix_no_filter.log
-	echo ================================== | tee -a Scripts/profix_no_filter.log
-	python search_project2.py Data/Data_Fall_2014_$i.txt | tee -a Scripts/profix_no_filter.log
+	echo Data/Spring_2015_$i.txt
+	echo >> Scripts/aStar_spring2015_data.log
+	echo ================================== >> Scripts/aStar_spring2015_data.log
+	echo Data/Spring_2015_$i.txt >> Scripts/aStar_spring2015_data.log
+	echo ================================== >> Scripts/aStar_spring2015_data.log
+	python search_project_aStar.py Data/Spring_2015_$i.txt >> Scripts/aStar_spring2015_data.log
 done

@@ -50,6 +50,7 @@ def generate_placeholders(tile_set, characteristic, nmrClass):
 			tile_set.append(Tile(-1,-1,-1,-1,nmrClass,pro=True))
 			# print tile_set[-1].amino_type[12]
 	gap = len(characteristic) - len(tile_set) # number of place holder tiles needed
+	print "Pro Count: " + str(pro_count) + "\nMissing: " + str(gap)
 	if gap > 0:
 		for n in range(gap):
 			# print "making"
@@ -132,8 +133,8 @@ take in a solution node and the number of nodes generated
 def output_soultion(finalNode, nodeCount):
 	# Uncomment to record results to data file for scripted runs
 	
-	# with open("../Results_Winter_2014-15/aStar_profix_lmt_3sd.dat", "a") as dataFile:
-	# 	dataFile.write(str(len(finalNode.characteristic)) + "\t" + str(nodeCount) + "\n")
+	with open("../Results_Winter_2014-15/aStar_spring2015_data.dat", "a") as dataFile:
+		dataFile.write(str(len(finalNode.characteristic)) + "\t" + str(nodeCount) + "\n")
 
 	#prints best solution to console
 	print "HERE IS THE BEST"
@@ -255,11 +256,11 @@ returns the best solution
 """
 def uniform_cost(root):
 	frontier = [root] # holds list of node that need exploring
-	# lowest = 1.0
-	# for i in range(len(root.unplaced_tiles)):
-	# 	if (root.unplaced_tiles[i].amino_type[root.characteristic[i][2]] < lowest):
-	# 		lowest = root.unplaced_tiles[i].amino_type[root.characteristic[i][2]]
-	# print lowest
+	lowest = 1.0
+	for i in range(len(root.unplaced_tiles)):
+		if (root.unplaced_tiles[i].amino_type[root.characteristic[i][2]] < lowest):
+			lowest = root.unplaced_tiles[i].amino_type[root.characteristic[i][2]]
+	print "lowest cutoff: " + str(lowest)
 
 	node_count = 1
 	best_solution = None

@@ -1,5 +1,5 @@
-END=61;
+END=99;
 for i in $(seq 1 $END); do
-	echo ../Data/Data_Fall_2014_$i.txt;
-	python pars.py ../Data/Data_Fall_2014_fix.txt $i > ../Data/Data_Fall_2014_$i.txt; 
+	echo ../Data/Spring_2015_$i.txt;
+	python pars.py ../Data/Spring_2014_100.txt $i > ../Data/Spring_2015_$i.txt; 
 done

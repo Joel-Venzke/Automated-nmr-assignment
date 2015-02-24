@@ -117,7 +117,7 @@ take in a solution node and the number of nodes generated
 def output_soultion(finalNode, nodeCount):
 	# Uncomment to record results to data file for scripted runs
 	
-	with open("../Results_Winter_2014-15/profix_j48_3sd.dat", "a") as dataFile:
+	with open("../Results_Winter_2014-15/lmt_spring2015_data.dat", "a") as dataFile:
 		dataFile.write(str(len(finalNode.characteristic)) + "\t" + str(nodeCount) + "\n")
 
 	#prints best solution to console
@@ -180,7 +180,7 @@ def read_file(file_name):
 	tile_set_list = []
 	characteristic = []
 	jvm.start()
-	nmrClass = Classifier(jobject=serialization.read("models/j48_3sd.model"))
+	nmrClass = Classifier(jobject=serialization.read("models/lmt_3sd.model"))
 	with open(file_name) as f: # opens file
 
 		# reads in characteristic protein sequence and coverts it to expected chemical shift values
