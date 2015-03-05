@@ -25,7 +25,7 @@ plot "profix_no_filter.dat" u 1:2 t "No Filter" w l linewidth 3,\
 
 set output "pro_compare.tex"
 set key below right box linestyle -1
-plot "results_nofilter.dat" u 1:2 t "No Filter" w l lt 4,\
-"profix_no_filter.dat" u 1:2 t "Proline Check No Filter" lt 3 w l,\
-"lmt_3sd.dat" u 1:2 t "LMT" w l lt 2,\
-"profix_lmt_3sd.dat" u 1:2 t "Proline Check LMT" lt 1 w l
+plot "results_nofilter.dat" u 1:2 t "No Filter" w l  linewidth 3,\
+"profix_no_filter.dat" u 1:2 t "Proline Check No Filter"  w l linewidth 3,\
+"lmt_3sd.dat" u 1:2 t "LMT" w l  linewidth 3,\
+"profix_lmt_3sd.dat" u 1:2 t "Proline Check LMT" w l linewidth 3
