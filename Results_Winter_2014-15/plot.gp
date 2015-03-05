@@ -5,7 +5,7 @@ set key top left
 set key below box linestyle -1
 set grid xtics ytics
 set ylabel "Nodes Generated"
-set format y "$10^%01T$" #%3.0e"
+set format y "$10^%01T$" 
 set xlabel "Number of Amino Acids"
 set xrange [1:63]
 set output "ProFix_full.tex"
