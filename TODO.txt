@@ -1,11 +1,15 @@
 give all tiles, assign 20 then restart at 20
 
-*implemented but heuristic could be better* A* stuff 
+Clean up code (remove things that are no longer used, get rid of old incomplete puzzle building implementation)
 
-More filtering (try new models, work on settings of current models)
+include new data in the unit test
 
-machine learning for cost calculation
+(needs checking) *implemented but heuristic could be better* A* stuff 
 
-*implemented* Pro case (loop through all tiles, count pro, make special place holder tiles, check in search) 
+More filtering (try new models, work on settings of current models) (spend some time with neural nets and see if we can beat LMT)
+
+machine learning for cost calculation (is this possible? maybe come up with better way to calculate it, take care of missing data issues)
+
+(needs checking) *implemented* Pro case (loop through all tiles, count pro, make special place holder tiles, check in search) 
 
 heapq for the frontier data structure
