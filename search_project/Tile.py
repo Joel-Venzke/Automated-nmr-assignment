@@ -19,7 +19,7 @@ class Tile(object):
     d: carbon beta value for residue i-1
     tile_list: A list of tiles that have been grouped together
     """
-    def __init__(self,a=0 ,b=0 ,c=0 ,d=0, model=None, tile_list=[]):
+    def __init__(self,a=0 ,b=0 ,c=0 ,d=0, model=None, tile_list=[], pro=False):
         if (not tile_list): # not given a tile list
             self.a = float(a)
             self.b = float(b)
@@ -29,7 +29,7 @@ class Tile(object):
             self.char_weight = .1
             self.order_weight = 1
             self.tile_list_cost = 0
-            self.amino_type = self.calculate_amino_type(model)
+            self.amino_type = self.calculate_amino_type(model,pro)
         else: # create a tile form the tile_list
             self.tile_list = tile_list
             self.amino_type = 0
@@ -51,7 +51,9 @@ class Tile(object):
     """
     Group tiles by expected amino acid type 
     """
-    def calculate_amino_type(self, model):
+    def calculate_amino_type(self, model, pro):
+        if pro:
+            return [0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 2.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0]
         i = Instance.create_instance(values=[1.0, self.a, self.b])
         if (self.a==-1 and self.b==-1 ):
             return [1.0, 1.0, 1.0, 1.0, 1.0, 1.0, 1.0, 1.0, 1.0, 1.0, 1.0, 1.0, 1.0, 1.0, 1.0, 1.0, 1.0, 1.0, 1.0, 1.0]

@@ -51,7 +51,16 @@ class Node(object):
 				# check to see if current tile can be placed in this location
 				amino_type_list = self.unplaced_tiles[i].get_amino_type()
 				amino_Idx = self.characteristic[char_num][2]
-				if(amino_type_list[amino_Idx] > 0.004):
+				if(amino_type_list[amino_Idx]==2.0):
+					temp_ut = list(self.unplaced_tiles) 
+					placed_tile = temp_ut.pop(i) 
+					temp_pt = list(self.placed_tiles) 
+					temp_pt.append(placed_tile)
+
+					# add child node to list of new_nodes
+					new_nodes.append(Node(temp_ut, temp_pt, self.cost, self.characteristic, self.char_cost, self.order_cost))
+
+				elif(amino_type_list[amino_Idx] > 0.004):
 
 					# copy unplaced and placed tile lists, remove tile from list and add it to the placed tile list
 					temp_ut = list(self.unplaced_tiles) 

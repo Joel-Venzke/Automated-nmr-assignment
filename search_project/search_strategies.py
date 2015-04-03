@@ -28,10 +28,16 @@ takes in the tile set and characteristic lists
 returns tile list with place holder tiles
 """
 def generate_placeholders(tile_set, characteristic, nmrClass):
+	pro_count = 0
+	for i in characteristic:
+		if (i[2] ==12):
+			pro_count +=1
+			tile_set.append(Tile(-1,-1,-1,-1,nmrClass,pro=True))
+			# print tile_set[-1].amino_type[12]
 	gap = len(characteristic) - len(tile_set) # number of place holder tiles needed
 	if gap > 0:
 		for n in range(gap):
-			print "making"
+			# print "making"
 			tile_set.append(Tile(-1, -1, -1, -1, nmrClass)) # add place holder tiles to tile set
 	return tile_set
 
@@ -109,9 +115,12 @@ prints results to console
 take in a solution node and the number of nodes generated
 """
 def output_soultion(finalNode, nodeCount):
-	#prints best solution to console
-	# with open("../Results_Winter_2014-15/lmt_3sd.dat", "a") as dataFile:
+	# Uncomment to record results to data file for scripted runs
+	
+	# with open("../Results_Winter_2014-15/lmt_spring2015_data.dat", "a") as dataFile:
 	# 	dataFile.write(str(len(finalNode.characteristic)) + "\t" + str(nodeCount) + "\n")
+
+	#prints best solution to console
 	print "HERE IS THE BEST"
 	print "Cost: " + str(finalNode.get_cost())
 	print ""
@@ -171,7 +180,7 @@ def read_file(file_name):
 	tile_set_list = []
 	characteristic = []
 	jvm.start()
-	nmrClass = Classifier(jobject=serialization.read("models/decisiontable_3sd.model"))
+	nmrClass = Classifier(jobject=serialization.read("models/lmt_3sd.model"))
 	with open(file_name) as f: # opens file
 
 		# reads in characteristic protein sequence and coverts it to expected chemical shift values
@@ -193,7 +202,8 @@ def read_file(file_name):
 			if (d == "na"):
 				d = -1
 			# adds a new Tile to tile_set_list
-			tile_set_list.append(Tile(a, b, c, d, nmrClass)) 
+			if (not (a==-1 and b==-1 and c==-1 and d==-1)):
+				tile_set_list.append(Tile(a, b, c, d, nmrClass)) 
 	return tile_set_list, characteristic, nmrClass
 
 

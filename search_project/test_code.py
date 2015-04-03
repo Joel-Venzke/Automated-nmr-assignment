@@ -9,10 +9,10 @@ def getExpectedOutput(filename):
     return expected_output
 
 def getOutput(filename):
-    p = subprocess.Popen(["python", "search_project_aStar.py", "./Data/"+filename, "0"], stdout=subprocess.PIPE)
+    p = subprocess.Popen(["python", "search_project.py", "./Data/"+filename, "0"], stdout=subprocess.PIPE)
     out = p.communicate()
     outputList = out[0].split("\n")
-    output = "\n".join(outputList[7 : len(outputList) - 5])
+    output = "\n".join(outputList[4 : len(outputList) - 5])
     return output
 
 class TestSequenceFunctions(unittest.TestCase):
@@ -170,11 +170,11 @@ class TestSequenceFunctions(unittest.TestCase):
     def test_data35_txt(self):
         self.assertTrue(getOutput("data35.txt") == getExpectedOutput("data35.txt"))
 
-    # def test_data36_txt(self):
-    #     self.assertTrue(getOutput("data36.txt") == getExpectedOutput("data36.txt"))
+    def test_data36_txt(self):
+        self.assertTrue(getOutput("data36.txt") == getExpectedOutput("data36.txt"))
 
-    # def test_data37_txt(self):
-    #     self.assertTrue(getOutput("data37.txt") == getExpectedOutput("data37.txt"))
+    def test_data37_txt(self):
+        self.assertTrue(getOutput("data37.txt") == getExpectedOutput("data37.txt"))
 
     # def test_data38_txt(self):
     #     self.assertTrue(getOutput("data38.txt") == getExpectedOutput("data38.txt"))
@@ -187,6 +187,145 @@ class TestSequenceFunctions(unittest.TestCase):
 
     # def test_data41_txt(self):
     #     self.assertTrue(getOutput("data41.txt") == getExpectedOutput("data41.txt"))
+    
+    def test_Data_Fall_2014_1_txt(self):
+        self.assertTrue(getOutput("Data_Fall_2014_1.txt") == getExpectedOutput("Data_Fall_2014_1.txt"))
+
+    def test_Data_Fall_2014_2_txt(self):
+        self.assertTrue(getOutput("Data_Fall_2014_2.txt") == getExpectedOutput("Data_Fall_2014_2.txt"))
+
+    def test_Data_Fall_2014_3_txt(self):
+        self.assertTrue(getOutput("Data_Fall_2014_3.txt") == getExpectedOutput("Data_Fall_2014_3.txt"))
+
+    def test_Data_Fall_2014_4_txt(self):
+        self.assertTrue(getOutput("Data_Fall_2014_4.txt") == getExpectedOutput("Data_Fall_2014_4.txt"))
+
+    def test_Data_Fall_2014_5_txt(self):
+        self.assertTrue(getOutput("Data_Fall_2014_5.txt") == getExpectedOutput("Data_Fall_2014_5.txt"))
+
+    def test_Data_Fall_2014_6_txt(self):
+        self.assertTrue(getOutput("Data_Fall_2014_6.txt") == getExpectedOutput("Data_Fall_2014_6.txt"))
+
+    def test_Data_Fall_2014_7_txt(self):
+        self.assertTrue(getOutput("Data_Fall_2014_7.txt") == getExpectedOutput("Data_Fall_2014_7.txt"))
+
+    def test_Data_Fall_2014_8_txt(self):
+        self.assertTrue(getOutput("Data_Fall_2014_8.txt") == getExpectedOutput("Data_Fall_2014_8.txt"))
+
+    def test_Data_Fall_2014_9_txt(self):
+        self.assertTrue(getOutput("Data_Fall_2014_9.txt") == getExpectedOutput("Data_Fall_2014_9.txt"))
+
+    def test_Data_Fall_2014_10_txt(self):
+        self.assertTrue(getOutput("Data_Fall_2014_10.txt") == getExpectedOutput("Data_Fall_2014_10.txt"))
+
+    def test_Data_Fall_2014_11_txt(self):
+        self.assertTrue(getOutput("Data_Fall_2014_11.txt") == getExpectedOutput("Data_Fall_2014_11.txt"))
+
+    def test_Data_Fall_2014_12_txt(self):
+        self.assertTrue(getOutput("Data_Fall_2014_12.txt") == getExpectedOutput("Data_Fall_2014_12.txt"))
+
+    def test_Data_Fall_2014_13_txt(self):
+        self.assertTrue(getOutput("Data_Fall_2014_13.txt") == getExpectedOutput("Data_Fall_2014_13.txt"))
+
+    def test_Data_Fall_2014_14_txt(self):
+        self.assertTrue(getOutput("Data_Fall_2014_14.txt") == getExpectedOutput("Data_Fall_2014_14.txt"))
+
+    def test_Data_Fall_2014_15_txt(self):
+        self.assertTrue(getOutput("Data_Fall_2014_15.txt") == getExpectedOutput("Data_Fall_2014_15.txt"))
+
+    def test_Data_Fall_2014_16_txt(self):
+        self.assertTrue(getOutput("Data_Fall_2014_16.txt") == getExpectedOutput("Data_Fall_2014_16.txt"))
+
+    def test_Data_Fall_2014_17_txt(self):
+        self.assertTrue(getOutput("Data_Fall_2014_17.txt") == getExpectedOutput("Data_Fall_2014_17.txt"))
+
+    def test_Data_Fall_2014_18_txt(self):
+        self.assertTrue(getOutput("Data_Fall_2014_18.txt") == getExpectedOutput("Data_Fall_2014_18.txt"))
+
+    def test_Data_Fall_2014_19_txt(self):
+        self.assertTrue(getOutput("Data_Fall_2014_19.txt") == getExpectedOutput("Data_Fall_2014_19.txt"))
+
+    def test_Data_Fall_2014_20_txt(self):
+        self.assertTrue(getOutput("Data_Fall_2014_20.txt") == getExpectedOutput("Data_Fall_2014_20.txt"))
+
+    def test_Data_Fall_2014_21_txt(self):
+        self.assertTrue(getOutput("Data_Fall_2014_21.txt") == getExpectedOutput("Data_Fall_2014_21.txt"))
+
+    def test_Data_Fall_2014_21_txt(self):
+        self.assertTrue(getOutput("Data_Fall_2014_21.txt") == getExpectedOutput("Data_Fall_2014_21.txt"))
+
+    def test_Data_Fall_2014_22_txt(self):
+        self.assertTrue(getOutput("Data_Fall_2014_22.txt") == getExpectedOutput("Data_Fall_2014_22.txt"))
+
+    def test_Data_Fall_2014_23_txt(self):
+        self.assertTrue(getOutput("Data_Fall_2014_23.txt") == getExpectedOutput("Data_Fall_2014_23.txt"))
+
+    def test_Data_Fall_2014_24_txt(self):
+        self.assertTrue(getOutput("Data_Fall_2014_24.txt") == getExpectedOutput("Data_Fall_2014_24.txt"))
+
+    def test_Data_Fall_2014_25_txt(self):
+        self.assertTrue(getOutput("Data_Fall_2014_25.txt") == getExpectedOutput("Data_Fall_2014_25.txt"))
+
+    def test_Data_Fall_2014_26_txt(self):
+        self.assertTrue(getOutput("Data_Fall_2014_26.txt") == getExpectedOutput("Data_Fall_2014_26.txt"))
+
+    def test_Data_Fall_2014_27_txt(self):
+        self.assertTrue(getOutput("Data_Fall_2014_27.txt") == getExpectedOutput("Data_Fall_2014_27.txt"))
+
+    def test_Data_Fall_2014_28_txt(self):
+        self.assertTrue(getOutput("Data_Fall_2014_28.txt") == getExpectedOutput("Data_Fall_2014_28.txt"))
+
+    def test_Data_Fall_2014_29_txt(self):
+        self.assertTrue(getOutput("Data_Fall_2014_29.txt") == getExpectedOutput("Data_Fall_2014_29.txt"))
+    
+    def test_Data_Fall_2014_30_txt(self):
+        self.assertTrue(getOutput("Data_Fall_2014_30.txt") == getExpectedOutput("Data_Fall_2014_30.txt"))
+
+    def test_Data_Fall_2014_31_txt(self):
+        self.assertTrue(getOutput("Data_Fall_2014_31.txt") == getExpectedOutput("Data_Fall_2014_31.txt"))
+
+    def test_Data_Fall_2014_32_txt(self):
+        self.assertTrue(getOutput("Data_Fall_2014_32.txt") == getExpectedOutput("Data_Fall_2014_32.txt"))
+
+    def test_Data_Fall_2014_33_txt(self):
+        self.assertTrue(getOutput("Data_Fall_2014_33.txt") == getExpectedOutput("Data_Fall_2014_33.txt"))
+
+    def test_Data_Fall_2014_34_txt(self):
+        self.assertTrue(getOutput("Data_Fall_2014_34.txt") == getExpectedOutput("Data_Fall_2014_34.txt"))
+
+    def test_Data_Fall_2014_35_txt(self):
+        self.assertTrue(getOutput("Data_Fall_2014_35.txt") == getExpectedOutput("Data_Fall_2014_35.txt"))
+
+    def test_Data_Fall_2014_36_txt(self):
+        self.assertTrue(getOutput("Data_Fall_2014_36.txt") == getExpectedOutput("Data_Fall_2014_36.txt"))
+
+    def test_Data_Fall_2014_37_txt(self):
+        self.assertTrue(getOutput("Data_Fall_2014_37.txt") == getExpectedOutput("Data_Fall_2014_37.txt"))
+
+    def test_Data_Fall_2014_38_txt(self):
+        self.assertTrue(getOutput("Data_Fall_2014_38.txt") == getExpectedOutput("Data_Fall_2014_38.txt"))
+
+    def test_Data_Fall_2014_39_txt(self):
+        self.assertTrue(getOutput("Data_Fall_2014_39.txt") == getExpectedOutput("Data_Fall_2014_39.txt"))
+    
+    def test_Data_Fall_2014_40_txt(self):
+        self.assertTrue(getOutput("Data_Fall_2014_40.txt") == getExpectedOutput("Data_Fall_2014_40.txt"))
+
+    def test_Data_Fall_2014_41_txt(self):
+        self.assertTrue(getOutput("Data_Fall_2014_41.txt") == getExpectedOutput("Data_Fall_2014_41.txt"))
+
+    def test_Data_Fall_2014_42_txt(self):
+        self.assertTrue(getOutput("Data_Fall_2014_42.txt") == getExpectedOutput("Data_Fall_2014_42.txt"))
+
+    def test_Data_Fall_2014_43_txt(self):
+        self.assertTrue(getOutput("Data_Fall_2014_43.txt") == getExpectedOutput("Data_Fall_2014_43.txt"))
+
+    def test_Data_Fall_2014_44_txt(self):
+        self.assertTrue(getOutput("Data_Fall_2014_44.txt") == getExpectedOutput("Data_Fall_2014_44.txt"))
+
+    def test_Data_Fall_2014_45_txt(self):
+        self.assertTrue(getOutput("Data_Fall_2014_45.txt") == getExpectedOutput("Data_Fall_2014_45.txt"))
+    
 
 suite = unittest.TestLoader().loadTestsFromTestCase(TestSequenceFunctions)
 unittest.TextTestRunner(verbosity=2).run(suite)

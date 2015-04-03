@@ -2,7 +2,7 @@
 
 cd ..
 
-for i  in $(seq 1 50); 
+for i  in $(seq 44 70); 
 do 
 	echo Data/Spring_2015_$i.txt
 	echo >> Scripts/aStar_spring2015_data.log

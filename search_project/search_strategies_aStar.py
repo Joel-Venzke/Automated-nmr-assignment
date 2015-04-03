@@ -54,7 +54,7 @@ def generate_placeholders(tile_set, characteristic, nmrClass):
 	if gap > 0:
 		for n in range(gap):
 			# print "making"
-			tile_set.append(Tile(-1, -1, -1, -1, nmrClass, heuristic=1.9)) # add place holder tiles to tile set
+			tile_set.append(Tile(-1, -1, -1, -1, nmrClass, heuristic=0)) # add place holder tiles to tile set
 	return tile_set
 
 
