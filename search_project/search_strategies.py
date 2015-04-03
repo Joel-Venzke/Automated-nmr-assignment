@@ -8,19 +8,6 @@ from weka.classifiers import Classifier
 import weka.core.jvm as jvm
 import weka.core.serialization as serialization
 
-"""
-groups tiles together if there error is low enough
-takes in a list of assigned tiles
-returns a list of tiles and grouped tiles
-"""
-def find_matches(tiles):
-	outputNode = tiles
-	# lots of work needed =================================================================================
-	# lots of work needed =================================================================================
-	# lots of work needed =================================================================================
-	# lots of work needed =================================================================================
-	return outputNode
-
 
 """
 Creates enough place holder tiles to do a full search
@@ -129,36 +116,13 @@ def output_soultion(finalNode, nodeCount):
 	print "Order Cost:  " + str(finalNode.get_order_cost())
 	print "Nodes: " + str(nodeCount)
 
-
-"""
-This search will select 20 random tiles to assign, run a uniform cost search and then group tiles until a final state is found
-Takes in a list of tiles 
-Returns a single tile that contains a lits of tiles
-"""
-def puzzle_building_search(allTiles):
-	while len(allTiles) > 1: # while we have more than one tile
-
-		# get up to 20 random tiles from the list
-		tempTileArray = []
-		if (len(allTiles)>20):
-			for i in xrange(20):
-				randomNum = random.ranint(0,len(allTiles)-1)
-				tempTileArray.append(allTiles.pop(randomNum))
-		else: 
-			tempTileArray = allTiles
-
-		# preform a uniform cost search
-		tempNode = Node(tempTileArray,[],0,[],0,0) # make a starting node for a uniform cost search
-		outputNode, count = uniform_cost(tempNode) # preform search
-
-		# group tiles together 
-		newList = find_matches(outputNode.placed_tiles)
-
-		# add tiles back onto the list of tiles
-		for i in len(newList):
-			allTiles.append(newList[i])
-	return allTiles[0]
-
+def puzzle_building_search(root):
+	#make this maintain the list of nodes being used to start and end the uniform cost search
+	# uniform cost search may want to have 3 variables: 
+	# one for the frontier (some changes will need to make this happen)
+	# one for the depth needed for termination of that layer of the search (the number I talked about in the meeting)
+	# one for the number of nodes to return at the completion of the search
+	return root
 
 """
 Reads in the data from the provided file
