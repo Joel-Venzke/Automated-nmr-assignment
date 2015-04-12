@@ -1,0 +1,282 @@
+\documentclass{beamer}
+
+\mode<presentation> {
+% Colors
+
+% \usetheme{default}
+% \usetheme{AnnArbor}
+% \usetheme{Antibes}
+% \usetheme{Bergen}
+% \usetheme{Berkeley}
+% \usetheme{Berlin}
+% \usetheme{Boadilla}
+% \usetheme{CambridgeUS}
+% \usetheme{Copenhagen}
+% \usetheme{Darmstadt}
+% \usetheme{Dresden}
+% \usetheme{Frankfurt}
+% \usetheme{Goettingen}
+\usetheme{Hannover}
+% \usetheme{Ilmenau}
+% \usetheme{JuanLesPins}
+% \usetheme{Luebeck}
+% \usetheme{Madrid}
+% \usetheme{Malmoe}
+% \usetheme{Marburg}
+% \usetheme{Montpellier}
+% \usetheme{PaloAlto}
+% \usetheme{Pittsburgh}
+% \usetheme{Rochester}
+% \usetheme{Singapore}
+% \usetheme{Szeged}
+% \usetheme{Warsaw}
+
+%Themes
+
+% \usecolortheme{albatross}
+% \usecolortheme{beaver}
+% \usecolortheme{beetle}
+% \usecolortheme{crane}
+% \usecolortheme{dolphin}
+% \usecolortheme{dove}
+% \usecolortheme{fly}
+% \usecolortheme{lily}
+% \usecolortheme{orchid}
+% \usecolortheme{rose}
+% \usecolortheme{seagull}
+\usecolortheme{seahorse}
+% \usecolortheme{whale}
+% \usecolortheme{wolverine}
+
+%\setbeamertemplate{footline} % To remove the footer line in all slides uncomment this line
+%\setbeamertemplate{footline}[page number] % To replace the footer line in all slides with a simple slide count uncomment this line
+
+\setbeamertemplate{navigation symbols}{} % To remove the navigation symbols from the bottom of all slides uncomment this line
+}
+\usepackage{tcolorbox}
+\usepackage{graphicx} % Allows including images
+\usepackage{booktabs} % Allows the use of \toprule, \midrule and \bottomrule in tables
+\usepackage{tikz}
+\usepackage{graphicx}
+\usepackage{epstopdf}
+\usepackage{amsmath} 
+\usetikzlibrary{intersections}
+\usetikzlibrary{circuits.ee.IEC}
+\usetikzlibrary{calc}
+\usetikzlibrary{shapes,arrows}
+%----------------------------------------------------------------------------------------
+%	TITLE PAGE
+%----------------------------------------------------------------------------------------
+\title[NMR Assignment with Machine Learning]{Utilizing Machine Learning to Accelerate Automated
+Assignment of Backbone NMR Data} % The short title appears at the bottom of every slide, the full title is only on the title page
+
+\author[J. Venzke \\D. Mascharka \\P. Johnson \\R. Davis \\K. Roth\\ L. Robison\\ T. Urness \\A. Kilpatrick]{Joel Venzke$^{12}$, David Mascharka$^{1}$, Paxten Johnson$^{12}$, Rachel Davis$^{1}$, Katherine Roth$^{1}$,  Leah Robison$^{1}$, Timothy Urness$^{1}$ and Adina Kilpatrick$^{2}$} % Your name
+\institute[Drake University] % Your institution as it will appear on the bottom of every slide, may be shorthand to save space
+{
+$^1$Department of Mathematics and Computer Science\\
+$^2$Department of Physics and Astronomy\\
+Drake University\\
+
+\medskip
+\textit{joel.venzke@drake.edu} % Your email address
+}
+\date{April 16, 2015} % Date, can be changed to a custom date
+
+\begin{document}
+
+\begin{frame}
+\titlepage % Print the title page as the first slide
+\end{frame}
+
+% =======================================================================
+% =======================================================================
+\begin{frame}
+\frametitle{Overview} % Table of contents slide, comment this block out to remove it
+\tableofcontents 
+\end{frame}
+
+\section{Background}
+\subsection{NMR} 
+\begin{frame}
+	\frametitle{Harvard University Conference}
+	\begin{itemize}
+		\item 1898
+		\item Say some things
+	\end{itemize}
+\end{frame}
+
+\subsection{Machine Learning} 
+\begin{frame}
+	\frametitle{Harvard University Conference}
+	\begin{itemize}
+		\item 1898
+		\item Say some things
+	\end{itemize}
+\end{frame}
+
+\section{Algorithm}
+\subsection{Overview} 
+\begin{frame}
+	\frametitle{Algorithmic Overview}
+	\begin{block}{Model Training}
+	\begin{itemize}
+		\item Preformed once during algorithm development
+		\item Provides model used in Preprocessing
+	\end{itemize}
+	\end{block}
+	\begin{block}{Preprocessing}
+	\begin{itemize}
+		\item Imports NMR data set
+		\item Filters NMR data using machine learning model
+	\end{itemize}
+	\end{block}
+	\begin{block}{The Search}
+	\begin{itemize}
+		\item Uses results from Preprocessing
+		\item Assigns NMR data set
+		\item Records results
+	\end{itemize}
+	\end{block}
+\end{frame}
+
+\subsection{Model Training} 
+\begin{frame}
+	\frametitle{Model Training}
+	\begin{block}{Training Data Set}
+		Biological Magnetic Resonance Bank (BMRB)
+		\begin{itemize}
+			\item 9,736 datasets containing chemical shifts for the $C_{\alpha}$ and $C_{\beta}$  resonances of 689,977 residues
+			\item Removing outliers leaves 681,363 pairs of $C_{\alpha}$ and $C_{\alpha}$
+			\begin{itemize}
+				\item 3 standard deviations from the mean
+				\item Avoids over-fitting
+				\item Improves algorithmic performance 
+			\end{itemize}
+		\end{itemize}
+	\end{block}
+	\begin{block}{Training the Model}
+		Preformed Once
+		\begin{itemize}
+			\item Time consuming task
+			\item Trained once, used many times
+		\end{itemize}
+		Models Trained
+		\begin{itemize}
+			\item DecisionTable, j.48, LMT
+		\end{itemize}
+	\end{block}
+\end{frame}
+
+
+\subsection{Preprocessing} 
+\begin{frame}
+	\frametitle{Reading Data}
+	\begin{minipage}{0.45\textwidth}
+		\begin{block}{Protein Sequence}
+			\begin{itemize}
+				\item Read in as letters
+				\item Converted to BMRB average values
+				\item Used for comparison in the search
+			\end{itemize}
+		\end{block}
+		\begin{block}{NMR Data Set}
+			\begin{itemize}
+				\item Read in $C_{\alpha}$, $C_{\beta}$ for Residue $i$ and $i-1$
+				\item Stored in Tile
+			\end{itemize}
+		\end{block}
+	\end{minipage}
+	\begin{minipage}{0.45\textwidth}
+	\begin{center}
+		\huge\textbf{Tile}\\
+		\vspace {12pt}
+		\includegraphics[width=\textwidth]{tile_fig}
+	\end{center}
+	\end{minipage}
+\end{frame}
+
+\begin{frame}
+	\frametitle{Confidence Level Calculation}
+	\begin{minipage}{0.45\textwidth}
+		\begin{block}{Machine Learning}
+			
+		\end{block}
+	\end{minipage}
+	\begin{minipage}{0.45\textwidth}
+	\begin{center}
+		\huge\textbf{Tile}\\
+		\vspace {12pt}
+		\includegraphics[width=\textwidth]{tile_fig}
+	\end{center}
+	\end{minipage}
+\end{frame}
+
+\begin{frame}
+	\frametitle{Missing Data}
+	\begin{minipage}{0.45\textwidth}
+		\begin{block}{Blank Tile Creation}
+			\begin{itemize}
+				\item Compare length of protein sequence to NMR Data set
+				\item Blank tiles are created to make up the gap
+			\end{itemize}
+		\end{block}
+		\begin{block}{Proline}
+			\begin{itemize}
+				\item Lacks H-N spin system
+				\item Does not produce $C_{\alpha}$, $C_{\beta}$ values
+				\item Protein sequence is examined
+				\item Special flags are set 
+			\end{itemize}
+		\end{block}
+	\end{minipage}
+	\begin{minipage}{0.45\textwidth}
+	\begin{center}
+		\huge\textbf{Blank Tile}\\
+		\vspace {12pt}
+		\includegraphics[width=\textwidth]{tile_fig_blank}
+	\end{center}
+	\end{minipage}
+\end{frame}
+
+\subsection{The Search} 
+\begin{frame}
+	\frametitle{Harvard University Conference}
+	\begin{itemize}
+		\item 1898
+		\item Say some things
+	\end{itemize}
+\end{frame}
+
+\section{Results}
+\begin{frame}
+	\frametitle{Machine Learning Algorithms}
+	\resizebox{!}{0.6\textwidth}{\input{ProFix_full.tex}}
+\end{frame}
+
+\begin{frame}
+	\frametitle{Proline Checking}
+	\resizebox{!}{0.6\textwidth}{\input{pro_compare.tex}}
+\end{frame}
+
+\section{Outlook}
+\begin{frame}
+	\frametitle{Future Research}
+	\begin{block}{Extend the Proline checking to other amino acids}
+	\end{block}
+
+	\begin{block}{Include a hysteric for assignment cost prediction}
+	\end{block}
+
+	\begin{block}{Assign subsets and combine to generate full assignments}
+	\end{block}
+\end{frame}
+
+\section{}
+\begin{frame}
+	\frametitle{Thank You} 
+	\begin{center}
+		
+	\end{center}
+\end{frame}
+
+\end{document}

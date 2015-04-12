@@ -10,8 +10,8 @@ set xlabel "Number of Amino Acids"
 set xrange [1:63]
 set output "ProFix_full.tex"
 plot "profix_no_filter.dat" u 1:2 t "No Filter" w l linewidth 3,\
-"profix_decisiontable_3sd.dat" u 1:2 t "Decisiontable" w l linewidth 3,\
-"profix_j48_3sd.dat" u 1:2 t "j48"  w l linewidth 3,\
+"profix_decisiontable_3sd.dat" u 1:2 t "DecisionTable" w l linewidth 3,\
+"profix_j48_3sd.dat" u 1:2 t "J4.8"  w l linewidth 3,\
 "profix_lmt_3sd.dat" u 1:2 t "LMT" w l linewidth 3
 #"aStar_profix_lmt_3sd.dat" u 1:2 t "A* LMT 3sd Pro fix" lt 7
 #"results_decitiontable_3sd.dat" u 1:2 t "DecisionTable"  lt 4,\
