@@ -28,6 +28,7 @@ class Tile(object):
         self.char_weight = .1
         self.order_weight = 1
         self.heuristic_cost = heuristic
+        self.heuristic_order_cost = 0
         self.amino_type = self.calculate_amino_type(model,pro)
 
 

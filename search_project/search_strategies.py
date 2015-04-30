@@ -104,8 +104,8 @@ take in a solution node and the number of nodes generated
 def output_soultion(finalNode, nodeCount):
 	# Uncomment to record results to data file for scripted runs
 	
-	# with open("../Results_Winter_2014-15/lmt_spring2015_data.dat", "a") as dataFile:
-	# 	dataFile.write(str(len(finalNode.characteristic)) + "\t" + str(nodeCount) + "\n")
+	with open("../Results_Winter_2014-15/spring_2k15_no_aStar.dat", "a") as dataFile:
+		dataFile.write(str(len(finalNode.characteristic)) + "\t" + str(nodeCount) + "\n")
 
 	#prints best solution to console
 	print "HERE IS THE BEST"
@@ -116,7 +116,7 @@ def output_soultion(finalNode, nodeCount):
 	print "Order Cost:  " + str(finalNode.get_order_cost())
 	print "Nodes: " + str(nodeCount)
 
-def puzzle_building_search(root):
+def puzzle_building_search(frontier, numSolutions, depthVal):
 	#make this maintain the list of nodes being used to start and end the uniform cost search
 	# uniform cost search may want to have 3 variables: 
 	# one for the frontier (some changes will need to make this happen)
@@ -184,10 +184,10 @@ def start_search(file_name, type):
 
 	# picks algorithm
 	if (int(type) == 0): # uniform cost search
-		best_solution, node_count = uniform_cost(root)
+		best_solution, node_count = uniform_cost([root])
 		output_soultion(best_solution, node_count)
 	elif (int(type) == 1): # puzzle building
-		best_solution = puzzle_building_search(root)
+		best_solution = puzzle_building_search([root])
 
 
 """
@@ -195,13 +195,13 @@ preforms a uniform cost search on a node
 takes in a starting node for the search 
 returns the best solution
 """
-def uniform_cost(root):
-	frontier = [root] # holds list of node that need exploring
-	lowest = 1.0
-	for i in range(len(root.unplaced_tiles)):
-		if (root.unplaced_tiles[i].amino_type[root.characteristic[i][2]] < lowest):
-			lowest = root.unplaced_tiles[i].amino_type[root.characteristic[i][2]]
-	print lowest
+def uniform_cost(frontier):
+	# frontier = [root] # holds list of node that need exploring
+	# lowest = 1.0
+	# for i in range(len(root.unplaced_tiles)):
+	# 	if (root.unplaced_tiles[i].amino_type[root.characteristic[i][2]] < lowest):
+	# 		lowest = root.unplaced_tiles[i].amino_type[root.characteristic[i][2]]
+	# print lowest
 
 	node_count = 1
 	best_solution = None

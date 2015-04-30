@@ -64,6 +64,16 @@
 \usetikzlibrary{circuits.ee.IEC}
 \usetikzlibrary{calc}
 \usetikzlibrary{shapes,arrows}
+\usepackage{graphicx} % Allows including images
+\usepackage{booktabs} % Allows the use of \toprule, \midrule and \bottomrule in tables
+\usepackage{tikz}
+\usepackage{multicol}
+\usepackage[american]{babel}
+\usepackage[babel]{csquotes}
+\usepackage[natbib,isbn=false,backend=biber]{biblatex-chicago} \setbeamertemplate{bibliography item}{}
+\addbibresource{citations.bib}
+\let\oldfootnotesize\footnotesize
+\renewcommand*{\footnotesize}{\oldfootnotesize\tiny}
 %----------------------------------------------------------------------------------------
 %	TITLE PAGE
 %----------------------------------------------------------------------------------------
@@ -96,54 +106,137 @@ Drake University\\
 \end{frame}
 
 \section{Background}
-\subsection{NMR} 
+\subsection[NMR]{Nuclear Magnetic Resonance (NMR)} 
 \begin{frame}
-	\frametitle{Harvard University Conference}
-	\begin{itemize}
-		\item 1898
-		\item Say some things
-	\end{itemize}
+	\frametitle{Motivations}
+	\begin{block} {Nuclear Magnetic Resonance Spectroscopy}
+		\begin{itemize}
+			\item Gain knowledge about protein structure
+			\item Study how mutations lead to diseases
+		\end{itemize}
+	\end{block}
+		\vspace{-10pt}
+	\begin{block}{Problems}
+		\begin{itemize}
+			\item Generates large amounts of data
+			\item Data analysis is slow and error prone 
+			\item Takes a few days to months to assign manually\autocite{aria}
+		\end{itemize}
+	\end{block}
+	\vspace{-10pt}
+	\begin{block}{Goal}
+		\begin{itemize}
+			\item Automate the assignment process
+			\item Decrease human error
+			\item Increase productivity
+		\end{itemize}
+	\end{block}
+\end{frame}
+
+\begin{frame}
+	\frametitle{NMR Experiments}
+	\begin{block}{NMR Data Sets}
+		\begin{itemize}
+			\item Produces data corresponding to structure
+		\end{itemize}
+	\end{block}
+	\begin{block}{HNCACB experiment}
+		\begin{itemize}
+			\item Generates $C_\alpha$ and $C_{\beta}$ residue $i$ and $i-1$
+		\end{itemize}
+	\end{block}
+	\begin{block}{CBCA(CO) NH experiment\autocite{aria}}
+		\begin{itemize}
+			\item Generates $C_\alpha$ and $C_{\beta}$ for residue $i$
+			\item Confirms residue data
+		\end{itemize}
+	\end{block}
 \end{frame}
 
 \subsection{Machine Learning} 
 \begin{frame}
-	\frametitle{Harvard University Conference}
-	\begin{itemize}
-		\item 1898
-		\item Say some things
-	\end{itemize}
+	\frametitle{Machine Learning}
+	\begin{block}{Overview}
+		\begin{itemize}
+			\item Generalize large amounts of data
+			\item Predicts a label based on attributes
+			\item Many different algorithms exist
+		\end{itemize}
+	\end{block}
+	\begin{block}{Supervised vs Unsupervised Learning}
+		\begin{itemize}
+			\item Supervised
+			\begin{itemize}
+				\item Given large amounts of labeled data
+				\item Classifies data based on attributes
+			\end{itemize}
+
+			\item Unsupervised
+			\begin{itemize}
+				\item Given large amounts of unlabeled data
+				\item Looks for patterns
+			\end{itemize}
+		\end{itemize}
+	\end{block}
 \end{frame}
 
+\begin{frame}
+	\frametitle{Machine Learning Algorithms}
+		\begin{block}{J4.8 \autocite{j48_algorithm}}
+
+			\begin{itemize}
+				\item Decision tree model
+				\item Splits by a single attribute
+			\end{itemize}
+		\end{block}
+
+		\vspace{-10pt}
+		\begin{block}{Logistic Model Tree (LMT) \autocite{lmt_algorithm}}
+
+			\begin{itemize}
+				\item Decision tree model
+				\item Splits by linear regression of attribute
+			\end{itemize}
+		\end{block}
+
+		\vspace{-10pt}
+		\begin{block}{Decision Table \autocite{decisiontable_algorithm}}
+
+			\begin{itemize}
+				\item Set of labeled data is searched
+				\item Majority match is used
+			\end{itemize}
+		\end{block}
+\end{frame}
 \section{Algorithm}
 \subsection{Overview} 
 \begin{frame}
 	\frametitle{Algorithmic Overview}
 	\begin{block}{Model Training}
-	\begin{itemize}
-		\item Preformed once during algorithm development
-		\item Provides model used in Preprocessing
-	\end{itemize}
+	% \begin{itemize}
+	% 	\item Performed once during algorithm development
+	% 	\item Provides model used in Preprocessing
+	% \end{itemize}
 	\end{block}
 	\begin{block}{Preprocessing}
-	\begin{itemize}
-		\item Imports NMR data set
-		\item Filters NMR data using machine learning model
-	\end{itemize}
+	% \begin{itemize}
+	% 	\item Imports NMR data set
+	% 	\item Filters NMR data using machine learning model
+	% \end{itemize}
 	\end{block}
 	\begin{block}{The Search}
-	\begin{itemize}
-		\item Uses results from Preprocessing
-		\item Assigns NMR data set
-		\item Records results
-	\end{itemize}
+	% \begin{itemize}
+	% 	\item Uses results from Preprocessing
+	% 	\item Assigns NMR data set
+	% 	\item Records results
+	% \end{itemize}
 	\end{block}
 \end{frame}
 
 \subsection{Model Training} 
 \begin{frame}
 	\frametitle{Model Training}
-	\begin{block}{Training Data Set}
-		Biological Magnetic Resonance Bank (BMRB)
+	\begin{block}{Biological Magnetic Resonance Bank (BMRB) \autocite{biomagresbank}}
 		\begin{itemize}
 			\item 9,736 datasets containing chemical shifts for the $C_{\alpha}$ and $C_{\beta}$  resonances of 689,977 residues
 			\item Removing outliers leaves 681,363 pairs of $C_{\alpha}$ and $C_{\alpha}$
@@ -154,19 +247,22 @@ Drake University\\
 			\end{itemize}
 		\end{itemize}
 	\end{block}
+\end{frame}
+
+\begin{frame}
+	\frametitle{Model Training}
 	\begin{block}{Training the Model}
-		Preformed Once
+		Performed Once
 		\begin{itemize}
 			\item Time consuming task
 			\item Trained once, used many times
 		\end{itemize}
 		Models Trained
 		\begin{itemize}
-			\item DecisionTable, j.48, LMT
+			\item DecisionTable, J4.8, LMT
 		\end{itemize}
 	\end{block}
 \end{frame}
-
 
 \subsection{Preprocessing} 
 \begin{frame}
@@ -186,11 +282,15 @@ Drake University\\
 			\end{itemize}
 		\end{block}
 	\end{minipage}
+	\begin{minipage}{0.15\textwidth}
+
+	
+	\end{minipage}
 	\begin{minipage}{0.45\textwidth}
 	\begin{center}
 		\huge\textbf{Tile}\\
 		\vspace {12pt}
-		\includegraphics[width=\textwidth]{tile_fig}
+		\includegraphics[width=\textwidth]{tile_fig_no_conf}
 	\end{center}
 	\end{minipage}
 \end{frame}
@@ -199,8 +299,24 @@ Drake University\\
 	\frametitle{Confidence Level Calculation}
 	\begin{minipage}{0.45\textwidth}
 		\begin{block}{Machine Learning}
-			
+			\begin{itemize}
+				\item Input
+				\begin{itemize}
+					\item $C_{\alpha}$, $C_{\beta}$ values for residue $i$
+				\end{itemize}
+				\item Output
+				\begin{itemize}
+					\item Confidence levels for each of the 20 amino acids
+					\item $P_1, P_2, \cdots, P_{19},P_{20}$
+					\item Confidence levels are on a scale from 0.0-1.0
+					\item 1.0 being a prefect match
+				\end{itemize}
+			\end{itemize}
 		\end{block}
+	\end{minipage}
+	\begin{minipage}{0.15\textwidth}
+
+	
 	\end{minipage}
 	\begin{minipage}{0.45\textwidth}
 	\begin{center}
@@ -229,6 +345,10 @@ Drake University\\
 			\end{itemize}
 		\end{block}
 	\end{minipage}
+	\begin{minipage}{0.15\textwidth}
+
+
+	\end{minipage}
 	\begin{minipage}{0.45\textwidth}
 	\begin{center}
 		\huge\textbf{Blank Tile}\\
@@ -240,22 +360,122 @@ Drake University\\
 
 \subsection{The Search} 
 \begin{frame}
-	\frametitle{Harvard University Conference}
-	\begin{itemize}
-		\item 1898
-		\item Say some things
-	\end{itemize}
+	\frametitle{First Tile}
+	\vspace{-.5cm}
+	\center
+	\includegraphics[width=.9\textwidth]{tilePlacement/step1}
 \end{frame}
 
-\section{Results}
+
 \begin{frame}
-	\frametitle{Machine Learning Algorithms}
-	\resizebox{!}{0.6\textwidth}{\input{ProFix_full.tex}}
+	\frametitle{First Tile}
+	\vspace{-.5cm}
+	\center
+	\includegraphics[width=.9\textwidth]{tilePlacement/step2}
+\end{frame}
+
+\begin{frame}
+	\frametitle{Cost Calculation}
+	\begin{itemize}
+		\item Accuracy matching the protein chain residue
+		\vspace{12pt}
+		\item Accuracy matching the tile above current tile
+		\vspace{12pt}
+		\item Cost of placing all previous tiles
+	\end{itemize}
+	\center
+	\includegraphics[width=.6\textwidth]{tilePlacement/step3}
+\end{frame}
+
+\begin{frame}
+	\frametitle{Node Generation}
+	\vspace{-.5cm}
+	\center
+	\includegraphics[width=.9\textwidth]{tilePlacement/step3}
+\end{frame}
+
+\begin{frame}
+	\frametitle{Node Generation}
+	\vspace{-.5cm}
+	\center
+	\includegraphics[width=.9\textwidth]{tilePlacement/step4}
+\end{frame}
+
+\begin{frame}
+	\frametitle{Node Generation} 
+	\vspace{-.5cm}
+	\center
+	\includegraphics[width=.9\textwidth]{tilePlacement/step5}
+\end{frame}
+
+\begin{frame}
+	\frametitle{Node Generation} 
+	\vspace{-.5cm} 
+	\center
+	\includegraphics[width=.9\textwidth]{tilePlacement/step6}
 \end{frame}
 
 \begin{frame}
 	\frametitle{Proline Checking}
-	\resizebox{!}{0.6\textwidth}{\input{pro_compare.tex}}
+	\vspace{-.5cm} 
+	\center
+	\includegraphics[width=.9\textwidth]{tilePlacement/step7}
+\end{frame}
+
+\begin{frame}
+	\frametitle{Proline Checking}
+	\vspace{-.5cm} 
+	\center
+	\includegraphics[width=.9\textwidth]{tilePlacement/step8}
+\end{frame}
+
+\begin{frame}
+	\frametitle{Node Generation}
+	\vspace{-.5cm} 
+	\center
+	\includegraphics[width=.9\textwidth]{tilePlacement/step9}
+\end{frame}
+
+\begin{frame}
+	\frametitle{Node Generation}
+	\vspace{-.5cm} 
+	\center
+	\includegraphics[width=.9\textwidth]{tilePlacement/step10}
+\end{frame}
+
+\begin{frame}
+	\frametitle{Finished Assignment}
+	\vspace{-.5cm} 
+	\center
+	\includegraphics[width=.9\textwidth]{tilePlacement/step11}
+\end{frame}
+
+
+\section{Results}
+\begin{frame}
+	\frametitle{Algorithm Performance}
+	\begin{block}{Correct Assignments}
+	\begin{itemize}
+		\item Assigned a protein sequence of length 62 in approximately 40 minutes
+		\item Major progress in time of assignment
+	\end{itemize}
+	\end{block}
+	\begin{block}{Protein used}
+	\begin{itemize}
+		\item C-terminal domain of the Tfg1 subunit of the yeast transcription factor TFIIF\autocite{kilpatrick}
+	\end{itemize}
+		
+	\end{block}
+\end{frame}
+
+\begin{frame}
+	\frametitle{Machine Learning Algorithms}
+	\resizebox{!}{0.7\textwidth}{\input{ProFix_full.tex}}
+\end{frame}
+
+\begin{frame}
+	\frametitle{Proline Checking}
+	\resizebox{!}{0.7\textwidth}{\input{pro_compare.tex}}
 \end{frame}
 
 \section{Outlook}
@@ -264,7 +484,7 @@ Drake University\\
 	\begin{block}{Extend the Proline checking to other amino acids}
 	\end{block}
 
-	\begin{block}{Include a hysteric for assignment cost prediction}
+	\begin{block}{Include a heuristic for assignment cost prediction}
 	\end{block}
 
 	\begin{block}{Assign subsets and combine to generate full assignments}
@@ -273,10 +493,44 @@ Drake University\\
 
 \section{}
 \begin{frame}
+	\frametitle{Acknowledgments}
+		\begin{block} {John Emmons}
+		\end{block}
+		\begin{block} {Mentors}
+		\begin{multicols}{2}
+		\begin{itemize}
+			\item Adina Kilpatrick
+			\item Timothy Urness
+		\end{itemize}
+		\end{multicols}
+		\end{block}
+		\begin{block} {Research team}
+		\begin{multicols}{2}
+		\begin{itemize}
+			\item David Mascharka
+			\item Paxten Johnson
+			\item Rachel Davis
+			\item Katherine Roth
+			\item Leah Robison
+		\end{itemize}
+		\end{multicols}
+		\end{block}
+		\begin{block} {Drake University}
+		\end{block}
+		\begin{block} {DUCURS}
+		\end{block}
+\end{frame}
+
+\begin{frame}[t,allowframebreaks]
+  \frametitle{References}
+  \printbibliography
+\end{frame}
+
+\begin{frame}
 	\frametitle{Thank You} 
-	\begin{center}
-		
-	\end{center}
+	\begin{block}
+		{\huge Questions?}
+	\end{block}
 \end{frame}
 
 \end{document}

@@ -71,7 +71,10 @@ class Node(object):
 					temp_order_cost = self.placed_tiles[-1].compare_below(placed_tile)
 				else: # first tile being placed 
 					temp_char_cost = placed_tile.get_error(self.characteristic[char_num])
-					temp_order_cost = 0 # no before it to compare to
+
+					# makes sure the heuristic cost for placing a tile in front of the first tile is not considered 
+					temp_order_cost = -1*placed_tile.heuristic_order_cost 
+					
 				c = temp_order_cost + temp_char_cost - placed_tile.heuristic_cost
 
 				# add child node to list of new_nodes

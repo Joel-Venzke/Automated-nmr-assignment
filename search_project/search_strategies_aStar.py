@@ -8,21 +8,39 @@ from weka.classifiers import Classifier
 import weka.core.jvm as jvm
 import weka.core.serialization as serialization
 import time
+from heapq import *
 
 """
 calculates and stores heuristic values for 
-all tiles with data
+all tiles with data compared with the characteristic 
+protein sequence
 """
-def calculate_heuristic(tile_set, characteristic):
+def calculate_char_heuristic(tile_set, characteristic):
 	temp = 0
-	greatest = 0
+	lowest = float("inf")
 	for tile in tile_set:
 		for char in characteristic:
 			temp = tile.get_error(char)
-			if (temp>greatest):
-				greatest = temp
-		tile.heuristic_cost = temp
+			if (temp<lowest):
+				lowest = temp
+		tile.heuristic_cost = lowest
 
+"""
+calculates and stores heuristic values for 
+all tiles with data compared with all other 
+tiles
+"""
+def calculate_order_heuristic(tile_set):
+	temp = 0
+	for tile in tile_set:
+		lowest = float("inf")
+		for tile_comp in tile_set:
+			temp = tile_comp.compare_below(tile)
+			if (temp<lowest):
+				lowest = temp
+		tile.heuristic_cost = lowest
+		# print lowest
+		tile.heuristic_order_cost = lowest #save to remove when the first tile is placed
 
 """
 Creates enough place holder tiles to do a full search
@@ -41,7 +59,7 @@ def generate_placeholders(tile_set, characteristic, nmrClass):
 	if gap > 0:
 		for n in range(gap):
 			# print "making"
-			tile_set.append(Tile(-1, -1, -1, -1, nmrClass, heuristic=0)) # add place holder tiles to tile set
+			tile_set.append(Tile(-1, -1, -1, -1, nmrClass, heuristic=1.9)) # add place holder tiles to tile set
 	return tile_set
 
 
@@ -113,6 +131,10 @@ def letters_to_numbers(characteristic):
 	return new_characteristic
 
 
+def listToHeap(data):
+	for i in xrange(len(data)):
+		data[i] = (data[i].get_cost(), data[i])
+	heapify(data)
 """
 prints results to console
 take in a solution node and the number of nodes generated
@@ -120,8 +142,8 @@ take in a solution node and the number of nodes generated
 def output_soultion(finalNode, nodeCount):
 	# Uncomment to record results to data file for scripted runs
 	
-	with open("../Results_Winter_2014-15/aStar_spring2015_data.dat", "a") as dataFile:
-		dataFile.write(str(len(finalNode.characteristic)) + "\t" + str(nodeCount) + "\n")
+	# with open("../Results_Winter_2014-15/spring2k15_missing.dat", "a") as dataFile:
+	# 	dataFile.write(str(len(finalNode.characteristic)) + "\t" + str(nodeCount) + "\n")
 
 	#prints best solution to console
 	print "HERE IS THE BEST"
@@ -202,9 +224,10 @@ outputs results to console
 def start_search(file_name, type):
 	start = time.clock()
 	tile_set, characteristic, nmrClass = read_file(file_name) # gets data from file
-	calculate_heuristic(tile_set, characteristic)
+	calculate_char_heuristic(tile_set, characteristic)
 	tile_set = generate_placeholders(tile_set, characteristic, nmrClass) # gets place holder tiles
 	jvm.stop()
+	calculate_order_heuristic(tile_set)
 	heuristic_val = 0
 	for tile in tile_set:
 		heuristic_val += tile.heuristic_cost
@@ -225,14 +248,18 @@ preforms a uniform cost search on a node
 takes in a starting node for the search 
 returns the best solution
 """
+# @profile
 def uniform_cost(root):
 	frontier = [root] # holds list of node that need exploring
-	lowest = 1.0
-	for i in range(len(root.unplaced_tiles)):
-		if (root.unplaced_tiles[i].amino_type[root.characteristic[i][2]] < lowest):
-			lowest = root.unplaced_tiles[i].amino_type[root.characteristic[i][2]]
-	print "lowest cutoff: " + str(lowest)
+	# # the following code is for setting up new machine learning models
+	# # if the is your goal, uncomment this and talk to Joel Venzke on how to use it
+	# lowest = 1.0
+	# for i in range(len(root.unplaced_tiles)):
+	# 	if (root.unplaced_tiles[i].amino_type[root.characteristic[i][2]] < lowest):
+	# 		lowest = root.unplaced_tiles[i].amino_type[root.characteristic[i][2]]
+	# print "lowest cutoff: " + str(lowest)
 
+	listToHeap(frontier)
 	node_count = 1
 	best_solution = None
 	best_cost = float("inf") 
@@ -240,15 +267,9 @@ def uniform_cost(root):
 
 	while keep_running: # loop till the best solution has been found
 
-		# find the lowest cost node in the frontier
-		current_cost = float("inf")
-		best_node = None
-		for i in xrange(len(frontier)):
-			if (frontier[i].get_cost() < current_cost):
-				current_cost = frontier[i].get_cost()
-				best_node = i
-		current_node = frontier.pop(best_node) #removes best node in frontier, stores in current_node
-		
+		# Get best node to start loop
+		current_node = heappop(frontier)[1] 
+
 		# checks if a new best solution has been found
 		# if it has the solution is stored
 		if (current_node.is_goal() and current_node.get_cost() < best_cost):
@@ -260,14 +281,14 @@ def uniform_cost(root):
 		child_nodes = current_node.expand()
 		node_count = node_count + len(child_nodes)
 		for c_n in child_nodes:
-			frontier.insert(0, c_n)
+			heappush(frontier, (c_n.get_cost(),c_n))
 
 		# checks to see if the best solution is the true best solution
+		# and if there are any other solutions left to explore
 		# restarts loop if the best solution is not proven optimal
 		keep_running = False
-		for i in xrange(len(frontier)):
-		    if (keep_running==False and frontier[i].get_cost() < best_cost):
-		        keep_running = True 
+		if (frontier and frontier[0][0] < best_cost):
+			keep_running = True 
 
 	# returns best solution and number of nodes generated
 	return best_solution, node_count
