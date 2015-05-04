@@ -130,11 +130,16 @@ def letters_to_numbers(characteristic):
 		new_characteristic.append(temp)
 	return new_characteristic
 
-
+"""
+Take in a list of Nodes and converts it to a 
+heap with the cost of a node being the value
+used to create the heap
+"""
 def listToHeap(data):
 	for i in xrange(len(data)):
 		data[i] = (data[i].get_cost(), data[i])
 	heapify(data)
+
 """
 prints results to console
 take in a solution node and the number of nodes generated
@@ -160,13 +165,13 @@ This search will select 20 random tiles to assign, run a uniform cost search and
 Takes in a list of tiles 
 Returns a single tile that contains a lits of tiles
 """
-def puzzle_building_search(allTiles):
+def puzzle_building_search(frontier, numSolutions, depthVal):
 	#make this maintain the list of nodes being used to start and end the uniform cost search
 	# uniform cost search may want to have 3 variables: 
 	# one for the frontier (some changes will need to make this happen)
 	# one for the depth needed for termination of that layer of the search (the number I talked about in the meeting)
 	# one for the number of nodes to return at the completion of the search
-	return allTiles[0]
+	return frontier
 
 
 """
@@ -237,10 +242,10 @@ def start_search(file_name, type):
 	print "Preprocessing Time:  " + str(end-start)
 	# picks algorithm
 	if (int(type) == 0): # uniform cost search
-		best_solution, node_count = uniform_cost(root)
+		best_solution, node_count = aStar([root])
 		output_soultion(best_solution, node_count)
 	elif (int(type) == 1): # puzzle building
-		best_solution = puzzle_building_search(root)
+		best_solution = puzzle_building_search([root])
 
 
 """
@@ -249,8 +254,8 @@ takes in a starting node for the search
 returns the best solution
 """
 # @profile
-def uniform_cost(root):
-	frontier = [root] # holds list of node that need exploring
+def aStar(frontier):
+	# frontier = [root] # holds list of node that need exploring
 	# # the following code is for setting up new machine learning models
 	# # if the is your goal, uncomment this and talk to Joel Venzke on how to use it
 	# lowest = 1.0

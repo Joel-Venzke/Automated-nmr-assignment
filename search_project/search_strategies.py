@@ -7,6 +7,7 @@ from weka.core.converters import Loader
 from weka.classifiers import Classifier
 import weka.core.jvm as jvm
 import weka.core.serialization as serialization
+from heapq import *
 
 
 """
@@ -96,6 +97,15 @@ def letters_to_numbers(characteristic):
 		new_characteristic.append(temp)
 	return new_characteristic
 
+"""
+Take in a list of Nodes and converts it to a 
+heap with the cost of a node being the value
+used to create the heap
+"""
+def listToHeap(data):
+	for i in xrange(len(data)):
+		data[i] = (data[i].get_cost(), data[i])
+	heapify(data)
 
 """
 prints results to console
@@ -104,8 +114,8 @@ take in a solution node and the number of nodes generated
 def output_soultion(finalNode, nodeCount):
 	# Uncomment to record results to data file for scripted runs
 	
-	with open("../Results_Winter_2014-15/spring_2k15_no_aStar.dat", "a") as dataFile:
-		dataFile.write(str(len(finalNode.characteristic)) + "\t" + str(nodeCount) + "\n")
+	# with open("../Results_Winter_2014-15/spring_2k15_no_aStar.dat", "a") as dataFile:
+	# 	dataFile.write(str(len(finalNode.characteristic)) + "\t" + str(nodeCount) + "\n")
 
 	#prints best solution to console
 	print "HERE IS THE BEST"
@@ -122,7 +132,7 @@ def puzzle_building_search(frontier, numSolutions, depthVal):
 	# one for the frontier (some changes will need to make this happen)
 	# one for the depth needed for termination of that layer of the search (the number I talked about in the meeting)
 	# one for the number of nodes to return at the completion of the search
-	return root
+	return frontier
 
 """
 Reads in the data from the provided file
@@ -203,6 +213,7 @@ def uniform_cost(frontier):
 	# 		lowest = root.unplaced_tiles[i].amino_type[root.characteristic[i][2]]
 	# print lowest
 
+	listToHeap(frontier)
 	node_count = 1
 	best_solution = None
 	best_cost = float("inf") 
@@ -211,13 +222,7 @@ def uniform_cost(frontier):
 	while keep_running: # loop till the best solution has been found
 
 		# find the lowest cost node in the frontier
-		current_cost = float("inf")
-		best_node = None
-		for i in xrange(len(frontier)):
-			if (frontier[i].get_cost() < current_cost):
-				current_cost = frontier[i].get_cost()
-				best_node = i
-		current_node = frontier.pop(best_node) #removes best node in frontier, stores in current_node
+		current_node = heappop(frontier)[1] 
 		
 		# checks if a new best solution has been found
 		# if it has the solution is stored
@@ -230,14 +235,13 @@ def uniform_cost(frontier):
 		child_nodes = current_node.expand()
 		node_count = node_count + len(child_nodes)
 		for c_n in child_nodes:
-			frontier.insert(0, c_n)
+			heappush(frontier, (c_n.get_cost(),c_n))
 
 		# checks to see if the best solution is the true best solution
 		# restarts loop if the best solution is not proven optimal
 		keep_running = False
-		for i in xrange(len(frontier)):
-		    if (keep_running==False and frontier[i].get_cost() < best_cost):
-		        keep_running = True 
+		if (frontier and frontier[0][0] < best_cost):
+			keep_running = True 
 
 	# returns best solution and number of nodes generated
 	return best_solution, node_count
