@@ -283,10 +283,8 @@ def aStar(frontier):
 
 		# creates child_nodes to search 
 		# adds child_nodes to frontier
-		child_nodes = current_node.expand()
-		node_count = node_count + len(child_nodes)
-		for c_n in child_nodes:
-			heappush(frontier, (c_n.get_cost(),c_n))
+		current_node.expand(frontier,node_count)
+		
 
 		# checks to see if the best solution is the true best solution
 		# and if there are any other solutions left to explore

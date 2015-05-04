@@ -1,4 +1,6 @@
 #!/usr/bin/python
+from heapq import *
+
 
 """
 A node contains a state in the search tree
@@ -39,7 +41,8 @@ class Node(object):
 	Creates children nodes of the current node
 	returns a list of child nodes
 	"""
-	def expand(self):
+	@profile
+	def expand(self,frontier,node_count):
 		new_nodes = []
 		char_num = len(self.placed_tiles) # location in the protein sequence
 
@@ -56,7 +59,10 @@ class Node(object):
 				temp_pt.append(placed_tile)
 
 				# add child node to list of new_nodes
-				new_nodes.append(Node(temp_ut, temp_pt, self.cost, self.characteristic, self.char_cost, self.order_cost, heuristic=self.heuristic_cost))
+				c_n = Node(temp_ut, temp_pt, self.cost, self.characteristic, 
+							self.char_cost, self.order_cost, heuristic=self.heuristic_cost)
+				heappush(frontier, (c_n.get_cost(),c_n))
+				node_count+=1
 
 			elif(amino_type_list[amino_Idx] > 0.004):
 				# copy unplaced and placed tile lists, remove tile from list and add it to the placed tile list
@@ -78,8 +84,12 @@ class Node(object):
 				c = temp_order_cost + temp_char_cost - placed_tile.heuristic_cost
 
 				# add child node to list of new_nodes
-				new_nodes.append(Node(temp_ut, temp_pt, self.cost + c, self.characteristic,self.char_cost+temp_char_cost, self.order_cost+temp_order_cost,heuristic=self.heuristic_cost-placed_tile.heuristic_cost))
-		return new_nodes
+				c_n = Node(temp_ut, temp_pt, self.cost + c, self.characteristic,
+						self.char_cost+temp_char_cost, self.order_cost+temp_order_cost,
+						heuristic=self.heuristic_cost-placed_tile.heuristic_cost)
+				heappush(frontier, (c_n.get_cost(),c_n))
+				node_count+=1
+
 		
 	"""
 	returns the cost when compared to the characteristic
