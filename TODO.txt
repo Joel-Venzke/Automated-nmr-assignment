@@ -1,15 +1,31 @@
-give all tiles, assign 20 then restart at 20
-
-Clean up code (remove things that are no longer used, get rid of old incomplete puzzle building implementation)
+puzzle building
+	give all tiles, assign 20 then restart at 20
+	return more than one assignment until the end 
+		could be a function of the size of the fronter (say 10%)
+		or it could be a fixed number
+		play around with it and see what works
 
 include new data in the unit test
-
-(needs checking) *implemented but heuristic could be better* A* stuff 
+	won't take long but we should do it for the spring data set from 1 to about 25 (runtime dependent)
 
 More filtering (try new models, work on settings of current models) (spend some time with neural nets and see if we can beat LMT)
 
 machine learning for cost calculation (is this possible? maybe come up with better way to calculate it, take care of missing data issues)
 
-(needs checking) *implemented* Pro case (loop through all tiles, count pro, make special place holder tiles, check in search) 
+better command line tools (look into optparse)
+	do this in the search_project file
+	build in defaults and checks accordingly
 
-heapq for the frontier data structure
+Find out if you can use pointers in python
+	much of the time in the search is waiting for the os to allocate space for the nodes
+	if possible, change the lists of tiles into pointers to the same set of tiles
+		also do this with the characteristic protein sequence
+	if not, consider a rewrite in c++
+
+Look into threading the node generation or using mpi
+	this way we can expand the top 4 or so nodes at the same time
+	It might not work since nodes are memory/os limited (pointers will help)
+
+use kernprof to run line by line profiles
+	find the lines that take the most time, and see how we can speed those up
+	they will most likely be in the Node.expand() function

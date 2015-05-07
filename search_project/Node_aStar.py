@@ -41,18 +41,22 @@ class Node(object):
 	Creates children nodes of the current node
 	returns a list of child nodes
 	"""
-	@profile
-	def expand(self,frontier,node_count):
+	# @profile
+	def expand(self,frontier):
 		new_nodes = []
 		char_num = len(self.placed_tiles) # location in the protein sequence
-
+		node_count=0
 		# loop through all tiles that have not been placed
 		for i in range(len(self.unplaced_tiles)):
 
 			# check to see if current tile can be placed in this location
-			amino_type_list = self.unplaced_tiles[i].get_amino_type()
-			amino_Idx = self.characteristic[char_num][2]
-			if(amino_type_list[amino_Idx]==2.0):
+			unplaced_tile = self.unplaced_tiles[i] # 
+			amino_Idx = self.characteristic[char_num][2] # get index of the correct amino acid type
+			
+			# check for proline 
+			# all non proline values will have amino_type values between 0 and 1
+			if(unplaced_tile.amino_type[amino_Idx]==2.0): 
+				# copy unplaced and placed tile lists, remove tile from list and add it to the placed tile list
 				temp_ut = list(self.unplaced_tiles) 
 				placed_tile = temp_ut.pop(i) 
 				temp_pt = list(self.placed_tiles) 
@@ -61,10 +65,11 @@ class Node(object):
 				# add child node to list of new_nodes
 				c_n = Node(temp_ut, temp_pt, self.cost, self.characteristic, 
 							self.char_cost, self.order_cost, heuristic=self.heuristic_cost)
-				heappush(frontier, (c_n.get_cost(),c_n))
+				heappush(frontier, (c_n.cost,c_n))
 				node_count+=1
+				break # only need to add one proline, all other tiles are overkill
 
-			elif(amino_type_list[amino_Idx] > 0.004):
+			elif(unplaced_tile.amino_type[amino_Idx] > 0.004): # not a proline and has a good match
 				# copy unplaced and placed tile lists, remove tile from list and add it to the placed tile list
 				temp_ut = list(self.unplaced_tiles) 
 				placed_tile = temp_ut.pop(i) 
@@ -87,27 +92,9 @@ class Node(object):
 				c_n = Node(temp_ut, temp_pt, self.cost + c, self.characteristic,
 						self.char_cost+temp_char_cost, self.order_cost+temp_order_cost,
 						heuristic=self.heuristic_cost-placed_tile.heuristic_cost)
-				heappush(frontier, (c_n.get_cost(),c_n))
+				heappush(frontier, (c_n.cost,c_n))
 				node_count+=1
-
-		
-	"""
-	returns the cost when compared to the characteristic
-	"""
-	def get_char_cost(self):
-		return self.char_cost
-
-	"""
-	returns the cost of the node
-	"""
-	def get_cost(self):
-		return self.cost
-
-	"""
-	returns the cost from comparing tiles with the one before it
-	"""
-	def get_order_cost(self):
-		return self.order_cost
+		return node_count
 
 	"""
 	returns if a node is in in goal state

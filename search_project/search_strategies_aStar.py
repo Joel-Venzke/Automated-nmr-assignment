@@ -72,7 +72,7 @@ def letters_to_numbers(characteristic):
 	temp = []
 	new_characteristic = []
 	for ch in characteristic: # loop through the whole list
-		ch = ch.lower().strip() # deal with case problems
+		ch = ch.lower().strip() # deal with case problems and returns
 		temp = []
 		# finds amino acid type and gets expected chemical shift data
 		# Values come from BRMB data. The exact values are the average
@@ -137,7 +137,7 @@ used to create the heap
 """
 def listToHeap(data):
 	for i in xrange(len(data)):
-		data[i] = (data[i].get_cost(), data[i])
+		data[i] = (data[i].cost, data[i])
 	heapify(data)
 
 """
@@ -152,11 +152,11 @@ def output_soultion(finalNode, nodeCount):
 
 	#prints best solution to console
 	print "HERE IS THE BEST"
-	print "Cost: " + str(finalNode.get_cost())
+	print "Cost: " + str(finalNode.cost)
 	print ""
 	print finalNode
-	print "Char cost:  " + str(finalNode.get_char_cost())
-	print "Order Cost:  " + str(finalNode.get_order_cost())
+	print "Char cost:  " + str(finalNode.char_cost)
+	print "Order Cost:  " + str(finalNode.order_cost)
 	print "Nodes: " + str(nodeCount)
 
 
@@ -193,6 +193,8 @@ Asp Gln Leu
 def read_file(file_name):
 	tile_set_list = []
 	characteristic = []
+	# start jvm: the jvm is used for the machine learning filtering 
+	# so that weka can be run
 	jvm.start()
 	nmrClass = Classifier(jobject=serialization.read("models/lmt_3sd.model"))
 	with open(file_name) as f: # opens file
@@ -215,8 +217,8 @@ def read_file(file_name):
 				c = -1
 			if (d == "na"):
 				d = -1
-			# adds a new Tile to tile_set_list
-			if (not (a==-1 and b==-1 and c==-1 and d==-1)):
+			# adds a new Tile to tile_set_list if its not a placeholder
+			if (not (a==-1 and b==-1 and c==-1 and d==-1)): # needed for proline checking
 				tile_set_list.append(Tile(a, b, c, d, nmrClass)) 
 	return tile_set_list, characteristic, nmrClass
 
@@ -227,25 +229,31 @@ takes in file name and search type number
 outputs results to console
 """
 def start_search(file_name, type):
-	start = time.clock()
-	tile_set, characteristic, nmrClass = read_file(file_name) # gets data from file
-	calculate_char_heuristic(tile_set, characteristic)
+	start = time.clock() # time Preprocessing
+	tile_set, characteristic, nmrClass = read_file(file_name)
+	calculate_char_heuristic(tile_set, characteristic) # do before you add the place holder tiles
 	tile_set = generate_placeholders(tile_set, characteristic, nmrClass) # gets place holder tiles
-	jvm.stop()
+	# kill jvm that was started after calling read file
+	# the jvm is used for the machine learning filtering 
+	# so that weka can be run
+	jvm.stop() 
 	calculate_order_heuristic(tile_set)
+
+	# add up heuristic from all tiles and make starting node
 	heuristic_val = 0
 	for tile in tile_set:
 		heuristic_val += tile.heuristic_cost
 	root = Node(tile_set, [], heuristic_val, characteristic,0,0, heuristic=heuristic_val) # makes start state for search
 
-	end = time.clock()
+	end = time.clock() # time Preprocessing
 	print "Preprocessing Time:  " + str(end-start)
+	
 	# picks algorithm
 	if (int(type) == 0): # uniform cost search
 		best_solution, node_count = aStar([root])
 		output_soultion(best_solution, node_count)
 	elif (int(type) == 1): # puzzle building
-		best_solution = puzzle_building_search([root])
+		best_solution = puzzle_building_search([root]) 
 
 
 """
@@ -254,7 +262,8 @@ takes in a starting node for the search
 returns the best solution
 """
 # @profile
-def aStar(frontier):
+# TODO take in node count, number of tiles to place, and number of solutions to return
+def aStar(frontier): 
 	# frontier = [root] # holds list of node that need exploring
 	# # the following code is for setting up new machine learning models
 	# # if the is your goal, uncomment this and talk to Joel Venzke on how to use it
@@ -263,8 +272,10 @@ def aStar(frontier):
 	# 	if (root.unplaced_tiles[i].amino_type[root.characteristic[i][2]] < lowest):
 	# 		lowest = root.unplaced_tiles[i].amino_type[root.characteristic[i][2]]
 	# print "lowest cutoff: " + str(lowest)
-
-	listToHeap(frontier)
+	
+	# make the fronter into a heap
+	# this allows for more than one node to be passed in
+	listToHeap(frontier) 
 	node_count = 1
 	best_solution = None
 	best_cost = float("inf") 
@@ -277,15 +288,14 @@ def aStar(frontier):
 
 		# checks if a new best solution has been found
 		# if it has the solution is stored
-		if (current_node.is_goal() and current_node.get_cost() < best_cost):
-			best_cost = current_node.get_cost()
+		if (current_node.is_goal() and current_node.cost < best_cost):
+			best_cost = current_node.cost
 			best_solution = current_node
 
 		# creates child_nodes to search 
 		# adds child_nodes to frontier
-		current_node.expand(frontier,node_count)
+		node_count+=current_node.expand(frontier)
 		
-
 		# checks to see if the best solution is the true best solution
 		# and if there are any other solutions left to explore
 		# restarts loop if the best solution is not proven optimal
@@ -294,5 +304,6 @@ def aStar(frontier):
 			keep_running = True 
 
 	# returns best solution and number of nodes generated
+	# TODO make this return more than one solution
 	return best_solution, node_count
 
