@@ -34,3 +34,19 @@ Remove order cost and char cost
 	they don't give any important info
 	their calculation waist time and memory
 	once this is done, the test code will need to be adjusted
+
+
+**************************************************************************************************
+**************************************************************************************************
+**************************************************************************************************
+****																						   ***
+****        LOOK INTO THIS!!!!!!!!! IT MIGHT FIX OUR MISSING DATA PROBLEMS!!!!!!!			   ***
+****																						   ***
+****																						   ***
+**************************************************************************************************
+**************************************************************************************************
+**************************************************************************************************
+look into predicting the tile that follows a missing tile:
+	I was looking through the heuristic order cost and I looks like ever tile that follows a missing tile
+	has an order cost of 1.9 or greater
+	can we use this to our advantage? 

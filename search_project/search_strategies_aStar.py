@@ -33,10 +33,14 @@ tiles
 def calculate_order_heuristic(tile_set):
 	temp = 0
 	for tile in tile_set:
+		# print "HERE"
+		# print tile.get_tile()
 		lowest = float("inf")
 		for tile_comp in tile_set:
 			temp = tile_comp.compare_below(tile)
 			if (temp<lowest):
+				# print tile_comp.get_tile(),
+				# print temp
 				lowest = temp
 		tile.heuristic_cost += lowest
 		# print lowest
@@ -243,6 +247,8 @@ def start_search(file_name, type):
 	heuristic_val = 0
 	for tile in tile_set:
 		heuristic_val += tile.heuristic_cost
+		# print tile.heuristic_order_cost,
+		# print tile.get_tile()
 	root = Node(tile_set, [], heuristic_val, characteristic,0,0, heuristic=heuristic_val) # makes start state for search
 
 	end = time.clock() # time Preprocessing
