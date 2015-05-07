@@ -29,3 +29,8 @@ Look into threading the node generation or using mpi
 use kernprof to run line by line profiles
 	find the lines that take the most time, and see how we can speed those up
 	they will most likely be in the Node.expand() function
+
+Remove order cost and char cost
+	they don't give any important info
+	their calculation waist time and memory
+	once this is done, the test code will need to be adjusted

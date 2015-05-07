@@ -21,13 +21,12 @@ class Node(object):
 	order_cost: cost from comparing tiles with the one before it
 	"""
 	def __init__(self, ut, pt, cost, characteristic, char_cost, order_cost, heuristic=0):
-		self.unplaced_tiles = ut
-		self.placed_tiles = pt
-		self.cost = cost
-		self.characteristic = characteristic
-		self.char_cost = char_cost
-		self.order_cost = order_cost
-		self.heuristic_cost = heuristic
+		self.unplaced_tiles = ut # holds tiles that have not been assigned
+		self.placed_tiles = pt # holds the assignment
+		self.cost = cost # cost of current assignment
+		self.characteristic = characteristic # holds characteristic protein sequence
+		self.char_cost = char_cost # cost do to characteristic protein sequence
+		self.order_cost = order_cost # cost do to tile order
 
 	"""
 	prints the node to the console
@@ -64,7 +63,7 @@ class Node(object):
 
 				# add child node to list of new_nodes
 				c_n = Node(temp_ut, temp_pt, self.cost, self.characteristic, 
-							self.char_cost, self.order_cost, heuristic=self.heuristic_cost)
+							self.char_cost, self.order_cost)
 				heappush(frontier, (c_n.cost,c_n))
 				node_count+=1
 				break # only need to add one proline, all other tiles are overkill
@@ -82,16 +81,17 @@ class Node(object):
 					temp_order_cost = self.placed_tiles[-1].compare_below(placed_tile)
 				else: # first tile being placed 
 					temp_char_cost = placed_tile.get_error(self.characteristic[char_num])
-
-					# makes sure the heuristic cost for placing a tile in front of the first tile is not considered 
+					# remove the order cost twice for the first tile
+					# if the tile's order heuristic is high, chances are it 
+					# will not go in any other spot besides the first
+					# if it is low, then it will probably belong in a different location
 					temp_order_cost = -1*placed_tile.heuristic_order_cost 
 					
 				c = temp_order_cost + temp_char_cost - placed_tile.heuristic_cost
 
 				# add child node to list of new_nodes
 				c_n = Node(temp_ut, temp_pt, self.cost + c, self.characteristic,
-						self.char_cost+temp_char_cost, self.order_cost+temp_order_cost,
-						heuristic=self.heuristic_cost-placed_tile.heuristic_cost)
+						self.char_cost+temp_char_cost, self.order_cost+temp_order_cost)
 				heappush(frontier, (c_n.cost,c_n))
 				node_count+=1
 		return node_count

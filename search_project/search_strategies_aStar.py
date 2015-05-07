@@ -23,7 +23,7 @@ def calculate_char_heuristic(tile_set, characteristic):
 			temp = tile.get_error(char)
 			if (temp<lowest):
 				lowest = temp
-		tile.heuristic_cost = lowest
+		tile.heuristic_cost += lowest
 
 """
 calculates and stores heuristic values for 
@@ -38,7 +38,7 @@ def calculate_order_heuristic(tile_set):
 			temp = tile_comp.compare_below(tile)
 			if (temp<lowest):
 				lowest = temp
-		tile.heuristic_cost = lowest
+		tile.heuristic_cost += lowest
 		# print lowest
 		tile.heuristic_order_cost = lowest #save to remove when the first tile is placed
 
