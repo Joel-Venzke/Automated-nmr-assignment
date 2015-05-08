@@ -10,11 +10,12 @@ include new data in the unit test
 
 More filtering (try new models, work on settings of current models) (spend some time with neural nets and see if we can beat LMT)
 
-machine learning for cost calculation (is this possible? maybe come up with better way to calculate it, take care of missing data issues)
+machine learning for cost calculation (is this possible? maybe come up with better way to calculate it, take care of missing data issues*see below for idea on this*)
 
 better command line tools (look into optparse)
 	do this in the search_project file
 	build in defaults and checks accordingly
+	add the output for script running and data collection to the command line tools
 
 Find out if you can use pointers in python
 	much of the time in the search is waiting for the os to allocate space for the nodes
@@ -40,6 +41,7 @@ Remove order cost and char cost
 **************************************************************************************************
 **************************************************************************************************
 ****																						   ***
+****																						   ***
 ****        LOOK INTO THIS!!!!!!!!! IT MIGHT FIX OUR MISSING DATA PROBLEMS!!!!!!!			   ***
 ****																						   ***
 ****																						   ***
@@ -50,3 +52,16 @@ look into predicting the tile that follows a missing tile:
 	I was looking through the heuristic order cost and I looks like ever tile that follows a missing tile
 	has an order cost of 1.9 or greater
 	can we use this to our advantage? 
+	for the first implementation, just add another bool check in the expand() function in Node.py
+	it should check to see 
+	elif ((not placed_tiles or placed_tiles[-1]==(is a place holder)):
+		if (placed_tile.heuristic_order_cost>=1.9 and unplaced_tile.amino_type[amino_Idx] > 0.004):
+			code for placing a tile from the "not proline and has a good match" elif statement
+			any Tile.compare_below(Tile) will be 1.9 so remove the call to compare_below() and replace it with 1.9
+	it should go before the "not proline and has a good match" elif statement
+		Then the if statement inside of "not proline and has a good match" can be removed since all 
+		first tiles will be placed in the first statement (keep the first part of the if statement without
+		the if in front of it)
+	check to see if the works well. If there are a few that are not working, but most run fine, you may need to 
+	add some check statement in preprocessing to see if we have enough tiles withe a heuristic_order_cost>=1.9
+	This could be pretty tricky to code up and hopefully we won't need it. 
