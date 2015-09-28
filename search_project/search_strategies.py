@@ -129,9 +129,14 @@ def output_soultion(finalNode, nodeCount):
 def puzzle_building_search(sol_list, num_sol, depth):
 	num_len = depth
 	node_count = 1
-	while True:
+	while True: # loop until return
+		# runs search
 		sol_list, node_count, finish = uniform_cost(sol_list, n_sol=num_sol, ret_len=num_len, node_count=node_count)
+		
+		# extend search max length
 		num_len+=depth
+
+		# return if best solution is found
 		if finish == True:
 			return sol_list[0], node_count
 
@@ -233,13 +238,17 @@ def uniform_cost(frontier, n_sol=1, ret_len=-1, node_count=1):
 			best_cost = current_node.get_cost()
 			best_solution = current_node
 
+		# if using puzzle building 
 		if (ret_len!=-1):
+			# check termination condition
 			if frontier and len(frontier[0][1].placed_tiles) >= ret_len:
+				# get best solutions
 				sol_list=[]
-				# print len(frontier), node_count
 				for i in xrange(min(len(frontier),ret_len)):
 					sol_list.append(heappop(frontier)[1])
+				# return with false to indicate mid search stop
 				return sol_list, node_count, False
+
 		# creates child_nodes to search 
 		# adds child_nodes to frontier
 		child_nodes = current_node.expand()
@@ -257,5 +266,5 @@ def uniform_cost(frontier, n_sol=1, ret_len=-1, node_count=1):
 	if (ret_len==-1):
 		return best_solution, node_count, True
 	else:
-		return [best_solution], node_count, True
+		return [best_solution], node_count, True # puzzle building expects array
 
