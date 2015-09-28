@@ -26,7 +26,7 @@ if len(sys.argv) < 2:
 
 # time and run search
 start = time.clock()
-search_strategies_aStar.start_search(sys.argv[1],0)
+search_strategies_aStar.start_search(sys.argv[1],sys.argv[2])
 end = time.clock()
 
 print "Run Time:  " + str(end-start)

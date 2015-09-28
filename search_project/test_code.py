@@ -9,10 +9,10 @@ def getExpectedOutput(filename):
     return expected_output
 
 def getOutput(filename):
-    p = subprocess.Popen(["python", "search_project_aStar.py", "./Data/"+filename, "0"], stdout=subprocess.PIPE)
+    p = subprocess.Popen(["python", "search_project.py", "./Data/"+filename, "1"], stdout=subprocess.PIPE)
     out = p.communicate()
     outputList = out[0].split("\n")
-    output = "\n".join(outputList[6 : len(outputList) - 5])
+    output = "\n".join(outputList[3 : len(outputList) - 5])
     return output
 
 class TestSequenceFunctions(unittest.TestCase):
@@ -325,7 +325,31 @@ class TestSequenceFunctions(unittest.TestCase):
 
     def test_Data_Fall_2014_45_txt(self):
         self.assertTrue(getOutput("Data_Fall_2014_45.txt") == getExpectedOutput("Data_Fall_2014_45.txt"))
-    
+
+    def test_Data_Fall_2014_55_txt(self):
+        self.assertTrue(getOutput("Data_Fall_2014_55.txt") == getExpectedOutput("Data_Fall_2014_55.txt"))
+
+    def test_Data_Fall_2014_56_txt(self):
+        self.assertTrue(getOutput("Data_Fall_2014_56.txt") == getExpectedOutput("Data_Fall_2014_56.txt"))
+
+    def test_Data_Fall_2014_57_txt(self):
+        self.assertTrue(getOutput("Data_Fall_2014_57.txt") == getExpectedOutput("Data_Fall_2014_57.txt"))
+
+    def test_Data_Fall_2014_58_txt(self):
+        self.assertTrue(getOutput("Data_Fall_2014_58.txt") == getExpectedOutput("Data_Fall_2014_58.txt"))
+
+    def test_Data_Fall_2014_59_txt(self):
+        self.assertTrue(getOutput("Data_Fall_2014_59.txt") == getExpectedOutput("Data_Fall_2014_59.txt"))
+
+    def test_Data_Fall_2014_60_txt(self):
+        self.assertTrue(getOutput("Data_Fall_2014_60.txt") == getExpectedOutput("Data_Fall_2014_60.txt"))
+
+    def test_Data_Fall_2014_61_txt(self):
+        self.assertTrue(getOutput("Data_Fall_2014_61.txt") == getExpectedOutput("Data_Fall_2014_61.txt"))
+
+    def test_Data_Fall_2014_62_txt(self):
+        self.assertTrue(getOutput("Data_Fall_2014_62.txt") == getExpectedOutput("Data_Fall_2014_62.txt"))
+
 
 suite = unittest.TestLoader().loadTestsFromTestCase(TestSequenceFunctions)
 unittest.TextTestRunner(verbosity=2).run(suite)

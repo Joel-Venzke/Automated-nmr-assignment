@@ -126,13 +126,14 @@ def output_soultion(finalNode, nodeCount):
 	print "Order Cost:  " + str(finalNode.get_order_cost())
 	print "Nodes: " + str(nodeCount)
 
-def puzzle_building_search(frontier, numSolutions, depthVal):
-	#make this maintain the list of nodes being used to start and end the uniform cost search
-	# uniform cost search may want to have 3 variables: 
-	# one for the frontier (some changes will need to make this happen)
-	# one for the depth needed for termination of that layer of the search (the number I talked about in the meeting)
-	# one for the number of nodes to return at the completion of the search
-	return frontier
+def puzzle_building_search(sol_list, num_sol, depth):
+	num_len = depth
+	node_count = 1
+	while True:
+		sol_list, node_count, finish = uniform_cost(sol_list, n_sol=num_sol, ret_len=num_len, node_count=node_count)
+		num_len+=depth
+		if finish == True:
+			return sol_list[0], node_count
 
 """
 Reads in the data from the provided file
@@ -194,10 +195,13 @@ def start_search(file_name, type):
 
 	# picks algorithm
 	if (int(type) == 0): # uniform cost search
-		best_solution, node_count = uniform_cost([root])
-		output_soultion(best_solution, node_count)
+		best_solution, node_count, final = uniform_cost([root])
 	elif (int(type) == 1): # puzzle building
-		best_solution = puzzle_building_search([root])
+		best_solution, node_count = puzzle_building_search([root],5,15) 
+	
+	output_soultion(best_solution, node_count)
+
+
 
 
 """
@@ -205,7 +209,7 @@ preforms a uniform cost search on a node
 takes in a starting node for the search 
 returns the best solution
 """
-def uniform_cost(frontier):
+def uniform_cost(frontier, n_sol=1, ret_len=-1, node_count=1):
 	# frontier = [root] # holds list of node that need exploring
 	# lowest = 1.0
 	# for i in range(len(root.unplaced_tiles)):
@@ -214,7 +218,6 @@ def uniform_cost(frontier):
 	# print lowest
 
 	listToHeap(frontier)
-	node_count = 1
 	best_solution = None
 	best_cost = float("inf") 
 	keep_running = True
@@ -230,6 +233,13 @@ def uniform_cost(frontier):
 			best_cost = current_node.get_cost()
 			best_solution = current_node
 
+		if (ret_len!=-1):
+			if frontier and len(frontier[0][1].placed_tiles) >= ret_len:
+				sol_list=[]
+				# print len(frontier), node_count
+				for i in xrange(min(len(frontier),ret_len)):
+					sol_list.append(heappop(frontier)[1])
+				return sol_list, node_count, False
 		# creates child_nodes to search 
 		# adds child_nodes to frontier
 		child_nodes = current_node.expand()
@@ -244,5 +254,8 @@ def uniform_cost(frontier):
 			keep_running = True 
 
 	# returns best solution and number of nodes generated
-	return best_solution, node_count
+	if (ret_len==-1):
+		return best_solution, node_count, True
+	else:
+		return [best_solution], node_count, True
 
