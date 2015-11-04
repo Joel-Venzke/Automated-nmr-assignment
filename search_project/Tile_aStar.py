@@ -24,8 +24,6 @@ class Tile(object):
         self.b = float(b) # carbon beta i
         self.c = float(c) # carbon alpha i-1
         self.d = float(d) # carbon beta i-1
-        self.char_weight = .1 # Scale for characteristic weight (get_error)
-        self.order_weight = 1 # Scale for order weight (compare_below)
         self.heuristic_cost = heuristic # holds total heuristic cost
         self.heuristic_order_cost = 0 # holds order cost to allow for its removal
         self.amino_type = self.calculate_amino_type(model,pro) # list of amino acids
